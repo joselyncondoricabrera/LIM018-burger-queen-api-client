@@ -28,6 +28,13 @@
   color: #61dafb;
 }
 
+.Nav-bar{
+  background-color: red;
+}
+.Title{
+  color:yellow;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -38,11 +45,11 @@
 }
 // estilos para tablet
 @media (max-width: 1366px){
-  body {
-    height: 100vh;
-    background-image:  url("./imagen/fondo-burguer-queen.png");
+  //body {
+    //height: 100vh;
+    //background-image:  url("./imagen/fondo-burguer-queen.png");
    // background-size:cover;
-  }
+  //}
   
   .Form-login {
     display: flex;
