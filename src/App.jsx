@@ -9,6 +9,7 @@ import {
 import email from './imagen/email.png';
 import key from './imagen/key2.png';
 import './App.scss';
+import { render } from '@testing-library/react';
 /* function App() {
   return (
     <div className="App">
@@ -34,25 +35,32 @@ import './App.scss';
   );
 } */
 
-function Login() {
+export function Login() {
   return (
-    <div className="Form-login">
-      <h1>Iniciar Sesión</h1>
-      <div className="Form-input">
-        <img src={email} className="Icon-login" alt="logo" />
-        <input type="text" className="Input-login" placeholder="ingrese email" />
-      </div>
-      <div className="Form-input">
-        <img src={key} className="Icon-login" alt="logo" />
-        <input type="text" className="Input-login" placeholder="ingrese contraseña" />
-      </div>
+    <Router>
+      <div className="Form-login">
+        <h1>Iniciar Sesión</h1>
+        <div className="Form-input">
+          <img src={email} className="Icon-login" alt="logo" />
+          <input type="text" className="Input-login" placeholder="ingrese email" />
+        </div>
+        <div className="Form-input">
+          <img src={key} className="Icon-login" alt="logo" />
+          <input type="text" className="Input-login" placeholder="ingrese contraseña" />
+        </div>
 
-      <button type="button"> Enviar </button>
-    </div>
+        <button type="button">
+          <Link to="/Home">Ingresar</Link>
+        </button>
+      </div>
+      <Routes>
+        <Route path="/Home" element={<Home />} />
+      </Routes>
+    </Router>
   );
 }
 
-export default function App() {
+export function App() {
   return (
     <Router>
       <div>
@@ -82,12 +90,14 @@ export default function App() {
   );
 }
 
-function Home() {
-  return (
+export function Home() {
+  render(){
+    return (
     <div>
       <h2 className="Title">Home</h2>
     </div>
   );
+  }
 }
 
 // function About() {
