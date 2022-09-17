@@ -1,4 +1,5 @@
 import React from 'react';
+
 import email from './imagen/email.png';
 import key from './imagen/key2.png';
 import './App.scss';
@@ -44,6 +45,4 @@ export function Login() {
       <button type="button"> Enviar </button>
     </div>
   );
-}
-export function prueba() {
 }
