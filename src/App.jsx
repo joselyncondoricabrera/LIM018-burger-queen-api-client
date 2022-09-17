@@ -1,8 +1,10 @@
 import React from 'react';
-import logo from './logo.svg';
+
+import email from './imagen/email.png';
+import key from './imagen/key2.png';
 import './App.scss';
 
-function App() {
+/* function App() {
   return (
     <div className="App">
       <header className="App-header">
@@ -25,6 +27,22 @@ function App() {
       </header>
     </div>
   );
-}
+} */
 
-export default App;
+export function Login() {
+  return (
+    <div className="Form-login">
+      <h1>Iniciar Sesión</h1>
+      <div className="Form-input">
+        <img src={email} className="Icon-login" alt="logo" />
+        <input type="text" className="Input-login" placeholder="ingrese email" />
+      </div>
+      <div className="Form-input">
+        <img src={key} className="Icon-login" alt="logo" />
+        <input type="text" className="Input-login" placeholder="ingrese contraseña" />
+      </div>
+
+      <button type="button"> Enviar </button>
+    </div>
+  );
+}
