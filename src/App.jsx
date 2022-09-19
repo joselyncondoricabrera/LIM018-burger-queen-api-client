@@ -9,35 +9,10 @@ import {
 import email from './imagen/email.png';
 import key from './imagen/key2.png';
 import './App.scss';
-import { render } from '@testing-library/react';
-/* function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit
-          {' '}
-          <code>src/App.js</code>
-          {' '}
-          and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-} */
 
 export function Login() {
   return (
-    <Router>
+    <div className="Background-login">
       <div className="Form-login">
         <h1>Iniciar Sesión</h1>
         <div className="Form-input">
@@ -49,64 +24,34 @@ export function Login() {
           <input type="text" className="Input-login" placeholder="ingrese contraseña" />
         </div>
 
-        <button type="button">
-          <Link to="/Home">Ingresar</Link>
-        </button>
+        <button type="button"><Link to="/Login">Ingresar</Link></button>
       </div>
-      <Routes>
-        <Route path="/Home" element={<Home />} />
-      </Routes>
-    </Router>
+
+    </div>
+
   );
 }
 
 export function App() {
   return (
     <Router>
-      <div>
-        <nav className="Nav-bar">
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/Login">Login</Link>
-            </li>
-            <li>
-              <Link to="/users">Users</Link>
-            </li>
-          </ul>
-        </nav>
-
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
-        <Routes>
-          <Route path="/Login" element={<Login />} />
-          <Route path="/users" element={<Users />} />
-          <Route path="/" element={<Home />} />
-        </Routes>
-      </div>
+      <Routes>
+        <Route path="/Login" element={<Home />} />
+        <Route path="/users" element={<Users />} />
+        <Route path="/" element={<Login />} />
+      </Routes>
     </Router>
   );
 }
 
 export function Home() {
-  render(){
-    return (
+  return (
     <div>
       <h2 className="Title">Home</h2>
+      <button type="button"><Link to="/Login">Enviar Pedido</Link></button>
     </div>
   );
-  }
 }
-
-// function About() {
-//   return (
-//     <div>
-//       <h2 className="Title">About</h2>
-//     </div>
-//   );
-// }
 
 function Users() {
   return (
@@ -115,3 +60,5 @@ function Users() {
     </div>
   );
 }
+
+//insonnia o postman

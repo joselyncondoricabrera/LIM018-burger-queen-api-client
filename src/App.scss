@@ -28,9 +28,14 @@
 .App-link {
   color: #61dafb;
 }
-
+.Background-login{
+    height: 100vh;
+    background-image:  url("./imagen/fondo-burguer-queen.png");
+    background-size:cover;
+}
 .Nav-bar{
   background-color: red;
+
 }
 .Title{
   color:yellow;
