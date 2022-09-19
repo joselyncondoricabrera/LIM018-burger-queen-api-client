@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+font-family: 'Montserrat';
 }
 
 .App-logo {
@@ -30,15 +31,39 @@
 }
 .Background-login{
     height: 100vh;
-    background-image:  url("./imagen/fondo-burguer-queen.png");
+    background-image:  url("./imagen/background-burguer-queen.png");
     background-size:cover;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+.Button-login{
+  width: 344px;
+  height: 75px;
+  background: #CF7500;
+  border: none;
+  border-radius: 40px;
 }
+
+.Text-button{
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 800;
+  font-size: 30px;
+}
+
 .Nav-bar{
   background-color: red;
 
 }
 .Title{
   color:yellow;
+}
+.Text-button{
+  color:white;
+  text-decoration: none;
+  text-transform: uppercase;
 }
 
 @keyframes App-logo-spin {
@@ -63,29 +88,46 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap:20px;
-
-    width: 461px;
-    height: 534px;
-    background: #FFBD35;
-    box-shadow: 0px 4px 5px 3px rgba(41, 23, 23, 0.22);
-    border-radius: 40px;
+    gap: 50px;
+    color: white;
+    background: linear-gradient(180.16deg, rgba(0, 0, 0, 0.5) 0.14%, rgba(0, 0, 0, 0.0985401) 144.65%, rgba(0, 0, 0, 0) 180.12%);
+    width: 500px;
+    background-blend-mode: luminosity;
+    height: 100vh;
+    box-shadow: 0px 4px 5px 3px rgb(41 23 23 / 22%);
   }
   .Form-input{
     display: flex;
+    align-items: center;
     height: 68px;
     width: 344px;
-    gap: 10px;
     border-bottom: 1px solid;
+    padding-left: 20px;
+    box-sizing: border-box;
   }
   .Icon-login{
-    height:50px ;
-    width: 40px;
+    height:27px ;
   }
   .Input-login{
-    width:280px ;
+    width: 280px;
     border: none;
-    background:none;
+    background: none;
+    color: white;
+    font-family: 'Montserrat';
+    margin-left: 20px;
+    font-size: 20px;
+    font-weight: 500;
   }
 
+  .Input-login ::placeholder{
+    color: white;
+    font-size: 20px;
+    font-weight: 500;
+  }
+
+  .Text-button{
+    color:white;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
 }

@@ -5,8 +5,8 @@ import {
   Route,
   Link,
 } from 'react-router-dom';
-import email from './imagen/email.png';
-import key from './imagen/key2.png';
+import email from './imagen/mail.png';
+import password from './imagen/password.png';
 import './App.scss';
 
 function Login() {
@@ -19,13 +19,11 @@ function Login() {
           <input type="text" className="Input-login" placeholder="ingrese email" />
         </div>
         <div className="Form-input">
-          <img src={key} className="Icon-login" alt="logo" />
+          <img src={password} className="Icon-login" alt="logo" />
           <input type="text" className="Input-login" placeholder="ingrese contraseña" />
         </div>
-
-        <button type="button"><Link to="/Login">Ingresar</Link></button>
+        <button className="Button-login" type="button"><Link className="Text-button" to="/Menu">Ingresar</Link></button>
       </div>
-
     </div>
 
   );
@@ -35,27 +33,38 @@ export default function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/Login" element={<Home />} />
-        <Route path="/users" element={<Users />} />
         <Route path="/" element={<Login />} />
+        <Route path="/Home" element={<Menu />} />
+        <Route path="/Orders" element={<Orders />} />
       </Routes>
     </Router>
   );
 }
 
-function Home() {
+function NavBar() {
   return (
     <div>
-      <h2 className="Title">Home</h2>
-      <button type="button"><Link to="/Login">Ingresar</Link></button>
+      <button type="button"><Link to="/Menu">Menu</Link></button>
+      <button type="button"><Link to="/Orders">Lista de ordenes</Link></button>
+      <button type="button"><Link to="/">Salir</Link></button>
     </div>
   );
 }
 
-function Users() {
+function Menu() {
   return (
     <div>
-      <h2 className="Title">Users</h2>
+      <NavBar />
+      <h2 className="Title">Menú</h2>
+    </div>
+  );
+}
+
+function Orders() {
+  return (
+    <div>
+      <NavBar />
+      <h2 className="Title">Lista de ordenes</h2>
     </div>
   );
 }
