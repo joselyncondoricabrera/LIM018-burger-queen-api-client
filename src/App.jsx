@@ -8,6 +8,7 @@ import {
 import email from './imagen/mail.png';
 import password from './imagen/password.png';
 import './App.scss';
+import './Menu.scss';
 
 function Login() {
   return (
@@ -34,7 +35,7 @@ export default function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/Home" element={<Menu />} />
+        <Route path="/Menu" element={<Menu />} />
         <Route path="/Orders" element={<Orders />} />
       </Routes>
     </Router>
@@ -44,27 +45,35 @@ export default function App() {
 function NavBar() {
   return (
     <div>
-      <button type="button"><Link to="/Menu">Menu</Link></button>
-      <button type="button"><Link to="/Orders">Lista de ordenes</Link></button>
-      <button type="button"><Link to="/">Salir</Link></button>
+      <button type="button" className="Module-menu Module"><Link className="Options" to="/Menu">Menú</Link></button>
+      <button type="button" className="Module-orders Module"><Link className="Options" to="/Orders">Ordenes</Link></button>
+      <button type="button" className="Btn-logOut"><Link className="Options" to="/">Salir</Link></button>
     </div>
   );
 }
 
 function Menu() {
   return (
-    <div>
+    <div className="Background-menu">
       <NavBar />
-      <h2 className="Title">Menú</h2>
+      <div className="Background-image">
+        <h2 className="Title">Menú</h2>
+        <div className="Menu-options-container">
+          <div className="Menu-options">Almuerzo y cena</div>
+          <div className="Menu-options">Desayuno</div>
+        </div>
+      </div>
     </div>
   );
 }
 
 function Orders() {
   return (
-    <div>
+    <div className="Background-menu">
       <NavBar />
-      <h2 className="Title">Lista de ordenes</h2>
+      <div className="Background-image">
+        <h2 className="Title">Lista de ordenes</h2>
+      </div>
     </div>
   );
 }
