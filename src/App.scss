@@ -36,14 +36,15 @@ font-family: 'Montserrat';
     display: flex;
     align-items: center;
     justify-content: flex-end;
-  }
+}
 
 .Button-login{
   width: 344px;
   height: 75px;
   background: #CF7500;
-  border: none;
-  border-radius: 40px;
+  box-shadow: 6px 9px 11px rgba(176, 176, 176, 0.1);
+  border:none;
+  border-radius: 33px;
 }
 
 .Text-button{
@@ -58,7 +59,12 @@ font-family: 'Montserrat';
 
 }
 .Title{
-  color:yellow;
+  color:white;
+  font-family: 'Poppins';
+  font-weight: 600;
+  font-size: 40px;
+  margin: 0px;
+  margin-left: 20px;
 }
 .Text-button{
   color:white;
@@ -86,15 +92,15 @@ font-family: 'Montserrat';
   .Form-login {
     display: flex;
     justify-content: center;
+    font-family: 'Poppins';
     align-items: center;
     flex-direction: column;
     gap: 50px;
     color: white;
-    background: linear-gradient(180.16deg, rgba(0, 0, 0, 0.5) 0.14%, rgba(0, 0, 0, 0.0985401) 144.65%, rgba(0, 0, 0, 0) 180.12%);
-    width: 500px;
+    background: linear-gradient(180.16deg, rgba(0, 0, 0, 0.9) 0.14%, rgba(0, 0, 0, 0.676343) 77.66%, rgba(0, 0, 0, 0.177372) 132.18%, rgba(0, 0, 0, 0) 180.12%);
     background-blend-mode: luminosity;
     height: 100vh;
-    box-shadow: 0px 4px 5px 3px rgb(41 23 23 / 22%);
+    width: 483px;
   }
   .Form-input{
     display: flex;
@@ -104,6 +110,7 @@ font-family: 'Montserrat';
     border-bottom: 1px solid;
     padding-left: 20px;
     box-sizing: border-box;
+    margin-bottom: 15px;
   }
   .Icon-login{
     height:27px ;
@@ -119,15 +126,20 @@ font-family: 'Montserrat';
     font-weight: 500;
   }
 
-  .Input-login ::placeholder{
-    color: white;
+  .Input-login::placeholder{
+    color: rgb(255, 255, 255);
     font-size: 20px;
-    font-weight: 500;
+    font-weight: 400;
   }
 
   .Text-button{
     color:white;
     text-decoration: none;
     text-transform: uppercase;
+    font-size: 26px;
+    font-family: 'Poppins';
+    font-weight: 600;
   }
+
+  
 }
