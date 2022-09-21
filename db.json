@@ -2,8 +2,10 @@
     "posts": [
       { "id": 1, "title": "json-server", "author": "typicode" }
     ],
-    "comments": [
-      { "id": 1, "body": "some comment", "postId": 1 }
+    "users": [
+      { "id":1, "email": "liseth.lira.123@gmail.com", "password": "123456" },
+      { "id":2, "email": "joselyn.condori@gmail.com", "password": "123456" },
+      { "id":3, "email": "mesero1@gmail.com", "password": "123456" }
     ],
     "profile": { "name": "typicode" }
   }

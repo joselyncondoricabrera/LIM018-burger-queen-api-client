@@ -5,10 +5,17 @@ import {
   Route,
   Link,
 } from 'react-router-dom';
+import fetch from 'node-fetch';
 import email from './imagen/mail.png';
 import password from './imagen/password.png';
 import './App.scss';
 import './Menu.scss';
+
+fetch('http://localhost:3001/users')
+  .then((res) => res.json())
+  .then((result) => {
+    console.log(result);
+  });
 
 function Login() {
   return (
@@ -17,11 +24,11 @@ function Login() {
         <h1>Iniciar Sesión</h1>
         <div className="Form-input">
           <img src={email} className="Icon-login" alt="logo" />
-          <input type="text" className="Input-login" placeholder="ingrese email" />
+          <input type="email" className="Input-login" placeholder="ingrese email" />
         </div>
         <div className="Form-input">
           <img src={password} className="Icon-login" alt="logo" />
-          <input type="text" className="Input-login" placeholder="ingrese contraseña" />
+          <input type="password" className="Input-login" placeholder="ingrese contraseña" />
         </div>
         <button className="Button-login" type="button"><Link className="Text-button" to="/Menu">Ingresar</Link></button>
       </div>
