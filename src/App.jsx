@@ -5,17 +5,17 @@ import {
   Route,
   Link,
 } from 'react-router-dom';
-import fetch from 'node-fetch';
+// import fetch from 'node-fetch';
 import email from './imagen/mail.png';
 import password from './imagen/password.png';
 import './App.scss';
 import './Menu.scss';
 
-fetch('http://localhost:3001/users')
-  .then((res) => res.json())
-  .then((result) => {
-    console.log(result);
-  });
+// fetch('http://localhost:3001/users')
+//   .then((res) => res.json())
+//   .then((result) => {
+//     console.log(result);
+//   });
 
 function Login() {
   return (
