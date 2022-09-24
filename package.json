@@ -32,7 +32,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "dev":"node src/request-api.jsx"
+    "dev": "node src/request-api.jsx"
   },
   "eslintConfig": {
     "extends": [

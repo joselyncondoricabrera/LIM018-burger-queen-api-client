@@ -1,3 +1,5 @@
+const fetch = require('node-fetch');
+
 const jsonServer = require('json-server');
 
 const server = jsonServer.create();
@@ -5,12 +7,22 @@ const router = jsonServer.router('db.json');
 const middlewares = jsonServer.defaults();
 
 const secret = 'EsUnSecreto';
+const getUsers = () => {
+  const nuvGetUsers = [];
+  fetch('http://localhost:3001/users')
+    .then((result) => result.json())
+    .then((data) => nuvGetUsers.push(data));
+  return nuvGetUsers;
+};
+getUsers()
+  .then((res) => {
+    console.log(res);
+  });
 
 server.use(jsonServer.bodyParser);
 server.use(middlewares);
-
 server.use((req, res, next) => {
-  console.log(req.headers);
+  // console.log(req.headers);
 
   if (req.method === 'POST' && req.path === '/auth') {
     next();
@@ -25,9 +37,10 @@ server.post('/auth', (req, res) => {
   if (
     req.body.email === 'iam@fakel.lol'
     && req.body.password === 'apasswordtochange') {
-    res.jsonp({
+    console.log(res.jsonp({
       token: secret,
-    });
+    }));
+    // res.status(200).send('consulta ingresada');
   } else res.status(400).send('Bad Request');
 });
 
