@@ -5,6 +5,23 @@ const router = jsonServer.router('db.json');
 const middlewares = jsonServer.defaults();
 
 const secret = 'EsUnSecreto';
+function getUsers() {
+  return new Promise((resolve) => {
+    fetch('http://localhost:3001/users')
+      .then((result) => result.json())
+      .then((data) => {
+        const usersEmail = data.map((userObject) => ({
+          email: userObject.email,
+          password: userObject.password,
+        }));
+        resolve(usersEmail);
+      });
+  });
+}
+// getUsers().then((resp) => {
+//   resp.map((result) => console.log(result.email));
+//   resp.map((result) => console.log(result.password));
+// });
 
 server.use(jsonServer.bodyParser);
 server.use(middlewares);
@@ -21,13 +38,17 @@ server.use((req, res, next) => {
 });
 
 server.post('/auth', (req, res) => {
-  if (
-    req.body.email === 'iam@fakel.lol'
-    && req.body.password === 'apasswordtochange') {
-    console.log(res.jsonp({
-      token: secret,
-    }));
-  } else res.status(400).send('Bad Request');
+  getUsers().then((resp) => {
+    // console.log(resp[i].email);
+    if (
+      req.body.email === resp.email
+      && req.body.password === resp.password) {
+      // console.log('ingresó');
+      res.jsonp({
+        token: secret,
+      });
+    } else res.status(400).send('Bad Request');
+  });
 });
 
 server.use(router);
