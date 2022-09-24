@@ -8,9 +8,8 @@ const secret = 'EsUnSecreto';
 
 server.use(jsonServer.bodyParser);
 server.use(middlewares);
-
 server.use((req, res, next) => {
-  console.log(req.headers);
+  // console.log(req.headers);
 
   if (req.method === 'POST' && req.path === '/auth') {
     next();
@@ -25,9 +24,9 @@ server.post('/auth', (req, res) => {
   if (
     req.body.email === 'iam@fakel.lol'
     && req.body.password === 'apasswordtochange') {
-    res.jsonp({
+    console.log(res.jsonp({
       token: secret,
-    });
+    }));
   } else res.status(400).send('Bad Request');
 });
 

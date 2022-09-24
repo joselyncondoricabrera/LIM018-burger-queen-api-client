@@ -1,15 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   Link,
 } from 'react-router-dom';
-// import fetch from 'node-fetch';
-import email from './imagen/mail.png';
-import password from './imagen/password.png';
+import fetch from 'node-fetch';
+import emailIcon from './imagen/mail.png';
+import passwordIcon from './imagen/password.png';
 import './App.scss';
 import './Menu.scss';
+
+// const bodyData = {
+//   email: "iam@fakel.lol",
+//   password: "apasswordtochange",
+// };
+
+// const requestApi = () => {
+//   fetch('http://localhost:3001/auth', {
+//     method: 'POST',
+//     headers: { 'Content-Type': 'application/json' },
+//     body: JSON.stringify(bodyData),
+//   });
+// };
 
 // fetch('http://localhost:3001/users')
 //   .then((res) => res.json())
@@ -17,20 +30,69 @@ import './Menu.scss';
 //     console.log(result);
 //   });
 
+// function ButtonLogin(props) {
+//   return (
+//     <button
+//       className="Button-login"
+//       type="button"
+//       onClick={() => {
+//         const emailInput = {props.email};
+//         const passwordInput = {props.password};
+//         const bodyData = {
+//           email: emailInput.email,
+//           password: passwordInput.password,
+//         };
+//           // console.log(bodyData);
+//         fetch('http://localhost:3001/auth', {
+//           method: 'POST',
+//           headers: { 'Content-Type': 'application/json' },
+//           body: JSON.stringify(bodyData),
+//         });
+//       }}
+//     >
+//       <p className="Text-button">Send Request</p>
+//     </button>
+//   );
+// }
+
 function Login() {
+  // eslint-disable-next-line no-shadow
+  const [email, setEmail] = useState('');
+  // eslint-disable-next-line no-shadow
+  const [password, setPassword] = useState('');
   return (
     <div className="Background-login">
       <div className="Form-login">
         <h1>Iniciar Sesión</h1>
         <div className="Form-input">
-          <img src={email} className="Icon-login" alt="logo" />
-          <input type="email" className="Input-login" placeholder="ingrese email" />
+          <img src={emailIcon} className="Icon-login" alt="logo" />
+          <input type="email" onChange={(e) => setEmail(e.target.value)} className="Input-login" placeholder="ingrese email" />
         </div>
         <div className="Form-input">
-          <img src={password} className="Icon-login" alt="logo" />
-          <input type="password" className="Input-login" placeholder="ingrese contraseña" />
+          <img src={passwordIcon} className="Icon-login" alt="logo" />
+          <input type="password" onChange={(e) => setPassword(e.target.value)} className="Input-login" placeholder="ingrese contraseña" />
         </div>
         <button className="Button-login" type="button"><Link className="Text-button" to="/Menu">Ingresar</Link></button>
+        <button
+          className="Button-login"
+          type="button"
+          onClick={() => {
+            const emailInput = { email };
+            const passwordInput = { password };
+            const bodyData = {
+              email: emailInput.email,
+              password: passwordInput.password,
+            };
+            // console.log(bodyData);
+            fetch('http://localhost:3001/auth', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(bodyData),
+            });
+          }}
+        >
+          <p className="Text-button">Send Request</p>
+        </button>
       </div>
     </div>
 
