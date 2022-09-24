@@ -7,7 +7,7 @@ const middlewares = jsonServer.defaults();
 const secret = 'EsUnSecreto';
 function getUsers() {
   return new Promise((resolve) => {
-    fetch('http://localhost:3001/users')
+    fetch('http://localhost:3002/users')
       .then((result) => result.json())
       .then((data) => {
         const usersEmail = data.map((userObject) => ({
@@ -15,7 +15,7 @@ function getUsers() {
           password: userObject.password,
         }));
         resolve(usersEmail);
-      });
+      }).catch((error) => console.log('este es el error =>', error));
   });
 }
 // getUsers().then((resp) => {
@@ -40,10 +40,12 @@ server.use((req, res, next) => {
 server.post('/auth', (req, res) => {
   getUsers().then((resp) => {
     // console.log(resp[i].email);
-    if (
-      req.body.email === resp.email
-      && req.body.password === resp.password) {
-      // console.log('ingresó');
+    const userEmail = resp.map((result) => result.email);
+    const userPassword = resp.map((result) => result.password);
+    const emailBody = req.body.email;
+    const passwordBody = req.body.password;
+    if (userEmail.includes(emailBody)
+       && userPassword.includes(passwordBody)) {
       res.jsonp({
         token: secret,
       });
