@@ -36,9 +36,6 @@ server.use((req, res, next) => {
 // let pass = '';
 let result;
 server.post('/auth', (req, res) => {
-  // email = req.body.email;
-  // pass = req.body.password;
-
   getUsers()
     .then((user) => {
       user.forEach((e) => {
@@ -49,10 +46,9 @@ server.post('/auth', (req, res) => {
         }
       });
     });
+
   if (result === true) {
-    res.jsonp({
-      token: secret,
-    });
+    console.log({ token: secret });
   } else if (result === false) {
     res.status(400).send('Bad Request');
   }

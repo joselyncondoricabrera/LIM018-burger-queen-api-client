@@ -141,5 +141,37 @@ font-family: 'Montserrat';
     font-weight: 600;
   }
 
+  //modulod ordenes
+  .Card-orders{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 401px;
+    height: 337px;
+    // background: linear-gradient(180deg, #545454 0%, #111111 100%);
+    background-color: #DBDBDB;
+    border-radius: 37px;
+  }
+  .Btn-card{
+    width: 150px;
+    height: 44px;
+    background: #CF7500;
+    box-shadow: 2px 4px 9px rgba(173, 173, 173, 0.54);
+    border-radius: 30px;
+
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 33px;
+    color: #FFFFFF;
+  }
+  .Container-buttons{
+    display: flex;
+    gap:20px;
+
+  }
+
   
 }

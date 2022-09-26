@@ -142,6 +142,15 @@ function Orders() {
       <NavBar />
       <div className="Background-image">
         <h2 className="Title">Lista de ordenes</h2>
+        <div className="Card-orders">
+          <div className="Card-text">
+            <p>contenido</p>
+          </div>
+          <div className="Container-buttons">
+            <button type="button" className="Btn-card">Listo</button>
+            <button type="button" className="Btn-card">Entregar</button>
+          </div>
+        </div>
       </div>
     </div>
   );
