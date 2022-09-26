@@ -55,6 +55,22 @@ import './Menu.scss';
 //   );
 // }
 
+const requestUsers = (userEmail, userPassword) => {
+  const emailInput = userEmail;
+  const passwordInput = userPassword;
+  const bodyData = {
+    email: emailInput.email,
+    password: passwordInput.password,
+  };
+  // console.log(bodyData);
+  fetch('http://localhost:3001/auth', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(bodyData),
+  });
+  // console.log(sessionStorage.getItem('token'));
+};
+
 function Login() {
   // eslint-disable-next-line no-shadow
   const [email, setEmail] = useState('');
@@ -77,18 +93,7 @@ function Login() {
           className="Button-login"
           type="button"
           onClick={() => {
-            const emailInput = { email };
-            const passwordInput = { password };
-            const bodyData = {
-              email: emailInput.email,
-              password: passwordInput.password,
-            };
-            // console.log(bodyData);
-            fetch('http://localhost:3001/auth', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(bodyData),
-            });
+            requestUsers({ email }, { password });
           }}
         >
           <p className="Text-button">Send Request</p>
@@ -146,3 +151,4 @@ function Orders() {
     </div>
   );
 }
+// insonnia o postman
