@@ -4,12 +4,15 @@ import {
   Routes,
   Route,
   Link,
+  useHistory,
 } from 'react-router-dom';
 import fetch from 'node-fetch';
 import emailIcon from './imagen/mail.png';
 import passwordIcon from './imagen/password.png';
 import './App.scss';
 import './Menu.scss';
+
+const history = useHistory();
 
 // const bodyData = {
 //   email: "iam@fakel.lol",
@@ -55,6 +58,22 @@ import './Menu.scss';
 //   );
 // }
 
+const requestUsers = (userEmail, userPassword) => {
+  const emailInput = userEmail;
+  const passwordInput = userPassword;
+  const bodyData = {
+    email: emailInput.email,
+    password: passwordInput.password,
+  };
+  // console.log(bodyData);
+  fetch('http://localhost:3001/auth', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(bodyData),
+  });
+  // console.log(sessionStorage.getItem('token'));
+};
+
 function Login() {
   // eslint-disable-next-line no-shadow
   const [email, setEmail] = useState('');
@@ -72,23 +91,12 @@ function Login() {
           <img src={passwordIcon} className="Icon-login" alt="logo" />
           <input type="password" onChange={(e) => setPassword(e.target.value)} className="Input-login" placeholder="ingrese contraseña" />
         </div>
-        <button className="Button-login" type="button"><Link className="Text-button" to="/Menu">Ingresar</Link></button>
+        <button className="Button-login" type="button" onClick={() => history.push('/Menu')}>ingresar</button>
         <button
           className="Button-login"
           type="button"
           onClick={() => {
-            const emailInput = { email };
-            const passwordInput = { password };
-            const bodyData = {
-              email: emailInput.email,
-              password: passwordInput.password,
-            };
-            // console.log(bodyData);
-            fetch('http://localhost:3001/auth', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(bodyData),
-            });
+            requestUsers({ email }, { password });
           }}
         >
           <p className="Text-button">Send Request</p>
@@ -122,6 +130,7 @@ function NavBar() {
 }
 
 function Menu() {
+  sessionStorage.setItem('token', '123');
   return (
     <div className="Background-menu">
       <NavBar />
