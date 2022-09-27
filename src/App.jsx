@@ -4,6 +4,7 @@ import {
   Routes,
   Route,
   Link,
+  // Navigate,
 } from 'react-router-dom';
 import fetch from 'node-fetch';
 import emailIcon from './imagen/mail.png';
@@ -11,6 +12,8 @@ import passwordIcon from './imagen/password.png';
 import './App.scss';
 import './Menu.scss';
 
+// eslint-disable-next-line prefer-const
+// let navigate = useNavigate();
 // const bodyData = {
 //   email: "iam@fakel.lol",
 //   password: "apasswordtochange",
@@ -55,21 +58,20 @@ import './Menu.scss';
 //   );
 // }
 
-const requestUsers = (userEmail, userPassword) => {
+const requestUsers = (userEmail, userPassword) => new Promise((resolve) => {
   const emailInput = userEmail;
   const passwordInput = userPassword;
   const bodyData = {
     email: emailInput.email,
     password: passwordInput.password,
   };
-  // console.log(bodyData);
-  fetch('http://localhost:3001/auth', {
+    // console.log(bodyData);
+  resolve(fetch('http://localhost:3001/auth', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(bodyData),
-  });
-  // console.log(sessionStorage.getItem('token'));
-};
+  }));
+});
 
 function Login() {
   // eslint-disable-next-line no-shadow
@@ -88,15 +90,26 @@ function Login() {
           <img src={passwordIcon} className="Icon-login" alt="logo" />
           <input type="password" onChange={(e) => setPassword(e.target.value)} className="Input-login" placeholder="ingrese contraseña" />
         </div>
-        <button className="Button-login" type="button"><Link className="Text-button" to="/Menu">Ingresar</Link></button>
         <button
           className="Button-login"
           type="button"
           onClick={() => {
-            requestUsers({ email }, { password });
+            requestUsers({ email }, { password })
+              .then((res) => res.json())
+              .then((response) => {
+                sessionStorage.setItem('token', response.token);
+                const token = sessionStorage.getItem('token', response.token);
+                if (token !== null) {
+                  // console.log('si se pudo');
+                  window.location.href = '/Menu';
+                  // History.pushState('Menu', '/Menu');
+                // eslint-disable-next-line no-alert
+                } else alert('datos incorrectos');
+              // eslint-disable-next-line no-alert
+              }).catch(() => alert('datos incorrectos'));
           }}
         >
-          <p className="Text-button">Send Request</p>
+          <p className="Text-button">Iniciar Sesión</p>
         </button>
       </div>
     </div>

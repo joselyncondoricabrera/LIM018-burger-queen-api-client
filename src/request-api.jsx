@@ -1,4 +1,4 @@
-const fetch = require('node-fetch');
+// const fetch = require('node-fetch');
 
 const jsonServer = require('json-server');
 
@@ -57,11 +57,19 @@ server.post('/auth', (req, res) => {
     res.jsonp({
       token: secret,
     });
-    console.log(res.json());
+    // console.log(res.json());
     // const obj = {
     //   token: secret,
     // };
     // sessionStorage.setItem('token', obj);
+
+    if (typeof window !== 'undefined') {
+      console.log('You are on the browser');
+      // 👉️ can use localStorage here
+    } else {
+      console.log('You are on the server');
+      // 👉️ can't use localStorage
+    }
   } else {
     res.status(400).send('Bad Request');
   }
@@ -100,6 +108,7 @@ server.post('/auth', (req, res) => {
   //   res.status(400).send('Bad Request');
   // }
 });
+
 server.use(router);
 server.listen(3001, () => {
   console.log('JSON Server is running');
