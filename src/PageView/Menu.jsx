@@ -11,7 +11,6 @@ export default function Menu() {
   const orderData = {
     userId: '3',
     client: { client }.client,
-    // client: 'Joselyn',
   };
   const token = sessionStorage.getItem('token');
   const postOrder = () => {
@@ -20,13 +19,22 @@ export default function Menu() {
       headers: {
         'Content-Type': 'application/json',
         // eslint-disable-next-line quote-props
-        // 'authorization': `Bearer ${token}`,
-        // eslint-disable-next-line quote-props
         'authorization': `Bearer ${token}`,
       },
       body: JSON.stringify(orderData),
-    }).then((res) => res.json()).then((resp) => console.log(resp));
+    });
   };
+
+  // const getOrder = () => {
+  //   fetch('http://localhost:3001/orders', {
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       // eslint-disable-next-line quote-props
+  //       'authorization': `Bearer ${token}`,
+  //     },
+  //     body: JSON.stringify(orderData),
+  //   });
+  // };
 
   return (
     <div className="Background-menu">
