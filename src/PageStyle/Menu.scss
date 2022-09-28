@@ -6,7 +6,7 @@
 }
 
 .Background-image{
-    background-image: url("./imagen/background-menu.png");
+    background-image: url("../imagen/background-menu.png");
     height: 100%;
     box-shadow: 0px -8px 43px 4px rgba(255, 255, 255, 0.2);
     padding: 30px;
@@ -54,6 +54,32 @@
     display: flex;
     text-transform: uppercase;
     color: rgb(31, 31, 31)
+}
+.Container-all-menu{
+    display: flex;
+}
+.Each-image{
+    display: flex;
+    flex-wrap: wrap;
+    width: 80%;
+    gap: 30px;
+    margin-left: 140px;
+}
+.Image-menu-name{
+    width: 332px;
+    height: 95px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 0px 0px 20px 20px;
+}
+.Order-table{
+    width: 477px;
+    height: 759px;
+    background: #E5E5E5;
+    border-radius: 37px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 // .Module:focus ~ .Options{ 
 //     border-bottom: 5px solid #FFFFFF; 
