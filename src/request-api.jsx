@@ -1,4 +1,5 @@
 // const fetch = require('node-fetch');
+// import { md5 } from 'md5';
 
 const jsonServer = require('json-server');
 
@@ -41,6 +42,9 @@ server.use((req, res, next) => {
 
 // let result;
 server.post('/auth', (req, res) => {
+  // server.get('/users', (requ, resp) => {
+  //   resp.jsonp(requ.query);
+  // });
   const users = [{
     email: 'mesero1@gmail.com',
     password: '123456',
@@ -54,6 +58,7 @@ server.post('/auth', (req, res) => {
   const usersPassword = users.map((user) => user.password);
   if (usersEmail.includes(req.body.email)
     && usersPassword.includes(req.body.password)) {
+    // eslint-disable-next-line no-undef
     res.jsonp({
       token: secret,
     });
@@ -61,7 +66,15 @@ server.post('/auth', (req, res) => {
     // const obj = {
     //   token: secret,
     // };
-    sessionStorage.setItem('token', '123');
+    // sessionStorage.setItem('token', obj);
+
+    if (typeof window !== 'undefined') {
+      console.log('You are on the browser');
+      // 👉️ can use localStorage here
+    } else {
+      console.log('You are on the server');
+      // 👉️ can't use localStorage
+    }
   } else {
     res.status(400).send('Bad Request');
   }
@@ -100,6 +113,7 @@ server.post('/auth', (req, res) => {
   //   res.status(400).send('Bad Request');
   // }
 });
+
 server.use(router);
 server.listen(3001, () => {
   console.log('JSON Server is running');
