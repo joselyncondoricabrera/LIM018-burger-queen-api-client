@@ -19,6 +19,9 @@ server.use((req, res, next) => {
 });
 
 server.post('/auth', (req, res) => {
+  // server.get('/users', (requ, resp) => {
+  //   resp.jsonp(requ.query);
+  // });
   const users = [{
     email: 'mesero1@gmail.com',
     password: '123456',
@@ -33,6 +36,7 @@ server.post('/auth', (req, res) => {
 
   if (usersEmail.includes(req.body.email)
     && usersPassword.includes(req.body.password)) {
+    // eslint-disable-next-line no-undef
     res.jsonp({
       token: secret,
     });
