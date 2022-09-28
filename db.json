@@ -1,9 +1,20 @@
 {
-  "posts": [
+  "products": [
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+      "_id": "1",
+      "name": "Cafe Americano",
+      "price": "$5",
+      "image":"",
+      "type": "Desayuno",
+      "dateEntry": "15/09/22"
+    },
+    {
+      "_id": "2",
+      "name": "Cafe con Leche",
+      "price": "$7",
+      "image":"",
+      "type": "Desayuno",
+      "dateEntry": "15/09/22"
     }
   ],
   "users": [
