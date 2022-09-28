@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import fetch from 'node-fetch';
 import emailIcon from '../imagen/mail.png';
 import passwordIcon from '../imagen/password.png';
 import '../App.scss';
 
 export default function Login() {
+  const navigate = useNavigate();
   // eslint-disable-next-line no-shadow
   const [email, setEmail] = useState('');
   // eslint-disable-next-line no-shadow
@@ -23,7 +25,7 @@ export default function Login() {
         sessionStorage.setItem('token', response.token);
         const token = sessionStorage.getItem('token');
         if (token !== null) {
-          window.location.href = '/Menu';
+          navigate('/Menu');
           // eslint-disable-next-line no-alert
         } else alert('datos incorrectos');
         // eslint-disable-next-line no-alert

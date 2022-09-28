@@ -33,6 +33,7 @@ server.post('/auth', (req, res) => {
   ];
   const usersEmail = users.map((user) => user.email);
   const usersPassword = users.map((user) => user.password);
+
   if (usersEmail.includes(req.body.email)
     && usersPassword.includes(req.body.password)) {
     // eslint-disable-next-line no-undef
