@@ -45,8 +45,29 @@ server.post('/auth', (req, res) => {
   }
 });
 
+// server.use((req, res, next) => {
+//   if (req.method === 'POST' && req.path === '/orders') {
+//     next();
+//   } else if (req.headers.authorization === `Bearer ${secret}`) {
+//     next();
+//   } else {
+//     res.sendStatus(401);
+//   }
+// });
+
+// server.post('/orders', (req, res) => {
+//   if (req.body.userId !== null && req.body.client !== null) {
+//     res.jsonp({
+//       'orders.userId': req.body.userId,
+//       'orders.client': req.body.client,
+//     });
+//   } else if (req.headers.authorization === null) {
+//     res.status(401).send('No authorization');
+//   }
+// });
+
 server.use((req, res, next) => {
-  if (req.method === 'POST' && req.path === '/orders') {
+  if (req.method === 'GET' && req.path === '/products') {
     next();
   } else if (req.headers.authorization === `Bearer ${secret}`) {
     next();
@@ -55,14 +76,11 @@ server.use((req, res, next) => {
   }
 });
 
-server.post('/orders', (req, res) => {
-  if (req.body.userId !== null && req.body.client !== null) {
-    res.jsonp({
-      'orders.userId': req.body.userId,
-      'orders.client': req.body.client,
-    });
-  } else if (req.headers.authorization === null) {
-    res.status(401).send('No authorization');
+server.get('/products', (req, res) => {
+  if (req.headers.authorization === `Bearer ${secret}`) {
+    res.jsonp(req.query);
+  } else {
+    res.sendStatus(401);
   }
 });
 server.use(router);

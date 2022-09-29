@@ -1,32 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../PageStyle/Menu.scss';
 import NavBar from './Navbar';
-import cafeAmericano from '../imagen/cafe-americano.png';
-import cafeLeche from '../imagen/cafe-con-leche.png';
-import jugoFrutas from '../imagen/jugo-de-frutas.png';
-import sandwich from '../imagen/sandwich.png';
+// import cafeAmericano from '../imagen/cafe-americano.png';
+// import cafeLeche from '../imagen/cafe-con-leche.png';
+// import jugoFrutas from '../imagen/jugo-de-frutas.png';
+// import sandwich from '../imagen/sandwich.png';
 
 export default function Menu() {
-  const [client, setClient] = useState('');
-  const orderData = {
-    userId: '3',
-    client: { client }.client,
-  };
+  const [products, setProducts] = useState([]);
+  // const [client, setClient] = useState('');
+  // const orderData = {
+  //   userId: '3',
+  //   client: { client }.client,
+  // };
   const token = sessionStorage.getItem('token');
-  const postOrder = () => {
-    fetch('http://localhost:3001/orders', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        // eslint-disable-next-line quote-props
-        'authorization': `Bearer ${token}`,
-      },
-      body: JSON.stringify(orderData),
-    });
-  };
-
-  // const getOrder = () => {
+  // const postOrder = () => {
   //   fetch('http://localhost:3001/orders', {
+  //     method: 'POST',
   //     headers: {
   //       'Content-Type': 'application/json',
   //       // eslint-disable-next-line quote-props
@@ -35,6 +25,21 @@ export default function Menu() {
   //     body: JSON.stringify(orderData),
   //   });
   // };
+
+  // const getProducts = () => {
+
+  useEffect(() => {
+    fetch('http://localhost:3001/products', {
+      headers: {
+      // eslint-disable-next-line quote-props
+        'authorization': `Bearer ${token}`,
+      },
+    }).then((res) => res.json())
+      .then((result) => {
+        setProducts(result);
+        console.log(result);
+      });
+  }, []);
 
   return (
     <div className="Background-menu">
@@ -50,20 +55,22 @@ export default function Menu() {
           </div>
 
           <div className="Each-image">
-            <div className="Images-menu-container">
-              <div className="Imagen-container">
+            { products.map((product, index) => (
+              // eslint-disable-next-line react/no-array-index-key
+              <div key={index} className="Imagen-container">
+                <h1 key={product.id}>{product.price}</h1>
                 <picture className="Image">
-                  <img src={cafeAmericano} alt="menu-cafe" />
+                  <img key={product.id} src={product.image} alt="menu-cafe" />
                 </picture>
                 <div className="Image-menu-name">
                   <button type="button">+</button>
-                  <p>Café Americano</p>
+                  <p key={product.id}>{product.name}</p>
                   <button type="button">-</button>
                 </div>
               </div>
-            </div>
+            ))}
 
-            <div className="Images-menu-container">
+            {/* <div className="Images-menu-container">
               <div className="Imagen-container">
                 <picture className="Image">
                   <img src={cafeLeche} alt="menu-cafe" />
@@ -100,13 +107,15 @@ export default function Menu() {
                   <button type="button">-</button>
                 </div>
               </div>
-            </div>
+            </div> */}
+
           </div>
 
           <div className="Order-table">
-            <input type="text" placeholder="Nombre del cliente" onChange={(e) => setClient(e.target.value)} />
+            { /* <input type="text" placeholder="Nombre del cliente" onChange={(e)
+            => setClient(e.target.value)} />
             <button type="button" onClick={postOrder}> Agregar</button>
-            <h4>{client}</h4>
+            <h4>{client}</h4> */}
             <div>
               <div>
                 <h5>Items</h5>
