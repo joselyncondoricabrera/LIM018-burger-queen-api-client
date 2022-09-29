@@ -2,22 +2,54 @@
   "products": [
     {
       "_id": "1",
-      "name": "Cafe Americano",
+      "name": "Café americano",
       "price": "$5",
-      "image":"",
+      "image":"https://images.unsplash.com/photo-1504630083234-14187a9df0f5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
       "type": "Desayuno",
       "dateEntry": "15/09/22"
     },
     {
       "_id": "2",
-      "name": "Cafe con Leche",
+      "name": "Café con leche",
       "price": "$7",
-      "image":"",
+      "image":"https://images.unsplash.com/photo-1604423043122-00244f00e116?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
       "type": "Desayuno",
       "dateEntry": "15/09/22"
     },
     {
-      "_id": "7",
+      "_id": "3",
+      "name": "Sandwich de jamón y queso",
+      "price": "$10",
+      "image":"https://unareceta.com/wp-content/uploads/2017/02/sandwich-vegetal-640x427.jpg",
+      "type": "Desayuno",
+      "dateEntry": "15/09/22"
+    },
+    {
+      "_id": "4",
+      "name": "Jugo de frutas natural",
+      "price": "$7",
+      "image":"https://blog.creublanca.es/uploads/ea9297be6d16e543989fca96b7a839c3.jpg",
+      "type": "Desayuno",
+      "dateEntry": "15/09/22"
+    },
+    {
+      "_id": "5",
+      "name": "Hamburguesa simple",
+      "price": "$10",
+      "image":"https://media.istockphoto.com/photos/tasty-fast-food-cheeseburger-on-black-background-picture-id1339463771?k=20&m=1339463771&s=612x612&w=0&h=WgT6Ghgj1S6TwYWcUtJjqKLhnP9bQIkNHjOtDrUyUBw=",
+      "type": "Almuerzo y cena",
+      "dateEntry": "15/09/22"
+    },
+    {
+      "_id": "6",
+      "name": "Hamburguesa doble",
+      "price": "$15",
+      "image":"https://img.freepik.com/fotos-premium/hamburguesa-doble-lechuga-tomate-cebolla-queso-derretido_250927-603.jpg?w=826",
+      "type": "Almuerzo y cena",
+      "dateEntry": "15/09/22"
+    },
+    {  
+    "_id": "7",
       "name": "Papas fritas",
       "price": "$5",
       "image":"https://media.istockphoto.com/photos/french-fries-picture-id852412726?k=20&m=852412726&s=612x612&w=0&h=2c4BaLxd4SVReDNe235O5Rx3tD4rDFFrhWOSE1e4CdI=",
