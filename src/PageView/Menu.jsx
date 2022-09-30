@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../PageStyle/Menu.scss';
 import NavBar from './Navbar';
-// import cafeAmericano from '../imagen/cafe-americano.png';
-// import cafeLeche from '../imagen/cafe-con-leche.png';
-// import jugoFrutas from '../imagen/jugo-de-frutas.png';
-// import sandwich from '../imagen/sandwich.png';
 
 export default function Menu() {
   const [products, setProducts] = useState([]);
@@ -27,20 +23,19 @@ export default function Menu() {
   // };
 
   // const getProducts = () => {
-
   useEffect(() => {
     fetch('http://localhost:3001/products', {
       headers: {
-      // eslint-disable-next-line quote-props
-        'authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+        authorization: `Bearer ${token}`,
       },
     }).then((res) => res.json())
       .then((result) => {
         setProducts(result);
-        console.log(result);
+        // console.log(result);
       });
   }, []);
-
+  // };
   return (
     <div className="Background-menu">
       <NavBar />
@@ -70,52 +65,13 @@ export default function Menu() {
               </div>
             ))}
 
-            {/* <div className="Images-menu-container">
-              <div className="Imagen-container">
-                <picture className="Image">
-                  <img src={cafeLeche} alt="menu-cafe" />
-                </picture>
-                <div className="Image-menu-name">
-                  <button type="button">+</button>
-                  <p>Café Americano</p>
-                  <button type="button">-</button>
-                </div>
-              </div>
-            </div>
-
-            <div className="Images-menu-container">
-              <div className="Imagen-container">
-                <picture className="Image">
-                  <img src={jugoFrutas} alt="menu-cafe" />
-                </picture>
-                <div className="Image-menu-name">
-                  <button type="button">+</button>
-                  <p>Café Americano</p>
-                  <button type="button">-</button>
-                </div>
-              </div>
-            </div>
-
-            <div className="Images-menu-container">
-              <div className="Imagen-container">
-                <picture className="Image">
-                  <img src={sandwich} alt="menu-cafe" />
-                </picture>
-                <div className="Image-menu-name">
-                  <button type="button">+</button>
-                  <p>Café Americano</p>
-                  <button type="button">-</button>
-                </div>
-              </div>
-            </div> */}
-
           </div>
 
           <div className="Order-table">
-            { /* <input type="text" placeholder="Nombre del cliente" onChange={(e)
-            => setClient(e.target.value)} />
-            <button type="button" onClick={postOrder}> Agregar</button>
-            <h4>{client}</h4> */}
+            {/* <input type="text" placeholder="Nombre del cliente" onChange={(e) =>
+              setClient(e.target.value)} /> */}
+            {/* <button type="button" onClick={getProducts}> Agregar</button> */}
+            {/* <h4>{client}</h4> */}
             <div>
               <div>
                 <h5>Items</h5>
