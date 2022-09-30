@@ -7,9 +7,7 @@ import '../App.scss';
 
 export default function Login() {
   const navigate = useNavigate();
-  // eslint-disable-next-line no-shadow
   const [email, setEmail] = useState('');
-  // eslint-disable-next-line no-shadow
   const [password, setPassword] = useState('');
   const requestUsers = () => {
     const bodyData = {
@@ -20,16 +18,16 @@ export default function Login() {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(bodyData),
-    }).then((res) => res.json())
+    }).then((resp) => {
+      if (resp.status === 200) {
+        navigate('/Menu');
+      }
+      return resp.json();
+    })
       .then((response) => {
         sessionStorage.setItem('token', response.token);
-        const token = sessionStorage.getItem('token');
-        if (token !== null) {
-          navigate('/Menu');
-          // eslint-disable-next-line no-alert
-        } else alert('datos incorrectos');
-        // eslint-disable-next-line no-alert
-      }).catch(() => alert('datos incorrectos'));
+      })
+      .catch(() => alert('datos incorrectos'));
   };
 
   return (

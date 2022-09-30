@@ -11,6 +11,8 @@ server.use(middlewares);
 server.use((req, res, next) => {
   if (req.method === 'POST' && req.path === '/auth') {
     next();
+  } else if (req.method === 'GET' && req.path === '/products') {
+    next();
   } else if (req.headers.authorization === `Bearer ${secret}`) {
     next();
   } else {
@@ -19,9 +21,6 @@ server.use((req, res, next) => {
 });
 
 server.post('/auth', (req, res) => {
-  // server.get('/users', (requ, resp) => {
-  //   resp.jsonp(requ.query);
-  // });
   const users = [{
     email: 'mesero1@gmail.com',
     password: '123456',
@@ -36,7 +35,6 @@ server.post('/auth', (req, res) => {
 
   if (usersEmail.includes(req.body.email)
     && usersPassword.includes(req.body.password)) {
-    // eslint-disable-next-line no-undef
     res.jsonp({
       token: secret,
     });
@@ -45,44 +43,6 @@ server.post('/auth', (req, res) => {
   }
 });
 
-// server.use((req, res, next) => {
-//   if (req.method === 'POST' && req.path === '/orders') {
-//     next();
-//   } else if (req.headers.authorization === `Bearer ${secret}`) {
-//     next();
-//   } else {
-//     res.sendStatus(401);
-//   }
-// });
-
-// server.post('/orders', (req, res) => {
-//   if (req.body.userId !== null && req.body.client !== null) {
-//     res.jsonp({
-//       'orders.userId': req.body.userId,
-//       'orders.client': req.body.client,
-//     });
-//   } else if (req.headers.authorization === null) {
-//     res.status(401).send('No authorization');
-//   }
-// });
-
-server.use((req, res, next) => {
-  if (req.method === 'GET' && req.path === '/products') {
-    next();
-  } else if (req.headers.authorization === `Bearer ${secret}`) {
-    next();
-  } else {
-    res.sendStatus(401);
-  }
-});
-
-server.get('/products', (req, res) => {
-  if (req.headers.authorization === `Bearer ${secret}`) {
-    res.jsonp(req.query);
-  } else {
-    res.sendStatus(401);
-  }
-});
 server.use(router);
 server.listen(3001, () => {
   console.log('JSON Server is running');
