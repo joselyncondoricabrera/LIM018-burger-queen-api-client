@@ -1,5 +1,7 @@
 {
   "products": [
+
+
     {
       "_id": "1",
       "name": "Café americano",
@@ -96,8 +98,6 @@
       "type": "Bebidas",
       "dateEntry": "15/09/22"
     }
-
-
   ],
   "users": [
     {

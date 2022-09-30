@@ -31,12 +31,13 @@ export default function Menu() {
   useEffect(() => {
     fetch('http://localhost:3001/products', {
       headers: {
-      // eslint-disable-next-line quote-props
+        // eslint-disable-next-line quote-props
         'authorization': `Bearer ${token}`,
       },
     }).then((res) => res.json())
       .then((result) => {
         setProducts(result);
+        // eslint-disable-next-line no-console
         console.log(result);
       });
   }, []);
@@ -54,18 +55,18 @@ export default function Menu() {
             <div className="Menu-options">Desayuno</div>
           </div>
 
-          <div className="Each-image">
+          <div className="Image-products-container">
             { products.map((product, index) => (
               // eslint-disable-next-line react/no-array-index-key
-              <div key={index} className="Imagen-container">
-                <h1 key={product.id}>{product.price}</h1>
+              <div key={index} className="product-card">
+                <h1 key={product.id} className="Price-product">{product.price}</h1>
                 <picture className="Image">
-                  <img key={product.id} src={product.image} alt="menu-cafe" />
+                  <img key={product.id} src={product.image} alt="menu-cafe" className="Image-product" />
                 </picture>
                 <div className="Image-menu-name">
-                  <button type="button">+</button>
-                  <p key={product.id}>{product.name}</p>
-                  <button type="button">-</button>
+                  <button type="button" className="Btn-cantidad-plus">+</button>
+                  <p key={product.id} className="Name-product">{product.name}</p>
+                  <button type="button" className="Btn-cantidad-minus">-</button>
                 </div>
               </div>
             ))}
