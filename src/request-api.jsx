@@ -12,8 +12,6 @@ server.use(middlewares);
 server.use((req, res, next) => {
   if (req.method === 'POST' && req.path === '/auth') {
     next();
-  } else if (req.method === 'GET' && req.path === '/products') {
-    next();
   } else if (req.headers.authorization === `Bearer ${secret}`) {
     next();
   } else {
@@ -38,6 +36,8 @@ server.post('/auth', (req, res) => {
     && usersPassword.includes(req.body.password)) {
     res.jsonp({
       token: secret,
+      email: req.body.email,
+      userId: '1',
     });
   } else {
     res.status(400).send('Bad Request');

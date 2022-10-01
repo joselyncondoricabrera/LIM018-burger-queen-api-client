@@ -9,7 +9,6 @@ export default function Menu() {
   //   userId: '3',
   //   client: { client }.client,
   // };
-  const token = sessionStorage.getItem('token');
   // const postOrder = () => {
   //   fetch('http://localhost:3001/orders', {
   //     method: 'POST',
@@ -23,6 +22,7 @@ export default function Menu() {
   // };
 
   useEffect(() => {
+    const token = sessionStorage.getItem('token');
     fetch('http://localhost:3001/products', {
       headers: {
         'Content-Type': 'application/json',
@@ -33,6 +33,16 @@ export default function Menu() {
         setProducts(result);
       });
   }, []);
+
+  // const optionAlmuerzo = () => products.filter((e) => e.type === 'Almuerzo y cena');
+  const [optionProducts, setOptionProducts] = useState('Desayuno');
+  const optionMenu = products.filter((e) => e.type === optionProducts);
+  // const nuvValu = () => {
+  //  setOptionProducts(() => { products.filter((e) => e.type === 'Almuerzo y cena'); });
+  // };
+
+  // console.log(desayunoMenu);
+
   return (
     <div className="Background-menu">
       <NavBar />
@@ -42,30 +52,25 @@ export default function Menu() {
         <div className="Container-all-menu">
 
           <div className="Menu-options-container">
-            <div className="Menu-options">Almuerzo y cena</div>
-            <div className="Menu-options">Desayuno</div>
+            <button className="Menu-options" type="button" onClick={() => setOptionProducts('Almuerzo y cena')}>Almuerzo y cena</button>
+            <button type="button" className="Menu-options" onClick={() => setOptionProducts('Desayuno')}>Desayuno</button>
           </div>
 
           <div className="Image-products-container">
-            { products.map((product, index) => {
-              if (product.type === 'Desayuno') {
-                return (
-                // eslint-disable-next-line react/no-array-index-key
-                  <div key={index} className="product-card">
-                    <h1 className="Price-product">{product.price}</h1>
-                    <picture className="Image">
-                      <img src={product.image} alt="menu-cafe" className="Image-product" />
-                    </picture>
-                    <div className="Image-menu-name">
-                      <button type="button" className="Btn-cantidad-plus">+</button>
-                      <p className="Name-product">{product.name}</p>
-                      <button type="button" className="Btn-cantidad-minus">-</button>
-                    </div>
-                  </div>
-                );
-              }
-              return (<> </>);
-            })}
+            { optionMenu.map((product, index) => (
+              // eslint-disable-next-line react/no-array-index-key
+              <div key={index} className="product-card">
+                <h1 className="Price-product">{product.price}</h1>
+                <picture className="Image">
+                  <img src={product.image} alt="menu-cafe" className="Image-product" />
+                </picture>
+                <div className="Image-menu-name">
+                  <button type="button" className="Btn-cantidad-plus">+</button>
+                  <p className="Name-product">{product.name}</p>
+                  <button type="button" className="Btn-cantidad-minus">-</button>
+                </div>
+              </div>
+            ))}
 
           </div>
 
