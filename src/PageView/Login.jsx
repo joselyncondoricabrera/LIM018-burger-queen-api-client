@@ -4,6 +4,7 @@ import fetch from 'node-fetch';
 import emailIcon from '../imagen/mail.png';
 import passwordIcon from '../imagen/password.png';
 import '../App.scss';
+// import Modal from './Modal';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -29,6 +30,7 @@ export default function Login() {
       })
       // eslint-disable-next-line no-alert
       .catch(() => alert('datos incorrectos'));
+    // return (< Modal value="texto de prueba" />)
   };
 
   return (

@@ -9,7 +9,6 @@ export default function Menu() {
   //   userId: '3',
   //   client: { client }.client,
   // };
-  const token = sessionStorage.getItem('token');
   // const postOrder = () => {
   //   fetch('http://localhost:3001/orders', {
   //     method: 'POST',
@@ -23,6 +22,7 @@ export default function Menu() {
   // };
 
   useEffect(() => {
+    const token = sessionStorage.getItem('token');
     fetch('http://localhost:3001/products', {
       headers: {
         'Content-Type': 'application/json',
@@ -34,8 +34,14 @@ export default function Menu() {
       });
   }, []);
 
-  const desayunoMenu = products.filter((e) => e.type === 'Desayuno');
-  console.log(desayunoMenu);
+  // const optionAlmuerzo = () => products.filter((e) => e.type === 'Almuerzo y cena');
+  const [optionProducts, setOptionProducts] = useState('Desayuno');
+  const optionMenu = products.filter((e) => e.type === optionProducts);
+  // const nuvValu = () => {
+  //  setOptionProducts(() => { products.filter((e) => e.type === 'Almuerzo y cena'); });
+  // };
+
+  // console.log(desayunoMenu);
 
   return (
     <div className="Background-menu">
@@ -46,12 +52,12 @@ export default function Menu() {
         <div className="Container-all-menu">
 
           <div className="Menu-options-container">
-            <div className="Menu-options">Almuerzo y cena</div>
-            <div className="Menu-options">Desayuno</div>
+            <button className="Menu-options" type="button" onClick={() => setOptionProducts('Almuerzo y cena')}>Almuerzo y cena</button>
+            <button type="button" className="Menu-options" onClick={() => setOptionProducts('Desayuno')}>Desayuno</button>
           </div>
 
           <div className="Image-products-container">
-            { desayunoMenu.map((product, index) => (
+            { optionMenu.map((product, index) => (
               // eslint-disable-next-line react/no-array-index-key
               <div key={index} className="product-card">
                 <h1 className="Price-product">{product.price}</h1>
