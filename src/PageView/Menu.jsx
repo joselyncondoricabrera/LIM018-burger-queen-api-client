@@ -47,20 +47,25 @@ export default function Menu() {
           </div>
 
           <div className="Image-products-container">
-            { products.map((product, index) => (
-              // eslint-disable-next-line react/no-array-index-key
-              <div key={index} className="product-card">
-                <h1 key={product.id} className="Price-product">{product.price}</h1>
-                <picture className="Image">
-                  <img key={product.id} src={product.image} alt="menu-cafe" className="Image-product" />
-                </picture>
-                <div className="Image-menu-name">
-                  <button type="button" className="Btn-cantidad-plus">+</button>
-                  <p key={product.id} className="Name-product">{product.name}</p>
-                  <button type="button" className="Btn-cantidad-minus">-</button>
-                </div>
-              </div>
-            ))}
+            { products.map((product, index) => {
+              if (product.type === 'Desayuno') {
+                return (
+                // eslint-disable-next-line react/no-array-index-key
+                  <div key={index} className="product-card">
+                    <h1 className="Price-product">{product.price}</h1>
+                    <picture className="Image">
+                      <img src={product.image} alt="menu-cafe" className="Image-product" />
+                    </picture>
+                    <div className="Image-menu-name">
+                      <button type="button" className="Btn-cantidad-plus">+</button>
+                      <p className="Name-product">{product.name}</p>
+                      <button type="button" className="Btn-cantidad-minus">-</button>
+                    </div>
+                  </div>
+                );
+              }
+              return (<> </>);
+            })}
 
           </div>
 
