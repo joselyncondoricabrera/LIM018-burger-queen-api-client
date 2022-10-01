@@ -3,7 +3,7 @@
 
 
     {
-      "_id": "1",
+      "id": "1",
       "name": "Café americano",
       "price": "$5",
       "image":"https://images.unsplash.com/photo-1504630083234-14187a9df0f5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
@@ -11,7 +11,7 @@
       "dateEntry": "15/09/22"
     },
     {
-      "_id": "2",
+      "id": "2",
       "name": "Café con leche",
       "price": "$7",
       "image":"https://images.unsplash.com/photo-1604423043122-00244f00e116?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
@@ -19,7 +19,7 @@
       "dateEntry": "15/09/22"
     },
     {
-      "_id": "3",
+      "id": "3",
       "name": "Sandwich de jamón y queso",
       "price": "$10",
       "image":"https://unareceta.com/wp-content/uploads/2017/02/sandwich-vegetal-640x427.jpg",
@@ -27,7 +27,7 @@
       "dateEntry": "15/09/22"
     },
     {
-      "_id": "4",
+      "id": "4",
       "name": "Jugo de frutas natural",
       "price": "$7",
       "image":"https://blog.creublanca.es/uploads/ea9297be6d16e543989fca96b7a839c3.jpg",
@@ -35,7 +35,7 @@
       "dateEntry": "15/09/22"
     },
     {
-      "_id": "5",
+      "id": "5",
       "name": "Hamburguesa simple",
       "price": "$10",
       "image":"https://media.istockphoto.com/photos/tasty-fast-food-cheeseburger-on-black-background-picture-id1339463771?k=20&m=1339463771&s=612x612&w=0&h=WgT6Ghgj1S6TwYWcUtJjqKLhnP9bQIkNHjOtDrUyUBw=",
@@ -43,7 +43,7 @@
       "dateEntry": "15/09/22"
     },
     {
-      "_id": "6",
+      "id": "6",
       "name": "Hamburguesa doble",
       "price": "$15",
       "image":"https://img.freepik.com/fotos-premium/hamburguesa-doble-lechuga-tomate-cebolla-queso-derretido_250927-603.jpg?w=826",
@@ -51,7 +51,7 @@
       "dateEntry": "15/09/22"
     },
     {  
-    "_id": "7",
+    "id": "7",
       "name": "Papas fritas",
       "price": "$5",
       "image":"https://media.istockphoto.com/photos/french-fries-picture-id852412726?k=20&m=852412726&s=612x612&w=0&h=2c4BaLxd4SVReDNe235O5Rx3tD4rDFFrhWOSE1e4CdI=",
@@ -59,7 +59,7 @@
       "dateEntry": "15/09/22"
     },
     {
-      "_id": "8",
+      "id": "8",
       "name": "Aros de cebolla",
       "price": "$5",
       "image":"https://media.istockphoto.com/photos/selective-focus-fried-onion-rings-in-breadcrumbs-fried-in-oil-on-a-picture-id1399360606?k=20&m=1399360606&s=612x612&w=0&h=DUTUlmH5dZCI8jAJqNL1MPP0jXfqudsGI6xBKSoO3GM=",
@@ -67,7 +67,7 @@
       "dateEntry": "15/09/22"
     },
     {
-      "_id": "9",
+      "id": "9",
       "name": "Agua 500ml",
       "price": "$5",
       "image":"https://contents.mediadecathlon.com/p2156016/k$d7dcb09052e7fa71cac99de52a83e590/sq/965940.jpg?format=auto&f=800x0",
@@ -75,7 +75,7 @@
       "dateEntry": "15/09/22"
     },
     {
-      "_id": "10",
+      "id": "10",
       "name": "Agua 750ml",
       "price": "$7",
       "image":"https://media.istockphoto.com/photos/water-bottle-mockup-picture-id624125324?k=20&m=624125324&s=612x612&w=0&h=5bEH3720V3bXsNq--xqxT3__X9C6ctoa7o7F7sfUiG4=",
@@ -83,7 +83,7 @@
       "dateEntry": "15/09/22"
     },
     {
-      "_id": "11",
+      "id": "11",
       "name": "Bebida/gaseosa 500ml",
       "price": "$7",
       "image":"https://images.unsplash.com/photo-1527960471264-932f39eb5846?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDZ8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
@@ -91,7 +91,7 @@
       "dateEntry": "15/09/22"
     },
     {
-      "_id": "12",
+      "id": "12",
       "name": "Bebida/gaseosa 750ml",
       "price": "$10",
       "image":"https://asphericnews.com/wp-content/uploads/2021/10/5-negative-effects-of-drinking-soda..jpg",
