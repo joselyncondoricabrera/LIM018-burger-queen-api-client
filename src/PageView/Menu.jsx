@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import '../PageStyle/Menu.scss';
 import NavBar from './Navbar';
+import Modal from './Modal';
 
 export default function Menu() {
   const [products, setProducts] = useState([]);
+  const [optionProducts, setOptionProducts] = useState('Desayuno');
   // const [client, setClient] = useState('');
   // const orderData = {
   //   userId: '3',
@@ -34,21 +36,14 @@ export default function Menu() {
       });
   }, []);
 
-  // const optionAlmuerzo = () => products.filter((e) => e.type === 'Almuerzo y cena');
-  const [optionProducts, setOptionProducts] = useState('Desayuno');
   const optionMenu = products.filter((e) => e.type === optionProducts);
-  // const nuvValu = () => {
-  //  setOptionProducts(() => { products.filter((e) => e.type === 'Almuerzo y cena'); });
-  // };
-
-  // console.log(desayunoMenu);
-
+  const newOrder = () => (<Modal />);
   return (
     <div className="Background-menu">
       <NavBar />
       <div className="Background-image">
         <h2 className="Title">Menú</h2>
-
+        {/* <Modal /> */}
         <div className="Container-all-menu">
 
           <div className="Menu-options-container">
@@ -75,10 +70,9 @@ export default function Menu() {
           </div>
 
           <div className="Order-table">
-            {/* <input type="text" placeholder="Nombre del cliente" onChange={(e) =>
-              setClient(e.target.value)} /> */}
-            {/* <button type="button" onClick={getProducts}> Agregar</button> */}
-            {/* <h4>{client}</h4> */}
+             <input type="text" placeholder="Nombre del cliente" onChange={(e) => setClient(e.target.value)} /> */}
+            <button type="button" onClick={newOrder}> + Nueva orden  </button>
+             <h4>{client}</h4>
             <div>
               <div>
                 <h5>Items</h5>

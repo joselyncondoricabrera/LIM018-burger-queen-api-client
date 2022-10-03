@@ -37,7 +37,7 @@ server.post('/auth', (req, res) => {
     res.jsonp({
       token: secret,
       email: req.body.email,
-      userId: '1',
+      userId: req.body.email === 'mesero1@gmail.com' ? '1' : '2',
     });
   } else {
     res.status(400).send('Bad Request');
