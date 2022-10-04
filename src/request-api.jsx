@@ -44,6 +44,17 @@ server.post('/auth', (req, res) => {
   }
 });
 
+server.post('/orders', (req, res) => {
+  if (req.body.userId !== undefined) {
+    res.json({
+      userId: req.body.userId,
+      client: req.body.client,
+    });
+  } else {
+    res.status(400).send('Bad Request');
+  }
+});
+
 server.use(router);
 server.listen(3001, () => {
   console.log('JSON Server is running');

@@ -26,7 +26,9 @@ export default function Login() {
       return resp.json();
     })
       .then((response) => {
-        sessionStorage.setItem('token', response.token);
+        // console.log(response.token);
+        sessionStorage.setItem('userData', JSON.stringify(response));
+        // sessionStorage.setItem('token', response.token);
       })
       // eslint-disable-next-line no-alert
       .catch(() => alert('datos incorrectos'));
