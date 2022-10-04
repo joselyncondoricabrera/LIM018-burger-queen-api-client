@@ -37,7 +37,18 @@ server.post('/auth', (req, res) => {
     res.jsonp({
       token: secret,
       email: req.body.email,
-      userId: '1',
+      userId: req.body.email === 'mesero1@gmail.com' ? '1' : '2',
+    });
+  } else {
+    res.status(400).send('Bad Request');
+  }
+});
+
+server.post('/orders', (req, res) => {
+  if (req.body.userId !== undefined) {
+    res.json({
+      userId: req.body.userId,
+      client: req.body.client,
     });
   } else {
     res.status(400).send('Bad Request');
