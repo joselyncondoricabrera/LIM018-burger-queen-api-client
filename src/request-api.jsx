@@ -1,10 +1,10 @@
 const jsonServer = require('json-server');
 
 const server = jsonServer.create();
-const router = jsonServer.router('db.json');
+const router = jsonServer.router('src/db.json');
 const middlewares = jsonServer.defaults();
 
-const secret = 'EsUnSecreto';
+const secret = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxIiwibmFtZSI6IkdhYnkiLCJyb2xlIjoibWVzZXJvIiwiYWRtaW4iOmZhbHNlfQ.2UVK4iuzQ3MoazqBj27vpf_0uqG1pBXrZH0UAWGA8T0';
 server.use(jsonServer.bodyParser);
 
 server.use(middlewares);
@@ -36,24 +36,22 @@ server.post('/auth', (req, res) => {
     && usersPassword.includes(req.body.password)) {
     res.jsonp({
       token: secret,
-      email: req.body.email,
-      userId: req.body.email === 'mesero1@gmail.com' ? '1' : '2',
     });
   } else {
     res.status(400).send('Bad Request');
   }
 });
 
-server.post('/orders', (req, res) => {
-  if (req.body.userId !== undefined) {
-    res.json({
-      userId: req.body.userId,
-      client: req.body.client,
-    });
-  } else {
-    res.status(400).send('Bad Request');
-  }
-});
+// server.post('/orders', (req, res) => {
+//   if (req.body.userId !== undefined) {
+//     res.json({
+//       userId: req.body.userId,
+//       client: req.body.client,
+//     });
+//   } else {
+//     res.status(400).send('Bad Request');
+//   }
+// });
 
 server.use(router);
 server.listen(3001, () => {
