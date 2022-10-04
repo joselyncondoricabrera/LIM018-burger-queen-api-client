@@ -21,6 +21,7 @@ export default function Menu() {
       client: { client }.client,
     };
     const { token } = sessionStorageCall();
+    // const token = sessionStorage.getItem('token');
     fetch('http://localhost:3001/orders', {
       method: 'POST',
       headers: {
@@ -28,11 +29,12 @@ export default function Menu() {
         authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(orderData),
-    }).then((res) => console.log(res));
+    }).then((res) => res.json()).then((resp) => console.log(resp));
   };
 
   useEffect(() => {
     const { token } = sessionStorageCall();
+    // const token = sessionStorage.getItem('token');
     fetch('http://localhost:3001/products', {
       headers: {
         'Content-Type': 'application/json',
@@ -68,8 +70,8 @@ export default function Menu() {
                   <img src={product.image} alt="menu-cafe" className="Image-product" />
                 </picture>
                 <div className="Image-menu-name">
-                  <button type="button" onClick={() => setNameProduct(() => [...nameProduct, { name: product.name, price: product.price }])} className="Btn-cantidad-plus">+</button>
-                  <p className="Name-product">{product.name}</p>
+                  <button type="button" className="Btn-cantidad-plus">+</button>
+                  <button className="Name-product" onClick={() => setNameProduct(() => [...nameProduct, { name: product.name, price: product.price }])} type="button">{product.name}</button>
                   <button type="button" className="Btn-cantidad-minus">-</button>
                 </div>
               </div>
@@ -78,22 +80,25 @@ export default function Menu() {
           </div>
 
           <div className="Order-table-container">
-            <input type="text" placeholder="Nombre del cliente" onChange={(e) => setClient(e.target.dataset)} />
-            <button type="button"> + Nueva orden  </button>
-            <h4>{client}</h4>
+            <input className="Client-Name" type="text" placeholder="Nombre del cliente" onChange={(e) => setClient(e.target.value)} />
+            {/* <button type="button"> + Nueva orden  </button> */}
+            <h4 className="Client">{client}</h4>
 
+            {/* <table className="Table-order"> */}
             <table className="Table-order">
               <thead>
+                {/* <tr className="Row-head"> */}
                 <tr className="Row-head">
-                  <th>Producto</th>
-                  <th>Cant.</th>
-                  <th>Import.</th>
+                  <th className="Items-products-table">Producto</th>
+                  <th className="Items-products-table">Cant.</th>
+                  <th className="Items-products-table">Import.</th>
                 </tr>
               </thead>
               <tbody>
                 {nameProduct.map((product, i) => (
+                  // <tr key={i} className="Row-body">
                   // eslint-disable-next-line react/no-array-index-key
-                  <tr key={i} className="Row-body">
+                  <tr key={i}>
                     <td className="Items-products-table">{product.name}</td>
                     <td className="Items-products-table">1</td>
                     <td className="Items-products-table">{product.price}</td>
@@ -101,6 +106,7 @@ export default function Menu() {
                 ))}
               </tbody>
             </table>
+
             <button type="button" onClick={postOrder}>Listo</button>
           </div>
 

@@ -83,8 +83,29 @@
     align-items: center;
     justify-content: center;
 }
+
+.Client-name{
+    height: 25px;
+    width: 180px;
+    font-size: 20px;
+}
+
+.Client-name::placeholder{
+    font-size: 20px;
+}
+
+.Client{
+    font-family: 'Poppins';
+    font-weight: 600;
+    font-size: 25px;
+    margin:10px;
+}
+
 .Table-order{
-    border: solid 1px black;
+    // border: solid 1px black;
+    font-family: 'Poppins';
+    font-weight: 500;
+    font-size: 20px;
 }
 .Row-head th{
     width: 120px;
@@ -99,9 +120,9 @@
 
 }
 .Items-products-table{
-    width: 100px;
+    width: 130px;
     height: 50px;
-
+    text-align: center;
 }
 
 
@@ -175,6 +196,8 @@
     font-size: 17px;
     line-height: 25px;
     text-align: center;
+    border: none;
+    background: white;
 }
 .Btn-cantidad-minus{
     width: 52px;
