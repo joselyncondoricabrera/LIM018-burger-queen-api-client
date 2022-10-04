@@ -27,8 +27,8 @@ export default function Login() {
     })
       .then((response) => {
         // console.log(response.token);
-        sessionStorage.setItem('userData', JSON.stringify(response));
-        // sessionStorage.setItem('token', response.token);
+        // sessionStorage.setItem('userData', JSON.stringify(response));
+        sessionStorage.setItem('token', response.token);
       })
       // eslint-disable-next-line no-alert
       .catch(() => alert('datos incorrectos'));

@@ -2,26 +2,32 @@ import React, { useState, useEffect } from 'react';
 import '../PageStyle/Menu.scss';
 import NavBar from './Navbar';
 
+const { Buffer } = require('buffer/');
+
 export default function Menu() {
   const [products, setProducts] = useState([]);
   const [optionProducts, setOptionProducts] = useState('Desayuno');
   const [client, setClient] = useState('');
   const [nameProduct, setNameProduct] = useState([]);
 
-  const sessionStorageCall = () => {
-    const userInfo = sessionStorage.getItem('userData');
-    const userObject = JSON.parse(userInfo);
-    return userObject;
-  };
+  // const sessionStorageCall = () => {
+  //   const userInfo = sessionStorage.getItem('userData');
+  //   const userObject = JSON.parse(userInfo);
+  //   return userObject;
+  // };
+  const token = sessionStorage.getItem('token');
+  function parseJwt(jwt) {
+    return JSON.parse(Buffer.from(jwt.split('.')[1], 'base64').toString());
+  }
+  console.log(parseJwt(token));
 
   const postOrder = () => {
-    const userData = sessionStorageCall();
+    // const token = sessionStorage.getItem('token');
+
     const orderData = {
-      userId: userData.userId,
+      userId: parseJwt(token).userId,
       client: { client }.client,
     };
-    const { token } = sessionStorageCall();
-    // const token = sessionStorage.getItem('token');
     fetch('http://localhost:3001/orders', {
       method: 'POST',
       headers: {
@@ -33,12 +39,11 @@ export default function Menu() {
   };
 
   useEffect(() => {
-    const { token } = sessionStorageCall();
-    // const token = sessionStorage.getItem('token');
+    const tokens = sessionStorage.getItem('token');
     fetch('http://localhost:3001/products', {
       headers: {
         'Content-Type': 'application/json',
-        authorization: `Bearer ${token}`,
+        authorization: `Bearer ${tokens}`,
       },
     }).then((res) => res.json())
       .then((result) => {
