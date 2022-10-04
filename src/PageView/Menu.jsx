@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../PageStyle/Menu.scss';
 import NavBar from './Navbar';
-// import Modal from './Modal';
 
 export default function Menu() {
   const [products, setProducts] = useState([]);
@@ -21,12 +20,12 @@ export default function Menu() {
       client: { client }.client,
     };
     const { token } = sessionStorageCall();
+    // const token = sessionStorage.getItem('token');
     fetch('http://localhost:3001/orders', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        // eslint-disable-next-line quote-props
-        'authorization': `Bearer ${token}`,
+        authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(orderData),
     }).then((res) => console.log(res));
@@ -34,6 +33,7 @@ export default function Menu() {
 
   useEffect(() => {
     const { token } = sessionStorageCall();
+    // const token = sessionStorage.getItem('token');
     fetch('http://localhost:3001/products', {
       headers: {
         'Content-Type': 'application/json',
@@ -101,25 +101,7 @@ export default function Menu() {
                 ))}
               </tbody>
             </table>
-            <div>
-              {/* <div>
-                <h5>Items</h5>
-                <div>{nameProduct}</div>
-              </div> */}
 
-              {/* <div>
-                <h5>Cant.</h5>
-                <p>1</p>
-                <p>2</p>
-                <p>1</p>
-              </div>
-              <div>
-                <h5>Imp.</h5>
-                <p>$5.00</p>
-                <p>$14.00</p>
-                <p>$7.00</p>
-              </div> */}
-            </div>
             <button type="button" onClick={postOrder}>Listo</button>
           </div>
 
