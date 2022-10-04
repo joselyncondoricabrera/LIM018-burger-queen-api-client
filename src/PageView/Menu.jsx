@@ -37,6 +37,7 @@ export default function Menu() {
   // const optionAlmuerzo = () => products.filter((e) => e.type === 'Almuerzo y cena');
   const [optionProducts, setOptionProducts] = useState('Desayuno');
   const optionMenu = products.filter((e) => e.type === optionProducts);
+  const [name, setName] = useState('');
   // const nuvValu = () => {
   //  setOptionProducts(() => { products.filter((e) => e.type === 'Almuerzo y cena'); });
   // };
@@ -66,7 +67,7 @@ export default function Menu() {
                 </picture>
                 <div className="Image-menu-name">
                   <button type="button" className="Btn-cantidad-plus">+</button>
-                  <p className="Name-product">{product.name}</p>
+                  <button type="button" className="Name-product" onClick={() => setName(product.name)}>{product.name}</button>
                   <button type="button" className="Btn-cantidad-minus">-</button>
                 </div>
               </div>
@@ -74,31 +75,24 @@ export default function Menu() {
 
           </div>
 
-          <div className="Order-table">
+          <div className="Order-table-container">
             {/* <input type="text" placeholder="Nombre del cliente" onChange={(e) =>
               setClient(e.target.value)} /> */}
             {/* <button type="button" onClick={getProducts}> Agregar</button> */}
             {/* <h4>{client}</h4> */}
             <div>
-              <div>
-                <h5>Items</h5>
-                <p>Café Americano</p>
-                <p>Café con leche</p>
-                <p>Sandwich de jamón y queso</p>
-              </div>
-
-              <div>
-                <h5>Cant.</h5>
-                <p>1</p>
-                <p>2</p>
-                <p>1</p>
-              </div>
-              <div>
-                <h5>Imp.</h5>
-                <p>$5.00</p>
-                <p>$14.00</p>
-                <p>$7.00</p>
-              </div>
+              <table className="Table-order">
+                <thead>
+                  <tr className="Row-head">
+                    <th>PRODUCTO</th>
+                    <th>CANT.</th>
+                    <th>IMPORTE</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="Row-body">{name}</tr>
+                </tbody>
+              </table>
             </div>
             <button type="button">Listo</button>
           </div>

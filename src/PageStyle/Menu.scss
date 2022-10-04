@@ -73,7 +73,7 @@
     background: rgba(255, 255, 255, 0.9);
     border-radius: 0px 0px 20px 20px;
 }
-.Order-table{
+.Order-table-container{
     width: 477px;
     height: 759px;
     background: #E5E5E5;
@@ -83,17 +83,34 @@
     align-items: center;
     justify-content: center;
 }
-// .Module:focus ~ .Options{ 
-//     border-bottom: 5px solid #FFFFFF; 
-// }
+.Table-order{
+    border: solid 1px black;
+}
+.Row-head th{
+    width: 120px;
+
+}
+.Row-body{
+    display: flex;
+    height: 30px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+}
+
+
 // css para menu catalogo de productos
 .Image-products-container{
     display: flex;
     flex-wrap: wrap;
-    gap: 30px;
+    column-gap: 30px;
     justify-content: center;
-    width: 100%;
-    margin-left: 90px;
+    width: 620px;
+    margin-left: 100px;
+    row-gap: 20px;
+    align-items: center;
+    padding: 50px;
 }
 .product-card{
     display: flex;
