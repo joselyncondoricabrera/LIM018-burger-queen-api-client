@@ -47,7 +47,6 @@ export default function Menu() {
   }, []);
 
   const optionMenu = products.filter((e) => e.type === optionProducts);
-  // const [name, setName] = useState('');
 
   return (
     <div className="Background-menu">
@@ -84,10 +83,8 @@ export default function Menu() {
             {/* <button type="button"> + Nueva orden  </button> */}
             <h4 className="Client">{client}</h4>
 
-            {/* <table className="Table-order"> */}
             <table className="Table-order">
               <thead>
-                {/* <tr className="Row-head"> */}
                 <tr className="Row-head">
                   <th className="Items-products-table">Producto</th>
                   <th className="Items-products-table">Cant.</th>
@@ -96,7 +93,6 @@ export default function Menu() {
               </thead>
               <tbody>
                 {nameProduct.map((product, i) => (
-                  // <tr key={i} className="Row-body">
                   // eslint-disable-next-line react/no-array-index-key
                   <tr key={i}>
                     <td className="Items-products-table">{product.name}</td>
