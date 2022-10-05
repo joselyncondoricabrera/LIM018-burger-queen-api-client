@@ -7,7 +7,7 @@ const { Buffer } = require('buffer/');
 export default function Menu() {
   const [products, setProducts] = useState([]);
   const [optionProducts, setOptionProducts] = useState('Desayuno');
-  const [client, setClient] = useState('');
+  const [nameClient, setNameClient] = useState('');
   const [nameProduct, setNameProduct] = useState([]);
 
   // const sessionStorageCall = () => {
@@ -19,14 +19,12 @@ export default function Menu() {
   function parseJwt(jwt) {
     return JSON.parse(Buffer.from(jwt.split('.')[1], 'base64').toString());
   }
-  console.log(parseJwt(token));
+  // console.log(parseJwt(token));
 
   const postOrder = () => {
-    // const token = sessionStorage.getItem('token');
-
     const orderData = {
       userId: parseJwt(token).userId,
-      client: { client }.client,
+      client: nameClient,
     };
     fetch('http://localhost:3001/orders', {
       method: 'POST',
@@ -52,7 +50,9 @@ export default function Menu() {
   }, []);
 
   const optionMenu = products.filter((e) => e.type === optionProducts);
-  // const [name, setName] = useState('');
+  // const uniqueProducts = [...new Set(nameProduct)];
+
+  // const uniqueProducts = nameProduct.filter((item, index) =>);
 
   return (
     <div className="Background-menu">
@@ -85,9 +85,9 @@ export default function Menu() {
           </div>
 
           <div className="Order-table-container">
-            <input className="Client-Name" type="text" placeholder="Nombre del cliente" onChange={(e) => setClient(e.target.value)} />
+            <input className="Client-Name" type="text" placeholder="Nombre del cliente" onChange={(e) => setNameClient(e.target.value)} />
             {/* <button type="button"> + Nueva orden  </button> */}
-            <h4 className="Client">{client}</h4>
+            <h4 className="Client">{nameClient}</h4>
 
             {/* <table className="Table-order"> */}
             <table className="Table-order">
@@ -112,7 +112,7 @@ export default function Menu() {
               </tbody>
             </table>
 
-            <button type="button" onClick={postOrder}>Listo</button>
+            <button type="button" onClick={postOrder}>Enviar Orden</button>
           </div>
 
         </div>
