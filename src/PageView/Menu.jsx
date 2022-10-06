@@ -6,15 +6,13 @@ const { Buffer } = require('buffer/');
 
 export default function Menu() {
   const [products, setProducts] = useState([]);
+  // eslint-disable-next-line no-unused-vars
+  const [productsOrder, setProductsOrder] = useState([]);
   const [optionProducts, setOptionProducts] = useState('Desayuno');
-  const [client, setClient] = useState('');
-  const [nameProduct, setNameProduct] = useState([]);
-  const [countProduct, setCountProduct] = useState(1);
-  // const sessionStorageCall = () => {
-  //   const userInfo = sessionStorage.getItem('userData');
-  //   const userObject = JSON.parse(userInfo);
-  //   return userObject;
-  // };
+  const [nameClient, setNameClient] = useState('');
+  // const [nameProduct, setNameProduct] = useState([]);
+  // const [countProduct, setCountProduct] = useState(3);
+
   const token = sessionStorage.getItem('token');
   function parseJwt(jwt) {
     return JSON.parse(Buffer.from(jwt.split('.')[1], 'base64').toString());
@@ -22,11 +20,9 @@ export default function Menu() {
   // console.log(parseJwt(token));
 
   const postOrder = () => {
-    // const token = sessionStorage.getItem('token');
-
     const orderData = {
       userId: parseJwt(token).userId,
-      client: { client }.client,
+      client: nameClient,
     };
     fetch('http://localhost:3001/orders', {
       method: 'POST',
@@ -52,17 +48,48 @@ export default function Menu() {
   }, []);
 
   const optionMenu = products.filter((e) => e.type === optionProducts);
-  const uniqueProducts = () => {
-    const onlyNameProduct = nameProduct.map((filterProduct) => filterProduct.name);
-    const arrayProducts = [...new Set(onlyNameProduct)];
-    console.log(arrayProducts);
+
+  // productos unicos según id (no repetidos)
+  const uniqueProduct = (id) => {
+    const unique = productsOrder.find((obj) => obj.id === id);
+    return unique;
   };
-  uniqueProducts();
-  // const tableUniqueProduct = () => {
-  //   if (some(nameProduct) === false) {
-  //     return nameProduct;
-  //   }
-  // };
+  // función del boton +
+  const onAddProduct = (product) => {
+    if (uniqueProduct(product.id)) {
+      setProductsOrder(productsOrder.map((prod) => {
+        if (prod.id === product.id) {
+          const item = prod;
+          item.quantity += 1;
+          item.price = product.price * item.quantity;
+        }
+        return prod;
+      }));
+    } else setProductsOrder([...productsOrder, { ...product, quantity: 1 }]);
+  };
+
+  const onRemoveProduct = (product) => {
+    if (uniqueProduct(product.id)) {
+      setProductsOrder(productsOrder.map((prod) => {
+        if (prod.id === product.id) {
+          const item = prod;
+          if (item.quantity > 1) {
+            item.quantity -= 1;
+            item.price -= product.price;
+          }
+        }
+        return prod;
+      }));
+    } else setProductsOrder([...productsOrder, { ...product, quantity: 1 }]);
+  };
+
+  // eslint-disable-next-line no-unused-vars
+  let totalAmount = 0;
+  productsOrder.forEach((product) => {
+    const item = product;
+    totalAmount += item.price;
+  });
+
   return (
     <div className="Background-menu">
       <NavBar />
@@ -76,7 +103,7 @@ export default function Menu() {
           </div>
 
           <div className="Image-products-container">
-            { optionMenu.map((product) => (
+            {optionMenu.map((product) => (
               // eslint-disable-next-line react/no-array-index-key
               <div key={product.id} className="product-card">
                 <h1 className="Price-product">{product.price}</h1>
@@ -84,9 +111,9 @@ export default function Menu() {
                   <img src={product.image} alt="menu-cafe" className="Image-product" />
                 </picture>
                 <div className="Image-menu-name">
-                  <button type="button" className="Btn-cantidad-plus">+</button>
-                  <button className="Name-product" onClick={() => setNameProduct(() => [...nameProduct, { name: product.name, price: product.price }])} type="button">{product.name}</button>
-                  <button type="button" className="Btn-cantidad-minus">-</button>
+                  <button key={product.name} type="button" className="Btn-cantidad-plus" onClick={() => onAddProduct(product)}>+</button>
+                  <p className="Name-product">{product.name}</p>
+                  <button type="button" className="Btn-cantidad-minus" onClick={() => onRemoveProduct(product)}> - </button>
                 </div>
               </div>
             ))}
@@ -94,9 +121,9 @@ export default function Menu() {
           </div>
 
           <div className="Order-table-container">
-            <input className="Client-Name" type="text" placeholder="Nombre del cliente" onChange={(e) => setClient(e.target.value)} />
+            <input className="Client-Name" type="text" placeholder="Nombre del cliente" onChange={(e) => setNameClient(e.target.value)} />
             {/* <button type="button"> + Nueva orden  </button> */}
-            <h4 className="Client">{client}</h4>
+            <h4 className="Client">{nameClient}</h4>
 
             <table className="Table-order">
               <thead>
@@ -107,22 +134,23 @@ export default function Menu() {
                 </tr>
               </thead>
               <tbody>
-                {nameProduct.map((product, i) => (
+                {productsOrder.map((product, i) => (
                   // eslint-disable-next-line react/no-array-index-key
                   <tr key={i}>
                     <td className="Items-products-table">{product.name}</td>
-                    <td className="Items-products-table">
-                      <button type="button" onClick={() => setCountProduct((n) => n + 1)}>+</button>
-                      {countProduct}
-                      <button type="button" onClick={() => { if (countProduct > 1) { setCountProduct((n) => n - 1); } }}>-</button>
-                    </td>
+                    <td className="Items-products-table">{product.quantity}</td>
                     <td className="Items-products-table">{product.price}</td>
                   </tr>
                 ))}
+                <tr>
+                  <td> </td>
+                  <td className="Items-products-table">total</td>
+                  <td className="Items-products-table">{totalAmount}</td>
+                </tr>
               </tbody>
             </table>
 
-            <button type="button" onClick={postOrder}>Listo</button>
+            <button type="button" onClick={postOrder}>Enviar Orden</button>
           </div>
 
         </div>
