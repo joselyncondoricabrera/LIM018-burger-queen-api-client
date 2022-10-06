@@ -64,16 +64,6 @@ export default function Menu() {
   });
 
   // función del boton +
-  const onAddProduct = (product) => {
-    setProductsOrder([...productsOrder, { ...product, quantity: 1 }]);
-    const arrayNuv = productsOrder.map((obj) => {
-      if (obj.id === product.id) {
-        return { ...obj, quantity: (obj.quantity + 1) };
-      }
-      return obj;
-    });
-    console.log(arrayNuv);
-  };
 
   return (
     <div className="Background-menu">
