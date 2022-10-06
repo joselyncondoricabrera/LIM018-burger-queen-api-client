@@ -9,7 +9,7 @@ export default function Menu() {
   const [optionProducts, setOptionProducts] = useState('Desayuno');
   const [client, setClient] = useState('');
   const [nameProduct, setNameProduct] = useState([]);
-
+  const [countProduct, setCountProduct] = useState(1);
   // const sessionStorageCall = () => {
   //   const userInfo = sessionStorage.getItem('userData');
   //   const userObject = JSON.parse(userInfo);
@@ -19,7 +19,7 @@ export default function Menu() {
   function parseJwt(jwt) {
     return JSON.parse(Buffer.from(jwt.split('.')[1], 'base64').toString());
   }
-  console.log(parseJwt(token));
+  // console.log(parseJwt(token));
 
   const postOrder = () => {
     // const token = sessionStorage.getItem('token');
@@ -52,7 +52,17 @@ export default function Menu() {
   }, []);
 
   const optionMenu = products.filter((e) => e.type === optionProducts);
-
+  const uniqueProducts = () => {
+    const onlyNameProduct = nameProduct.map((filterProduct) => filterProduct.name);
+    const arrayProducts = [...new Set(onlyNameProduct)];
+    console.log(arrayProducts);
+  };
+  uniqueProducts();
+  // const tableUniqueProduct = () => {
+  //   if (some(nameProduct) === false) {
+  //     return nameProduct;
+  //   }
+  // };
   return (
     <div className="Background-menu">
       <NavBar />
@@ -101,7 +111,11 @@ export default function Menu() {
                   // eslint-disable-next-line react/no-array-index-key
                   <tr key={i}>
                     <td className="Items-products-table">{product.name}</td>
-                    <td className="Items-products-table">1</td>
+                    <td className="Items-products-table">
+                      <button type="button" onClick={() => setCountProduct((n) => n + 1)}>+</button>
+                      {countProduct}
+                      <button type="button" onClick={() => { if (countProduct > 1) { setCountProduct((n) => n - 1); } }}>-</button>
+                    </td>
                     <td className="Items-products-table">{product.price}</td>
                   </tr>
                 ))}
