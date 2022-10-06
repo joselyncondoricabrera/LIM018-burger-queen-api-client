@@ -6,15 +6,13 @@ const { Buffer } = require('buffer/');
 
 export default function Menu() {
   const [products, setProducts] = useState([]);
+  // eslint-disable-next-line no-unused-vars
+  const [productsOrder, setProductsOrder] = useState([]);
   const [optionProducts, setOptionProducts] = useState('Desayuno');
   const [nameClient, setNameClient] = useState('');
   const [nameProduct, setNameProduct] = useState([]);
+  const [countProduct, setCountProduct] = useState(3);
 
-  // const sessionStorageCall = () => {
-  //   const userInfo = sessionStorage.getItem('userData');
-  //   const userObject = JSON.parse(userInfo);
-  //   return userObject;
-  // };
   const token = sessionStorage.getItem('token');
   function parseJwt(jwt) {
     return JSON.parse(Buffer.from(jwt.split('.')[1], 'base64').toString());
@@ -50,9 +48,32 @@ export default function Menu() {
   }, []);
 
   const optionMenu = products.filter((e) => e.type === optionProducts);
-  // const uniqueProducts = [...new Set(nameProduct)];
 
-  // const uniqueProducts = nameProduct.filter((item, index) =>);
+  // obtener array de productos no duplicados
+  const uniqueIds = [];
+
+  // eslint-disable-next-line no-unused-vars
+  const uniqueProducts = nameProduct.filter((element) => {
+    const isDuplicate = uniqueIds.includes(element.name);
+
+    if (!isDuplicate) {
+      uniqueIds.push(element.name);
+      return true;
+    }
+    return false;
+  });
+
+  // función del boton +
+  const onAddProduct = (product) => {
+    setProductsOrder([...productsOrder, { ...product, quantity: 1 }]);
+    const arrayNuv = productsOrder.map((obj) => {
+      if (obj.id === product.id) {
+        return { ...obj, quantity: (obj.quantity + 1) };
+      }
+      return obj;
+    });
+    console.log(arrayNuv);
+  };
 
   return (
     <div className="Background-menu">
@@ -67,7 +88,7 @@ export default function Menu() {
           </div>
 
           <div className="Image-products-container">
-            { optionMenu.map((product) => (
+            {optionMenu.map((product) => (
               // eslint-disable-next-line react/no-array-index-key
               <div key={product.id} className="product-card">
                 <h1 className="Price-product">{product.price}</h1>
@@ -75,9 +96,19 @@ export default function Menu() {
                   <img src={product.image} alt="menu-cafe" className="Image-product" />
                 </picture>
                 <div className="Image-menu-name">
-                  <button type="button" className="Btn-cantidad-plus">+</button>
-                  <button className="Name-product" onClick={() => setNameProduct(() => [...nameProduct, { name: product.name, price: product.price }])} type="button">{product.name}</button>
-                  <button type="button" className="Btn-cantidad-minus">-</button>
+                  <button key={product.name} type="button" className="Btn-cantidad-plus" onClick={() => onAddProduct(product)}>+</button>
+                  <button
+                    className="Name-product"
+                    onClick={() => {
+                      setNameProduct(() => [...nameProduct, {
+                        id: product.id, name: product.name, price: product.price, qty: 1,
+                      }]);
+                    }}
+                    type="button"
+                  >
+                    {product.name}
+                  </button>
+                  <button type="button" className="Btn-cantidad-minus" onClick={() => { if (countProduct > 1) { setCountProduct(countProduct - 1); } }}> - </button>
                 </div>
               </div>
             ))}
@@ -100,12 +131,11 @@ export default function Menu() {
                 </tr>
               </thead>
               <tbody>
-                {nameProduct.map((product, i) => (
-                  // <tr key={i} className="Row-body">
+                {productsOrder.map((product, i) => (
                   // eslint-disable-next-line react/no-array-index-key
                   <tr key={i}>
                     <td className="Items-products-table">{product.name}</td>
-                    <td className="Items-products-table">1</td>
+                    <td className="Items-products-table">{product.quantity}</td>
                     <td className="Items-products-table">{product.price}</td>
                   </tr>
                 ))}

@@ -37,12 +37,18 @@
 .Menu-options{
     width: 338px;
     height: 70px;
+    border:none;
     background: rgba(255, 255, 255, 0.9);
-    border-radius: 30px;
+    border-radius: 20px;
     display: flex;
     align-items: center;
     text-align: center;
     justify-content: center;
+    font-family: 'Poppins';
+    font-weight: 600;
+    font-size: 23px;
+    text-transform: uppercase;
+    color: black;
 }
 .Menu-options-container{
     transform: rotate(-90deg);
