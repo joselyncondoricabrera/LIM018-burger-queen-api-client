@@ -1,39 +1,38 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import fetch from 'node-fetch';
 import emailIcon from '../imagen/mail.png';
 import passwordIcon from '../imagen/password.png';
 import '../App.scss';
 // import Modal from './Modal';
 
-export default function Login() {
-  const navigate = useNavigate();
+export const requestUsers = (email, password) => {
+  const bodyData = {
+    email,
+    password,
+  };
+  fetch('http://localhost:3001/auth', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(bodyData),
+  }).then((resp) => {
+    if (resp.status === 200) {
+      // navigate('/Menu');
+    }
+    return resp.json();
+  })
+    .then((response) => {
+      sessionStorage.setItem('token', response.token);
+    })
+  // eslint-disable-next-line no-alert
+    // .catch(() => alert('datos incorrectos'));
+    .catch(() => console.log('datos incorrectos'));
+};
+
+export function Login() {
+  // const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const requestUsers = () => {
-    const bodyData = {
-      email: { email }.email,
-      password: { password }.password,
-    };
-    fetch('http://localhost:3001/auth', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(bodyData),
-    }).then((resp) => {
-      if (resp.status === 200) {
-        navigate('/Menu');
-      }
-      return resp.json();
-    })
-      .then((response) => {
-        // console.log(response.token);
-        // sessionStorage.setItem('userData', JSON.stringify(response));
-        sessionStorage.setItem('token', response.token);
-      })
-      // eslint-disable-next-line no-alert
-      .catch(() => alert('datos incorrectos'));
-    // return (< Modal value="texto de prueba" />)
-  };
 
   return (
     <div className="Background-login">
@@ -47,7 +46,7 @@ export default function Login() {
           <img src={passwordIcon} className="Icon-login" alt="logo" />
           <input type="password" onChange={(e) => setPassword(e.target.value)} className="Input-login" placeholder="ingrese contraseña" />
         </div>
-        <button className="Button-login" type="button" onClick={requestUsers}>
+        <button data-testid="btnLogin" className="Button-login" type="button" onClick={() => requestUsers(email, password)}>
           <p className="Text-button">Iniciar Sesión</p>
         </button>
       </div>
