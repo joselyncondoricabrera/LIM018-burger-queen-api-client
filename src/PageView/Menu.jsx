@@ -6,18 +6,14 @@ const { Buffer } = require('buffer/');
 
 export default function Menu() {
   const [products, setProducts] = useState([]);
-  // eslint-disable-next-line no-unused-vars
   const [productsOrder, setProductsOrder] = useState([]);
   const [optionProducts, setOptionProducts] = useState('Desayuno');
   const [nameClient, setNameClient] = useState('');
-  // const [nameProduct, setNameProduct] = useState([]);
-  // const [countProduct, setCountProduct] = useState(3);
 
   const token = sessionStorage.getItem('token');
   function parseJwt(jwt) {
     return JSON.parse(Buffer.from(jwt.split('.')[1], 'base64').toString());
   }
-  // console.log(parseJwt(token));
 
   const postOrder = () => {
     const orderData = {
