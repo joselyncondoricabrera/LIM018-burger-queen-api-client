@@ -26,13 +26,10 @@ export default function Login() {
       return resp.json();
     })
       .then((response) => {
-        // console.log(response.token);
-        // sessionStorage.setItem('userData', JSON.stringify(response));
         sessionStorage.setItem('token', response.token);
       })
       // eslint-disable-next-line no-alert
       .catch(() => alert('datos incorrectos'));
-    // return (< Modal value="texto de prueba" />)
   };
 
   return (

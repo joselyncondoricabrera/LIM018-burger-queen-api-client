@@ -10,8 +10,6 @@ export default function Menu() {
   const [productsOrder, setProductsOrder] = useState([]);
   const [optionProducts, setOptionProducts] = useState('Desayuno');
   const [nameClient, setNameClient] = useState('');
-  const [nameProduct, setNameProduct] = useState([]);
-  const [countProduct, setCountProduct] = useState(3);
 
   const token = sessionStorage.getItem('token');
   function parseJwt(jwt) {
@@ -49,21 +47,46 @@ export default function Menu() {
 
   const optionMenu = products.filter((e) => e.type === optionProducts);
 
-  // obtener array de productos no duplicados
-  const uniqueIds = [];
+  // productos unicos según id (no repetidos)
+  const uniqueProduct = (id) => {
+    const unique = productsOrder.find((obj) => obj.id === id);
+    return unique;
+  };
+  // función del boton +
+  const onAddProduct = (product) => {
+    if (uniqueProduct(product.id)) {
+      setProductsOrder(productsOrder.map((prod) => {
+        if (prod.id === product.id) {
+          const item = prod;
+          item.quantity += 1;
+          item.price = product.price * item.quantity;
+        }
+        return prod;
+      }));
+    } else setProductsOrder([...productsOrder, { ...product, quantity: 1 }]);
+  };
+
+  const onRemoveProduct = (product) => {
+    if (uniqueProduct(product.id)) {
+      setProductsOrder(productsOrder.map((prod) => {
+        if (prod.id === product.id) {
+          const item = prod;
+          if (item.quantity > 1) {
+            item.quantity -= 1;
+            item.price -= product.price;
+          }
+        }
+        return prod;
+      }));
+    } else setProductsOrder([...productsOrder, { ...product, quantity: 1 }]);
+  };
 
   // eslint-disable-next-line no-unused-vars
-  const uniqueProducts = nameProduct.filter((element) => {
-    const isDuplicate = uniqueIds.includes(element.name);
-
-    if (!isDuplicate) {
-      uniqueIds.push(element.name);
-      return true;
-    }
-    return false;
+  let totalAmount = 0;
+  productsOrder.forEach((product) => {
+    const item = product;
+    totalAmount += item.price;
   });
-
-  // función del boton +
 
   return (
     <div className="Background-menu">
@@ -87,18 +110,8 @@ export default function Menu() {
                 </picture>
                 <div className="Image-menu-name">
                   <button key={product.name} type="button" className="Btn-cantidad-plus" onClick={() => onAddProduct(product)}>+</button>
-                  <button
-                    className="Name-product"
-                    onClick={() => {
-                      setNameProduct(() => [...nameProduct, {
-                        id: product.id, name: product.name, price: product.price, qty: 1,
-                      }]);
-                    }}
-                    type="button"
-                  >
-                    {product.name}
-                  </button>
-                  <button type="button" className="Btn-cantidad-minus" onClick={() => { if (countProduct > 1) { setCountProduct(countProduct - 1); } }}> - </button>
+                  <p className="Name-product">{product.name}</p>
+                  <button type="button" className="Btn-cantidad-minus" onClick={() => onRemoveProduct(product)}> - </button>
                 </div>
               </div>
             ))}
@@ -110,10 +123,8 @@ export default function Menu() {
             {/* <button type="button"> + Nueva orden  </button> */}
             <h4 className="Client">{nameClient}</h4>
 
-            {/* <table className="Table-order"> */}
             <table className="Table-order">
               <thead>
-                {/* <tr className="Row-head"> */}
                 <tr className="Row-head">
                   <th className="Items-products-table">Producto</th>
                   <th className="Items-products-table">Cant.</th>
@@ -129,6 +140,11 @@ export default function Menu() {
                     <td className="Items-products-table">{product.price}</td>
                   </tr>
                 ))}
+                <tr>
+                  <td> </td>
+                  <td className="Items-products-table">total</td>
+                  <td className="Items-products-table">{totalAmount}</td>
+                </tr>
               </tbody>
             </table>
 
