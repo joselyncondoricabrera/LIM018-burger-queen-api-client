@@ -1,26 +1,29 @@
+/** * @jest-environment jsdom */
+
 import React from 'react';
 import {
   render, screen, fireEvent,
 } from '@testing-library/react';
 // import { useNavigate } from 'react-router-dom';
 import App from './App';
-// import { requestUsers } from './PageView/Login';
+import { requestUsers } from './PageView/Login';
 
 // const fetch = require('node-fetch');
 
 // jest.mock('node-fetch', () => jest.fn());
-//  import Login from './PageView/Login';
 
 describe('Componente Login', () => {
-  render(<App />);
-  const requestUsers = jest.fn();
   it('Debería existir el botón con className "Button-login"', () => {
+    render(<App />);
     expect(screen.getByRole('button', { className: 'Button-login' })).toBeInTheDocument();
   });
 
   it('Debería de ejecutar el evento onclick', () => {
+    render(<App />);
+    screen.debug();
     // const btnLogin = app.queryByText('Iniciar Sesión');
-    fireEvent.click(screen.getByTestId('btnLogin'));
+    // const requestUsers = jest.fn();
+    fireEvent.click(screen.queryByTestId('btnLogin'));
     expect(requestUsers).toHaveBeenCalled();
   });
 });
