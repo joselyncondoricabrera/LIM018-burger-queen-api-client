@@ -139,6 +139,48 @@
       "userId": "1",
       "client": "juanita",
       "id": 5
+    },
+    {
+      "userId": "1",
+      "client": "joselyn",
+      "products": [
+        {
+          "productId": "1",
+          "qty": 3
+        },
+        {
+          "productId": "2",
+          "qty": 2
+        }
+      ],
+      "id": 6
+    },
+    {
+      "userId": "1",
+      "client": "nino",
+      "products": [
+        {
+          "productId": "1",
+          "qty": 1
+        },
+        {
+          "productId": "2",
+          "qty": 1
+        },
+        {
+          "productId": "4",
+          "qty": 2
+        },
+        {
+          "productId": "6",
+          "qty": 1
+        },
+        {
+          "productId": "7",
+          "qty": 1
+        }
+      ],
+      "id": 7
     }
   ]
 }

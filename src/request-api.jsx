@@ -42,16 +42,19 @@ server.post('/auth', (req, res) => {
   }
 });
 
-// server.post('/orders', (req, res) => {
-//   if (req.body.userId !== undefined) {
-//     res.json({
-//       userId: req.body.userId,
-//       client: req.body.client,
-//     });
-//   } else {
-//     res.status(400).send('Bad Request');
-//   }
-// });
+server.post('/orders', (req, res) => {
+  console.log(req.body.products);
+  if (req.body.products !== []) {
+    res.json({
+      id: 8,
+      userId: req.body.userId,
+      client: req.body.client,
+      products: req.body.products,
+    });
+  } else {
+    res.status(400).send('Bad Request');
+  }
+});
 
 server.use(router);
 server.listen(3001, () => {

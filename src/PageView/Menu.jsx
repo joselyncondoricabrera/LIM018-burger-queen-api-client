@@ -6,7 +6,6 @@ const { Buffer } = require('buffer/');
 
 export default function Menu() {
   const [products, setProducts] = useState([]);
-  // eslint-disable-next-line no-unused-vars
   const [productsOrder, setProductsOrder] = useState([]);
   const [optionProducts, setOptionProducts] = useState('Desayuno');
   const [nameClient, setNameClient] = useState('');
@@ -15,13 +14,15 @@ export default function Menu() {
   function parseJwt(jwt) {
     return JSON.parse(Buffer.from(jwt.split('.')[1], 'base64').toString());
   }
-  // console.log(parseJwt(token));
 
   const postOrder = () => {
     const orderData = {
       userId: parseJwt(token).userId,
       client: nameClient,
+      products: productsOrder.map((product) => ({ productId: product.id, qty: product.quantity })),
     };
+      // console.log(orderData);
+
     fetch('http://localhost:3001/orders', {
       method: 'POST',
       headers: {
