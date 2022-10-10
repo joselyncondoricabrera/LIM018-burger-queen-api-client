@@ -42,16 +42,19 @@ server.post('/auth', (req, res) => {
   }
 });
 
-// server.post('/orders', (req, res) => {
-//   if (req.body.userId !== undefined) {
-//     res.json({
-//       userId: req.body.userId,
-//       client: req.body.client,
-//     });
-//   } else {
-//     res.status(400).send('Bad Request');
-//   }
-// });
+server.post('/orders', (req, res) => {
+  // DUDA: porque no igualar a array vacío y si a .length 0
+  if ((req.body.products).length !== 0 && req.body.userId !== undefined) {
+    res.json({
+      userId: req.body.userId,
+      client: req.body.client,
+      products: req.body.products,
+      status: 'pending',
+    });
+  } else {
+    res.status(400).send('Bad request');
+  }
+});
 
 server.use(router);
 server.listen(3001, () => {

@@ -19,6 +19,10 @@ export default function Menu() {
     const orderData = {
       userId: parseJwt(token).userId,
       client: nameClient,
+      products: productsOrder.map((productOrder) => {
+        const product = { productId: productOrder.id, qty: productOrder.quantity };
+        return product;
+      }),
     };
     fetch('http://localhost:3001/orders', {
       method: 'POST',
@@ -102,7 +106,10 @@ export default function Menu() {
             {optionMenu.map((product) => (
               // eslint-disable-next-line react/no-array-index-key
               <div key={product.id} className="product-card">
-                <h1 className="Price-product">{product.price}</h1>
+                <h1 className="Price-product">
+                  $
+                  {product.price}
+                </h1>
                 <picture className="Image">
                   <img src={product.image} alt="menu-cafe" className="Image-product" />
                 </picture>

@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import fetch from 'node-fetch';
 import emailIcon from '../imagen/mail.png';
 import passwordIcon from '../imagen/password.png';
 import '../App.scss';
 // import Modal from './Modal';
 
-export const requestUsers = (email, password) => {
+export const requestUsers = (email, password, navigate) => {
   const bodyData = {
     email,
     password,
@@ -17,7 +17,7 @@ export const requestUsers = (email, password) => {
     body: JSON.stringify(bodyData),
   }).then((resp) => {
     if (resp.status === 200) {
-      // navigate('/Menu');
+      navigate('/Menu');
     }
     return resp.json();
   })
@@ -30,7 +30,7 @@ export const requestUsers = (email, password) => {
 };
 
 export function Login() {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -46,7 +46,7 @@ export function Login() {
           <img src={passwordIcon} className="Icon-login" alt="logo" />
           <input type="password" onChange={(e) => setPassword(e.target.value)} className="Input-login" placeholder="ingrese contraseña" />
         </div>
-        <button data-testid="btnLogin" className="Button-login" type="button" onClick={() => requestUsers(email, password)}>
+        <button data-testid="btnLogin" className="Button-login" type="button" onClick={() => requestUsers(email, password, navigate)}>
           <p className="Text-button">Iniciar Sesión</p>
         </button>
       </div>
