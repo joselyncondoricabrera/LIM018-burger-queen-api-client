@@ -43,16 +43,19 @@ server.post('/auth', (req, res) => {
 });
 
 server.post('/orders', (req, res) => {
-  console.log(req.body.products);
-  if (req.body.products !== []) {
+  // DUDA: porque no igualar a array vacío y si a .length 0
+  if (req.body.products.length !== 0 && req.body.userId !== undefined) {
+
+    // faltaria agregar a la tabla de ordenes
+
     res.json({
-      id: 8,
       userId: req.body.userId,
       client: req.body.client,
       products: req.body.products,
+      status: 'pending',
     });
   } else {
-    res.status(400).send('Bad Request');
+    res.status(400).send('Bad request');
   }
 });
 

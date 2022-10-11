@@ -26,7 +26,7 @@ export const requestUsers = (email, password, navigate) => {
     })
   // eslint-disable-next-line no-alert
     // .catch(() => alert('datos incorrectos'));
-    .catch(() => console.log('datos incorrectos'));
+    .catch(() => 'datos incorrectos');
 };
 
 export function Login() {
