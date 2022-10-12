@@ -13,6 +13,12 @@ server.use((req, res, next) => {
   if (req.method === 'POST' && req.path === '/auth') {
     next();
   } else if (req.headers.authorization === `Bearer ${secret}`) {
+    if (req.path === '/orders' && req.method === 'POST') {
+      if (req.body.products.length === 0 || req.body.userId === undefined) {
+        res.status(400).send('Bad request');
+      }
+    }
+
     next();
   } else {
     res.sendStatus(401);
@@ -42,21 +48,45 @@ server.post('/auth', (req, res) => {
   }
 });
 
-server.post('/orders', (req, res) => {
-  // DUDA: porque no igualar a array vacío y si a .length 0
-  if ((req.body.products).length !== 0 && req.body.userId !== undefined) {
-    res.json({
+// server.post('/orders', (req, res) => {
+//   // DUDA: porque no igualar a array vacío y si a .length 0
+//   if (req.body.products.length !== 0 && req.body.userId !== undefined) {
+//     // faltaria agregar a la tabla de ordenes
+
+//     res.json({
+//       userId: req.body.userId,
+//       client: req.body.client,
+//       products: req.body.products,
+//       status: 'pending',
+//     });
+//   } else {
+//     res.status(400).send('Bad request');
+//   }
+// });
+
+server.use(router);
+
+// router.render = async (req, res) => {
+server.post('/orders', async (req, res) => {
+  if (req.method === 'POST' && req.path === '/orders') {
+    const today = new Date();
+    const now = today.toLocaleString();
+    const order = {
       userId: req.body.userId,
       client: req.body.client,
       products: req.body.products,
       status: 'pending',
-    });
+      dateEntry: now,
+    };
+
+    const orders = router.db.get('orders');
+    await orders.push(order).write();
+    res.jsonp(order);
   } else {
-    res.status(400).send('Bad request');
+    res.jsonp(res.locals.data);
   }
 });
 
-server.use(router);
 server.listen(3001, () => {
   console.log('JSON Server is running');
 });

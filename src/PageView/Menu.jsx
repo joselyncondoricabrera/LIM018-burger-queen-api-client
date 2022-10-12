@@ -20,10 +20,12 @@ export default function Menu() {
       userId: parseJwt(token).userId,
       client: nameClient,
       products: productsOrder.map((productOrder) => {
-        const product = { productId: productOrder.id, qty: productOrder.quantity };
+        // eslint-disable-next-line max-len
+        const product = { name: productOrder.name, productId: productOrder.id, qty: productOrder.quantity };
         return product;
       }),
     };
+
     fetch('http://localhost:3001/orders', {
       method: 'POST',
       headers: {
@@ -94,7 +96,6 @@ export default function Menu() {
     <div className="Background-menu">
       <NavBar />
       <div className="Background-image">
-        <h2 className="Title">Menú</h2>
         <div className="Container-all-menu">
 
           <div className="Menu-options-container">
@@ -147,7 +148,7 @@ export default function Menu() {
                 ))}
                 <tr>
                   <td> </td>
-                  <td className="Items-products-table">total</td>
+                  <th className="Items-products-table">total</th>
                   <td className="Items-products-table">{totalAmount}</td>
                 </tr>
               </tbody>
