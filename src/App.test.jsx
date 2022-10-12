@@ -7,9 +7,8 @@ import fetch from 'node-fetch';
 import App from './App';
 import { requestUsers } from './PageView/Login';
 
-// const fetch = require('node-fetch');
 // jest.mock('node-fetch');
-// jest.mock('node-fetch', () => jest.fn());
+jest.mock('node-fetch', () => jest.fn());
 
 // describe('Componente Login', () => {
 //   it('Debería existir el botón con className "Button-login"', () => {
@@ -26,15 +25,7 @@ import { requestUsers } from './PageView/Login';
 //     expect(requestUsers).toHaveBeenCalled();
 //   });
 // });
-
-// eslint-disable-next-line max-len
-// const secret = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxIiwibmFtZSI6IkdhYnkiLCJyb2xlIjoibWVzZXJvIiwiYWRtaW4iOmZhbHNlfQ.2UVK4iuzQ3MoazqBj27vpf_0uqG1pBXrZH0UAWGA8T0';
-
-// const jsonMock = { token: secret };
-// const users = {
-//   email: 'mesero1@gmail.com',
-//   password: '123456',
-// };
+//--------------------------------------------------------------------------------
 
 // test de la función requestUsers
 describe('requestUsers', () => {
@@ -43,21 +34,25 @@ describe('requestUsers', () => {
   // });
   it('debería autenticar al usuario y dar una ruta', () => {
     // eslint-disable-next-line max-len
-    const secret = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxIiwibmFtZSI6IkdhYnkiLCJyb2xlIjoibWVzZXJvIiwiYWRtaW4iOmZhbHNlfQ.2UVK4iuzQ3MoazqBj27vpf_0uqG1pBXrZH0UAWGA8T0';
+    const secret = '12345';
     const token = {
       token: secret,
     };
 
     const email = 'mesero1@gmail.com';
     const password = '123456';
-
-    // fetch.mockResolvedValue({ status: 200 });
-
-    requestUsers(email, password)
-      .then((data) => {
-        console.log(data);
-        // expect(data.token).toEqual(token.token);
-      })
-      .catch();
+    // const navigate = '';
+    console.log(fetch);
+    fetch.mockResolvedValue({
+      status: 200,
+      json:()=> Promise.resolve({ token: '1234567' }),
+    });
+    const mock = jest.fn();
+    requestUsers(email, password, mock)
+      .then((data) => { expect(data).toEqual(token.token); })
+      .catch((error) => console.log(error));
+    // .then((res) => {
+    //   expect(res.token).toEqual(token.token);
+    // })
   });
 });

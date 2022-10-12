@@ -11,11 +11,12 @@ export const requestUsers = (email, password, navigate) => {
     email,
     password,
   };
-  fetch('http://localhost:3001/auth', {
+  return fetch('http://localhost:3001/auth', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(bodyData),
   }).then((resp) => {
+    console.log(resp)
     if (resp.status === 200) {
       navigate('/Menu');
     }
@@ -23,10 +24,14 @@ export const requestUsers = (email, password, navigate) => {
   })
     .then((response) => {
       sessionStorage.setItem('token', response.token);
+      return {}
     })
   // eslint-disable-next-line no-alert
     // .catch(() => alert('datos incorrectos'));
-    .catch(() => 'datos incorrectos');
+    .catch((error) => {
+      console.log(error)
+      console.log('datos incorrectos')
+    });
 };
 
 export function Login() {
