@@ -6,12 +6,12 @@ import passwordIcon from '../imagen/password.png';
 import '../App.scss';
 // import Modal from './Modal';
 
-export const requestUsers = (email, password, navigate) => {
+export const requestUsers = async (email, password, navigate) => {
   const bodyData = {
     email,
     password,
   };
-  fetch('http://localhost:3001/auth', {
+  await fetch('http://localhost:3001/auth', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(bodyData),
