@@ -1,15 +1,17 @@
 import React from 'react';
 import {
-  Link,
+  useNavigate,
 } from 'react-router-dom';
 import '../App.scss';
 
 export default function NavBar() {
+  const navigate = useNavigate();
+
   return (
     <div>
-      <button type="button" className="Module-menu Module"><Link className="Options" to="/Menu">Menú</Link></button>
-      <button type="button" className="Module-orders Module"><Link className="Options" to="/Orders">Ordenes</Link></button>
-      <button type="button" className="Btn-logOut"><Link className="Options" to="/">Salir</Link></button>
+      <button type="button" className="Module-menu Module" onClick={() => { navigate('/Menu'); }}>Menú</button>
+      <button type="button" className="Module-orders Module" onClick={() => { navigate('/Orders'); }}>Ordenes</button>
+      <button type="button" className="Btn-logOut" onClick={() => { navigate('/'); }}>Salir</button>
     </div>
   );
 }

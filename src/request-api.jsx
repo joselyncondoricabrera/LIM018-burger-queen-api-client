@@ -66,16 +66,26 @@ server.post('/auth', (req, res) => {
 
 server.use(router);
 
-// router.render = (req, res) => {
-//   if (req.method === 'POST' && req.path === '/orders') {
-//     res.jsonp({
-//       userId: req.body.userId,
-//       client: req.body.client,
-//       products: req.body.products,
-//       status: 'pending',
-//     });
-//   }
-// };
+// router.render = async (req, res) => {
+server.post('/orders', async (req, res) => {
+  if (req.method === 'POST' && req.path === '/orders') {
+    const today = new Date();
+    const now = today.toLocaleString();
+    const order = {
+      userId: req.body.userId,
+      client: req.body.client,
+      products: req.body.products,
+      status: 'pending',
+      dateEntry: now,
+    };
+
+    const orders = router.db.get('orders');
+    await orders.push(order).write();
+    res.jsonp(order);
+  } else {
+    res.jsonp(res.locals.data);
+  }
+});
 
 server.listen(3001, () => {
   console.log('JSON Server is running');

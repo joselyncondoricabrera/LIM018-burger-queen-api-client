@@ -1,0 +1,38 @@
+.Order-status-nav{
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 70px;
+}
+.Btn-pending{
+    width: 268px;
+    height: 95px;
+    background: #FF0000;
+    border-radius: 0px 0px 15px 15px;
+    color: white;
+    font-family: 'Poppins';
+    font-weight: 600;
+    font-size: 25px;
+    border: none;
+}
+
+.Btn-delivering{
+    width: 268px;
+    height: 68px;
+    background: #38E54D;
+    border-radius: 0px 0px 15px 15px;
+    color: white;
+    font-family: 'Poppins';
+    font-weight: 600;
+    font-size: 25px;
+}
+
+.Btn-delivered{
+    width: 268px;
+    height: 68px;
+    background: #FF9409;
+    border-radius: 0px 0px 15px 15px;
+    color: white;
+    font-family: 'Poppins';
+    font-weight: 600;
+    font-size: 25px;
+}

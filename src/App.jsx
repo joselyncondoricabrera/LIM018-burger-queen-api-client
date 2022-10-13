@@ -5,7 +5,7 @@ import {
   Route,
 } from 'react-router-dom';
 import './App.scss';
-import { Login } from './PageView/Login';
+import Login from './PageView/Login';
 import Menu from './PageView/Menu';
 import Orders from './PageView/Orders';
 
