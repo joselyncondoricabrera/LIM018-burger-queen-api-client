@@ -16,7 +16,7 @@ export const requestUsers = (email, password, navigate) => {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(bodyData),
   }).then((resp) => {
-    console.log(resp)
+    console.log(resp);
     if (resp.status === 200) {
       navigate('/Menu');
     }
@@ -24,13 +24,13 @@ export const requestUsers = (email, password, navigate) => {
   })
     .then((response) => {
       sessionStorage.setItem('token', response.token);
-      return {}
+      return {};
     })
   // eslint-disable-next-line no-alert
     // .catch(() => alert('datos incorrectos'));
     .catch((error) => {
-      console.log(error)
-      console.log('datos incorrectos')
+      console.log(error);
+      console.log('datos incorrectos');
     });
 };
 

@@ -34,7 +34,7 @@ describe('requestUsers', () => {
   // });
   it('debería autenticar al usuario y dar una ruta', () => {
     // eslint-disable-next-line max-len
-    const secret = '12345';
+    const secret = '1234567';
     const token = {
       token: secret,
     };
@@ -45,7 +45,7 @@ describe('requestUsers', () => {
     console.log(fetch);
     fetch.mockResolvedValue({
       status: 200,
-      json:()=> Promise.resolve({ token: '1234567' }),
+      json: () => Promise.resolve({ token: '1234567' }),
     });
     const mock = jest.fn();
     requestUsers(email, password, mock)
