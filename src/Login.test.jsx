@@ -27,12 +27,12 @@ jest.mock('node-fetch', () => jest.fn());
 // });
 //--------------------------------------------------------------------------------
 
-// test de la función requestUsers
+// test de la función loginUsers
 describe('loginUsers', () => {
-  // it('debería de ser una función', () => {
-  //   expect(typeof requestUsers).toBe('function');
-  // });
-  it('tiene que retornar', () => {
+  it('debería de ser una función', () => {
+    expect(typeof loginUsers).toBe('function');
+  });
+  it('tiene que retornar un token', () => {
     const secret = '12345';
     const tokenTest = {
       token: secret,
