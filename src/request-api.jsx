@@ -64,28 +64,28 @@ server.post('/auth', (req, res) => {
 //   }
 // });
 
-server.use(router);
-
 // router.render = async (req, res) => {
 server.post('/orders', async (req, res) => {
-  if (req.method === 'POST' && req.path === '/orders') {
-    const today = new Date();
-    const now = today.toLocaleString();
-    const order = {
-      userId: req.body.userId,
-      client: req.body.client,
-      products: req.body.products,
-      status: 'pending',
-      dateEntry: now,
-    };
+  const today = new Date();
+  const now = today.toLocaleString();
+  const order = {
+    userId: req.body.userId,
+    client: req.body.client,
+    products: req.body.products,
+    status: 'pending',
+    dateEntry: now,
+  };
 
-    const orders = router.db.get('orders');
-    await orders.push(order).write();
-    res.jsonp(order);
-  } else {
-    res.jsonp(res.locals.data);
-  }
+  const orders = router.db.get('orders');
+  // eslint-disable-next-line no-underscore-dangle
+  console.log(orders.__wrapped__.orders.length);
+  // eslint-disable-next-line no-underscore-dangle
+  order.id = orders.__wrapped__.orders.length + 1;
+  await orders.push(order).write();
+  res.status(201).jsonp(order);
 });
+
+server.use(router);
 
 server.listen(3001, () => {
   console.log('JSON Server is running');
