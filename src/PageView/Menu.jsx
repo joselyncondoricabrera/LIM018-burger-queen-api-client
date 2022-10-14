@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../PageStyle/Menu.scss';
 import NavBar from './Navbar';
+import trashIcon from '../imagen/trash.svg';
 
 const { Buffer } = require('buffer/');
 
@@ -20,11 +21,11 @@ export default function Menu() {
       userId: parseJwt(token).userId,
       client: nameClient,
       products: productsOrder.map((productOrder) => {
-        const product = { productId: productOrder.id, qty: productOrder.quantity };
+        // eslint-disable-next-line max-len
+        const product = { name: productOrder.name, productId: productOrder.id, qty: productOrder.quantity };
         return product;
       }),
     };
-      // console.log(orderData);
 
     fetch('http://localhost:3001/orders', {
       method: 'POST',
@@ -92,11 +93,15 @@ export default function Menu() {
     totalAmount += item.price;
   });
 
+  // eliminar la fila de una tabla de pedido
+  const deleteItemProduct = (pro) => {
+    setProductsOrder(productsOrder.filter((product) => product.id !== pro.id));
+  };
+
   return (
     <div className="Background-menu">
       <NavBar />
       <div className="Background-image">
-        <h2 className="Title">Menú</h2>
         <div className="Container-all-menu">
 
           <div className="Menu-options-container">
@@ -126,8 +131,7 @@ export default function Menu() {
           </div>
 
           <div className="Order-table-container">
-            <input className="Client-Name" type="text" placeholder="Nombre del cliente" onChange={(e) => setNameClient(e.target.value)} />
-            {/* <button type="button"> + Nueva orden  </button> */}
+            <input className="Client-name" type="text" placeholder="Nombre del cliente" onChange={(e) => setNameClient(e.target.value)} />
             <h4 className="Client">{nameClient}</h4>
 
             <table className="Table-order">
@@ -136,6 +140,7 @@ export default function Menu() {
                   <th className="Items-products-table">Producto</th>
                   <th className="Items-products-table">Cant.</th>
                   <th className="Items-products-table">Import.</th>
+                  <th className="Items-delete-product-table"> </th>
                 </tr>
               </thead>
               <tbody>
@@ -145,11 +150,16 @@ export default function Menu() {
                     <td className="Items-products-table">{product.name}</td>
                     <td className="Items-products-table">{product.quantity}</td>
                     <td className="Items-products-table">{product.price}</td>
+                    <td>
+                      <button className="Btn-delete-item-product" type="button" onClick={() => deleteItemProduct(product)}>
+                        <img src={trashIcon} alt="button-delete" className="Image-button-delete" />
+                      </button>
+                    </td>
                   </tr>
                 ))}
                 <tr>
                   <td> </td>
-                  <td className="Items-products-table">total</td>
+                  <th className="Items-products-table">total</th>
                   <td className="Items-products-table">{totalAmount}</td>
                 </tr>
               </tbody>
