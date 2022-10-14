@@ -36,8 +36,8 @@ export default function Orders() {
           {ordersByStatus.map((order, i) => (
             // <div key={order.id} className="Order-card">
             // eslint-disable-next-line react/no-array-index-key
-            <div key={i} className="Order-table-container">
-              <h1 className="Price-product">{order.client}</h1>
+            <div key={i} className="Order-card">
+              <h1 className="Client-name">{order.client}</h1>
               <table className="Table-order">
                 <thead>
                   <tr className="Row-head">

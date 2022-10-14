@@ -36,3 +36,23 @@
     font-weight: 600;
     font-size: 25px;
 }
+
+.Order-card{
+    width: 350px;
+    height: 350px;
+    padding: 20px;
+    background: white;
+    border-radius: 37px;
+    display: flex;
+    flex-direction: column;
+}
+
+.Client-name{
+    display: flex;
+    font-family: "Poppins";
+    font-weight: 700;
+    font-size: 24px;
+    text-align: center;
+    justify-content: center;
+    width: 100%;
+}
