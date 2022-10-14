@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 // import fetch from 'node-fetch';
-import loginUsers from '../Requests/LoginRequest';
+import { loginUsers } from '../Requests/LoginRequest';
 import emailIcon from '../imagen/mail.png';
 import passwordIcon from '../imagen/password.png';
 import '../App.scss';

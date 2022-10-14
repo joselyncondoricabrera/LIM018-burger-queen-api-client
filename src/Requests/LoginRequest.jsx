@@ -1,6 +1,7 @@
 import fetch from 'node-fetch';
 
-export default function loginUsers(email, password) {
+// eslint-disable-next-line import/prefer-default-export
+export function loginUsers(email, password) {
   const bodyData = {
     email,
     password,
