@@ -4,7 +4,8 @@ const server = jsonServer.create();
 const router = jsonServer.router('src/db.json');
 const middlewares = jsonServer.defaults();
 
-const secret = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxIiwibmFtZSI6IkdhYnkiLCJyb2xlIjoibWVzZXJvIiwiYWRtaW4iOmZhbHNlfQ.2UVK4iuzQ3MoazqBj27vpf_0uqG1pBXrZH0UAWGA8T0';
+const secretWaiter = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxIiwibmFtZSI6IkdhYnkiLCJyb2xlIjoibWVzZXJvIiwiYWRtaW4iOmZhbHNlfQ.2UVK4iuzQ3MoazqBj27vpf_0uqG1pBXrZH0UAWGA8T0';
+const secretChef = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyIiwibmFtZSI6IlJ1YmlzIiwicm9sZSI6ImNoZWYiLCJhZG1pbiI6ZmFsc2V9.G2w6LnhoQu3dhwUBCswCJhUl2cKNFtNxMyUrYK8A4vg';
 server.use(jsonServer.bodyParser);
 
 server.use(middlewares);
@@ -12,7 +13,7 @@ server.use(middlewares);
 server.use((req, res, next) => {
   if (req.method === 'POST' && req.path === '/auth') {
     next();
-  } else if (req.headers.authorization === `Bearer ${secret}`) {
+  } else if (req.headers.authorization === `Bearer ${secretWaiter}` || req.headers.authorization === `Bearer ${secretChef}`) {
     if (req.path === '/orders' && req.method === 'POST') {
       if (req.body.products.length === 0 || req.body.userId === undefined) {
         res.status(400).send('Bad request');
@@ -31,7 +32,7 @@ server.post('/auth', (req, res) => {
     password: '123456',
   },
   {
-    email: 'mesero2@gmail.com',
+    email: 'chef1@gmail.com',
     password: '123456',
   },
   ];
@@ -40,9 +41,17 @@ server.post('/auth', (req, res) => {
 
   if (usersEmail.includes(req.body.email)
     && usersPassword.includes(req.body.password)) {
-    res.jsonp({
-      token: secret,
-    });
+    if (req.body.email === 'mesero1@gmail.com') {
+      res.jsonp({
+        token: secretWaiter,
+      });
+      console.log('mesero');
+    } else {
+      res.jsonp({
+        token: secretChef,
+      });
+      console.log('cocinero');
+    }
   } else {
     res.status(400).send('Bad Request');
   }
@@ -64,28 +73,28 @@ server.post('/auth', (req, res) => {
 //   }
 // });
 
+// router.render = async (req, res) => {
+server.post('/orders', async (req, res) => {
+  const today = new Date();
+  const now = today.toLocaleString();
+  const order = {
+    userId: req.body.userId,
+    client: req.body.client,
+    products: req.body.products,
+    status: 'pending',
+    dateEntry: now,
+  };
+
+  const orders = router.db.get('orders');
+  // eslint-disable-next-line no-underscore-dangle
+  console.log(orders.__wrapped__.orders.length);
+  // eslint-disable-next-line no-underscore-dangle
+  order.id = orders.__wrapped__.orders.length + 1;
+  await orders.push(order).write();
+  res.status(201).jsonp(order);
+});
+
 server.use(router);
-
-router.render = async (req, res) => {
-// server.post('/orders', async (req, res) => {
-  if (req.method === 'POST' && req.path === '/orders') {
-    const today = new Date();
-    const now = today.toLocaleString();
-    const order = {
-      userId: req.body.userId,
-      client: req.body.client,
-      products: req.body.products,
-      status: 'pending',
-      dateEntry: now,
-    };
-
-    const orders = router.db.get('orders');
-    await orders.push(order).write();
-    res.jsonp(order);
-  } else {
-    res.jsonp(res.locals.data);
-  }
-};
 
 server.listen(3001, () => {
   console.log('JSON Server is running');

@@ -7,7 +7,8 @@ import {
 import './App.scss';
 import Login from './PageView/Login';
 import Menu from './PageView/Menu';
-import Orders from './PageView/Orders';
+import Orders from './PageView/OrdersWaiter';
+import OrdersChef from './PageView/OrdersChef';
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
         <Route path="/" element={<Login />} />
         <Route path="/Menu" element={<Menu />} />
         <Route path="/Orders" element={<Orders />} />
+        <Route path="/OrdersChef" element={<OrdersChef />} />
       </Routes>
     </Router>
   );

@@ -47,7 +47,7 @@
     flex-direction: column;
 }
 
-.Client-name{
+.Client-name-order{
     display: flex;
     font-family: "Poppins";
     font-weight: 700;
@@ -55,4 +55,10 @@
     text-align: center;
     justify-content: center;
     width: 100%;
+}
+
+.Orders-container{
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
 }
