@@ -1,3 +1,13 @@
+.Background-image-Orders{
+    background-image: url("../imagen/background-menu.png");
+    background-attachment: scroll;
+    height: calc(100% - 163px);
+    box-shadow: 0px -8px 43px 4px rgba(255, 255, 255, 0.2);
+    padding: 30px;
+    padding: 0px;
+    padding-bottom: 30px;
+}
+
 .Order-status-nav{
     display: flex;
     justify-content: flex-end;
@@ -45,6 +55,7 @@
     border-radius: 37px;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .Client-name-order{
@@ -55,10 +66,37 @@
     text-align: center;
     justify-content: center;
     width: 100%;
+    margin: 20px;
+    text-transform: capitalize;
 }
 
 .Orders-container{
     display: flex;
     gap: 40px;
     flex-wrap: wrap;
+    justify-content: center;
+}
+
+.Btn-Card-Waiter-Deliver, .Btn-Card-Chef-Ready{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 195px;
+    height: 59px;
+    box-shadow: 2px 4px 9px rgb(173 173 173 / 54%);
+    border-radius: 15px;
+    border: none;
+    font-family: 'Poppins';
+    font-weight: 600;
+    font-size: 25px;
+    color: #ffffff;
+    margin-top: 25px;
+}
+
+.Btn-Card-Waiter-Deliver{
+    background: #38E54D;
+}
+
+.Btn-Card-Chef-Ready{
+    background:#FF0000;
 }
