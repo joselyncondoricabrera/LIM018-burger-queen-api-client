@@ -5,7 +5,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 // import { useNavigate } from 'react-router-dom';
 import fetch from 'node-fetch';
 
-import { loginUsers } from './Requests/LoginRequest';
+import { loginUsers } from './Requests/requestApi';
 
 import App from './App';
 

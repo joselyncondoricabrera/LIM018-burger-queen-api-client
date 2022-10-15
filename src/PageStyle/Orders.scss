@@ -56,3 +56,9 @@
     justify-content: center;
     width: 100%;
 }
+
+.Orders-container{
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+}

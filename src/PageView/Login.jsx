@@ -1,37 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 // import fetch from 'node-fetch';
-import { loginUsers } from '../Requests/LoginRequest';
+import { loginUsers } from '../Requests/requestApi';
 import emailIcon from '../imagen/mail.png';
 import passwordIcon from '../imagen/password.png';
 import '../App.scss';
-// import Modal from './Modal';
 
-// export const requestUsers = (email, password, navigate) => {
-//   const bodyData = {
-//     email,
-//     password,
-//   };
-//   return fetch('http://localhost:3001/auth', {
-//     method: 'POST',
-//     headers: { 'Content-Type': 'application/json' },
-//     body: JSON.stringify(bodyData),
-//   }).then((resp) => {
-//     console.log(resp);
-//     if (resp.status === 200) {
-//       navigate('/Menu');
-//     }
-//     return resp.json();
-//   })
-//     .then((response) => {
-//       sessionStorage.setItem('token', response.token);
-//       //aca debo navegar
-//     })
-//     .catch((error) => {
-//       console.log(error);
-//       console.log('datos incorrectos');
-//     });
-// };
+const { Buffer } = require('buffer/');
+// import Modal from './Modal';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -46,8 +22,16 @@ export default function Login() {
       })
       .then((response) => {
         sessionStorage.setItem('token', response.token);
-        // aca debo navegar
-        navigate('/Menu');
+        const token = sessionStorage.getItem('token');
+        function parseJwt(jwt) {
+          return JSON.parse(Buffer.from(jwt.split('.')[1], 'base64').toString());
+        }
+        console.log((parseJwt(token).role));
+        if (parseJwt(token).role === 'mesero') {
+          navigate('/Menu');
+        } else {
+          navigate('/OrdersChef');
+        }
       })
       .catch((error) => {
         console.log(error);
