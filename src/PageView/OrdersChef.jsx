@@ -71,9 +71,12 @@ export default function Orders() {
 
   const onclickStatusPending = () => {
     setOptionStatus('pending');
-    if (optionStatus === 'pending') {
-      return setStyleButton('Btn-Card-Chef-Ready');
-    } return setStyleButton('Hidenn-Btn-Chef-Ready');
+    setStyleButton('Btn-Card-Chef-Ready');
+  };
+
+  const onclickStatusDelivering = () => {
+    setOptionStatus('delivering');
+    setStyleButton('Hidenn-Btn-Chef-Ready');
   };
 
   const ordersByStatus = orders.filter((e) => e.status === optionStatus);
@@ -84,7 +87,7 @@ export default function Orders() {
       <div className="Background-image-orders">
         <div className="Order-status-nav">
           <button className="Btn-pending" type="button" onClick={() => onclickStatusPending()}>Pendiente</button>
-          <button className="Btn-delivering" type="button" onClick={() => setOptionStatus('delivering')}>Preparado</button>
+          <button className="Btn-delivering" type="button" onClick={() => onclickStatusDelivering()}>Preparado</button>
         </div>
 
         <div className="Orders-container">
