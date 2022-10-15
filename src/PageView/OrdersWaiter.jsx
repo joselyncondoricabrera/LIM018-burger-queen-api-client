@@ -6,6 +6,7 @@ import NavBar from './Navbar';
 export default function Orders() {
   const [orders, setOrders] = useState([]);
   const [optionStatus, setOptionStatus] = useState('pending');
+  const [styleButton, setStyleButton] = useState('Hidenn-Btn-Order-Deliver');
 
   const putStatusOrder = (order) => {
     // setOrderUpdate(
@@ -60,14 +61,19 @@ export default function Orders() {
   }, []);
 
   const ordersByStatus = orders.filter((e) => e.status === optionStatus);
-
+  const onclickStatusDelivering = () => {
+    setOptionStatus('delivering');
+    if (optionStatus === 'delivering') {
+      return setStyleButton('Btn-Card-Waiter-Deliver');
+    } return setStyleButton('Hidenn-Btn-Order-Deliver');
+  };
   return (
     <div className="Background-menu">
       <NavBar />
       <div className="Background-image-Orders">
         <div className="Order-status-nav">
           <button className="Btn-pending" type="button" onClick={() => setOptionStatus('pending')}>Pendiente</button>
-          <button className="Btn-delivering" type="button" onClick={() => setOptionStatus('delivering')}>Preparado</button>
+          <button className="Btn-delivering" type="button" onClick={() => onclickStatusDelivering()}>Preparado</button>
           <button className="Btn-delivered" type="button" onClick={() => setOptionStatus('delivered')}>Entregado</button>
         </div>
 
@@ -93,7 +99,7 @@ export default function Orders() {
                   ))}
                 </tbody>
               </table>
-              <button type="button" className="Btn-Card-Waiter-Deliver" onClick={() => putStatusOrder(order)}>Entregar</button>
+              <button type="button" className={styleButton} onClick={() => putStatusOrder(order)}>Entregar</button>
             </div>
           ))}
         </div>

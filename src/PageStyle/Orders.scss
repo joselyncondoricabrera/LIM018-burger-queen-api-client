@@ -1,11 +1,10 @@
-.Background-image-Orders{
+@media (max-width: 1366px){
+.Background-image-orders{
     background-image: url("../imagen/background-menu.png");
     background-attachment: scroll;
-    height: calc(100% - 163px);
+    height: calc(100% - 110px);
     box-shadow: 0px -8px 43px 4px rgba(255, 255, 255, 0.2);
-    padding: 30px;
     padding: 0px;
-    padding-bottom: 30px;
 }
 
 .Order-status-nav{
@@ -99,4 +98,15 @@
 
 .Btn-Card-Chef-Ready{
     background:#FF0000;
+}
+
+.Hidenn-Btn-Order-Deliver{
+    display: none;
+}
+
+.Hidenn-Btn-Chef-Ready{
+    display: none;
+}
+
+
 }
