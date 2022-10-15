@@ -9,10 +9,12 @@
 .Background-image{
     background-image: url("../imagen/background-menu.png");
     background-attachment: scroll;
-    height: 100%;
+    height: calc(100% - 163px);
     box-shadow: 0px -8px 43px 4px rgba(255, 255, 255, 0.2);
     padding: 30px;
-    padding-top:0px;
+    display: flex;
+    justify-content: center;
+    // padding-top:0px;
 }
 
 .Module-menu, .Module-orders, .Btn-logOut{
@@ -33,7 +35,7 @@
 }
 
 .Menu-options{
-    width: 338px;
+    width: 250px;
     height: 70px;
     border:none;
     background: rgba(255, 255, 255, 0.9);
@@ -48,18 +50,24 @@
     text-transform: uppercase;
     color: black;
 }
+.Menu-options:focus{
+    background: #FFFFFF;
+
+}
 .Menu-options-container{
     transform: rotate(-90deg);
     position: fixed;
     left: -270px;
     gap: 20px;
-    top: 550px;
+    // top: 550px;
     font-family: 'Poppins';
     font-weight: 600;
     font-size: 26px;
     display: flex;
     text-transform: uppercase;
-    color: rgb(31, 31, 31)
+    color: rgb(31, 31, 31);
+    // margin-top: -40px;
+    margin-left: -50px;
 }
 .Container-all-menu{
     display: flex;
@@ -93,8 +101,13 @@
 .Client-name{
     margin-top: 60px;
     height: 25px;
-    width: 180px;
+    width: 250px;
     font-size: 20px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    text-align: center;
+    outline: none;
 }
 
 .Client-name::placeholder{
@@ -133,6 +146,11 @@
     width: 140px;
     height: 50px;
     text-align: center;
+}
+.Name-items-product{
+    width: 300px;
+    height: 50px;
+    text-align: left;
 }
 
 
@@ -227,7 +245,24 @@
     background-color: #FFFFFF;
 }
 .Image-button-delete{
-    height: 20px;
-    width: 20px;
+    height: 25px;
+    width: 25px;
+}
+.Btn-send-order{
+    width: 230px;
+    height: 56px;
+    left: 124px;
+    top: 665px;
+    background: #FF9000;
+    box-shadow: 2px 4px 9px rgba(173, 173, 173, 0.54);
+    border-radius: 15px;
+    border: none;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 33px;
+    color: #FFFFFF;
+    margin: 15px 0;
 }
 }

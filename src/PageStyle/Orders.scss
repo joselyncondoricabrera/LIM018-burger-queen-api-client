@@ -1,3 +1,13 @@
+.Background-image-Orders{
+    background-image: url("../imagen/background-menu.png");
+    background-attachment: scroll;
+    height: calc(100% - 163px);
+    box-shadow: 0px -8px 43px 4px rgba(255, 255, 255, 0.2);
+    padding: 30px;
+    padding: 0px;
+    padding-bottom: 30px;
+}
+
 .Order-status-nav{
     display: flex;
     justify-content: flex-end;
@@ -48,7 +58,7 @@
     align-items: center;
 }
 
-.Client-name{
+.Client-name-order{
     display: flex;
     font-family: "Poppins";
     font-weight: 700;
@@ -64,6 +74,7 @@
     display: flex;
     gap: 40px;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .Btn-Card-Waiter-Deliver, .Btn-Card-Chef-Ready{

@@ -73,7 +73,7 @@ export default function Orders() {
   return (
     <div className="Background-menu">
       <NavBarChef />
-      <div className="Background-image">
+      <div className="Background-image-orders">
         <div className="Order-status-nav">
           <button className="Btn-pending" type="button" onClick={() => setOptionStatus('pending')}>Pendiente</button>
           <button className="Btn-delivering" type="button" onClick={() => setOptionStatus('delivering')}>Preparado</button>
@@ -83,7 +83,7 @@ export default function Orders() {
           {ordersByStatus.map((order) => (
             // <div key={order.id} className="Order-card">
             <div key={order.id} className="Order-card">
-              <h1 className="Client-name">{order.client}</h1>
+              <h1 className="Client-name-order">{order.client}</h1>
               <table className="Table-order">
                 <thead>
                   <tr className="Row-head">

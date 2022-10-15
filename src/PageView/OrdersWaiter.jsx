@@ -64,7 +64,7 @@ export default function Orders() {
   return (
     <div className="Background-menu">
       <NavBar />
-      <div className="Background-image">
+      <div className="Background-image-Orders">
         <div className="Order-status-nav">
           <button className="Btn-pending" type="button" onClick={() => setOptionStatus('pending')}>Pendiente</button>
           <button className="Btn-delivering" type="button" onClick={() => setOptionStatus('delivering')}>Preparado</button>
@@ -76,7 +76,7 @@ export default function Orders() {
             // <div key={order.id} className="Order-card">
             // eslint-disable-next-line react/no-array-index-key
             <div key={i} className="Order-card">
-              <h1 className="Client-name">{order.client}</h1>
+              <h1 className="Client-name-order">{order.client}</h1>
               <table className="Table-order">
                 <thead>
                   <tr className="Row-head">

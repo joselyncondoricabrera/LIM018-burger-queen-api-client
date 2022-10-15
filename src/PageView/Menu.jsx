@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../PageStyle/Menu.scss';
 import NavBar from './Navbar';
-import trashIcon from '../imagen/trash.svg';
+import trashIcon from '../imagen/deleteItem.png';
 
 const { Buffer } = require('buffer/');
 
@@ -50,6 +50,7 @@ export default function Menu() {
       });
   }, []);
 
+  //  Filtrar por tipo de producto para mostrar en el contenedor de imagenes
   const optionMenu = products.filter((e) => e.type === optionProducts);
 
   // productos unicos según id (no repetidos)
@@ -105,7 +106,8 @@ export default function Menu() {
         <div className="Container-all-menu">
 
           <div className="Menu-options-container">
-            <button className="Menu-options" type="button" onClick={() => setOptionProducts('Almuerzo y cena')}>Almuerzo y cena</button>
+            <button type="button" className="Menu-options" onClick={() => setOptionProducts('Bebidas')}>Bebidas</button>
+            <button type="button" className="Menu-options" onClick={() => setOptionProducts('Almuerzo y cena')}>Almuerzo y cena</button>
             <button type="button" className="Menu-options" onClick={() => setOptionProducts('Desayuno')}>Desayuno</button>
           </div>
 
@@ -132,7 +134,7 @@ export default function Menu() {
 
           <div className="Order-table-container">
             <input className="Client-name" type="text" placeholder="Nombre del cliente" onChange={(e) => setNameClient(e.target.value)} />
-            <h4 className="Client">{nameClient}</h4>
+            <h4 className="Client">{`Cliente:  ${nameClient}`}</h4>
 
             <table className="Table-order">
               <thead>
@@ -147,7 +149,7 @@ export default function Menu() {
                 {productsOrder.map((product, i) => (
                   // eslint-disable-next-line react/no-array-index-key
                   <tr key={i}>
-                    <td className="Items-products-table">{product.name}</td>
+                    <td className="Name-items-product">{product.name}</td>
                     <td className="Items-products-table">{product.quantity}</td>
                     <td className="Items-products-table">{product.price}</td>
                     <td>
@@ -165,7 +167,7 @@ export default function Menu() {
               </tbody>
             </table>
 
-            <button type="button" onClick={postOrder}>Enviar Orden</button>
+            <button type="button" className="Btn-send-order" onClick={postOrder}>Enviar Orden</button>
           </div>
 
         </div>
