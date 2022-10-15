@@ -10,6 +10,10 @@ export default function Menu() {
   const [productsOrder, setProductsOrder] = useState([]);
   const [optionProducts, setOptionProducts] = useState('Desayuno');
   const [nameClient, setNameClient] = useState('');
+  // cambiar estilo a los botones de opcion segun tipo
+  const [styleTypeDrinks, setStyleTypeDrinks] = useState('Menu-options');
+  const [styleTypeBreakfast, setStyleTypeBreakfast] = useState('Menu-options');
+  const [styleTypeLunchDinner, setstyleTypeLunchDinner] = useState('Menu-options');
 
   const token = sessionStorage.getItem('token');
   function parseJwt(jwt) {
@@ -99,6 +103,26 @@ export default function Menu() {
     setProductsOrder(productsOrder.filter((product) => product.id !== pro.id));
   };
 
+  // cambiar css y mostrar imagenes
+  const changeOptionDrink = () => {
+    setStyleTypeDrinks('Change-style-activated-button');
+    setStyleTypeBreakfast('Menu-options');
+    setstyleTypeLunchDinner('Menu-options');
+    setOptionProducts('Bebidas');
+  };
+  const changeOptionBreakfast = () => {
+    setStyleTypeBreakfast('Change-style-activated-button');
+    setStyleTypeDrinks('Menu-options');
+    setstyleTypeLunchDinner('Menu-options');
+    setOptionProducts('Almuerzo y cena');
+  };
+  const changeOptionLunchDinner = () => {
+    setstyleTypeLunchDinner('Change-style-activated-button');
+    setStyleTypeBreakfast('Menu-options');
+    setStyleTypeDrinks('Menu-options');
+    setOptionProducts('Desayuno');
+  };
+
   return (
     <div className="Background-menu">
       <NavBar />
@@ -106,9 +130,9 @@ export default function Menu() {
         <div className="Container-all-menu">
 
           <div className="Menu-options-container">
-            <button type="button" className="Menu-options" onClick={() => setOptionProducts('Bebidas')}>Bebidas</button>
-            <button type="button" className="Menu-options" onClick={() => setOptionProducts('Almuerzo y cena')}>Almuerzo y cena</button>
-            <button type="button" className="Menu-options" onClick={() => setOptionProducts('Desayuno')}>Desayuno</button>
+            <button type="button" className={styleTypeDrinks} onClick={changeOptionDrink}>Bebidas</button>
+            <button type="button" className={styleTypeBreakfast} onClick={changeOptionBreakfast}>Almuerzo y cena</button>
+            <button type="button" className={styleTypeLunchDinner} onClick={changeOptionLunchDinner}>Desayuno</button>
           </div>
 
           <div className="Image-products-container">
