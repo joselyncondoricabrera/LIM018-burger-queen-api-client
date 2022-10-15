@@ -63,18 +63,27 @@ export default function Orders() {
   const ordersByStatus = orders.filter((e) => e.status === optionStatus);
   const onclickStatusDelivering = () => {
     setOptionStatus('delivering');
-    if (optionStatus === 'delivering') {
-      return setStyleButton('Btn-Card-Waiter-Deliver');
-    } return setStyleButton('Hidenn-Btn-Order-Deliver');
+    return setStyleButton('Btn-Card-Waiter-Deliver');
   };
+
+  const onclickStatusPending = () => {
+    setOptionStatus('pending');
+    return setStyleButton('Hidenn-Btn-Order-Deliver');
+  };
+
+  const onclickStatusDelivered = () => {
+    setOptionStatus('delivered');
+    return setStyleButton('Hidenn-Btn-Order-Deliver');
+  };
+
   return (
     <div className="Background-menu">
       <NavBar />
-      <div className="Background-image-Orders">
+      <div className="Background-image-orders">
         <div className="Order-status-nav">
-          <button className="Btn-pending" type="button" onClick={() => setOptionStatus('pending')}>Pendiente</button>
+          <button className="Btn-pending" type="button" onClick={() => onclickStatusPending()}>Pendiente</button>
           <button className="Btn-delivering" type="button" onClick={() => onclickStatusDelivering()}>Preparado</button>
-          <button className="Btn-delivered" type="button" onClick={() => setOptionStatus('delivered')}>Entregado</button>
+          <button className="Btn-delivered" type="button" onClick={() => onclickStatusDelivered()}>Entregado</button>
         </div>
 
         <div className="Orders-container">
