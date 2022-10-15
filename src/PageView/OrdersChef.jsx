@@ -14,6 +14,7 @@ import NavBarChef from './NavbarChef';
 export default function Orders() {
   const [orders, setOrders] = useState([]);
   const [optionStatus, setOptionStatus] = useState('pending');
+  const [styleButton, setStyleButton] = useState('Btn-Card-Chef-Ready');
   // const [orderByStatus, setOrderByStatus] = useState([]);
   // Función request put de orders para cambiar status de pendiente a preparado
 
@@ -68,6 +69,13 @@ export default function Orders() {
       });
   }, []);
 
+  const onclickStatusPending = () => {
+    setOptionStatus('pending');
+    if (optionStatus === 'pending') {
+      return setStyleButton('Btn-Card-Chef-Ready');
+    } return setStyleButton('Hidenn-Btn-Chef-Ready');
+  };
+
   const ordersByStatus = orders.filter((e) => e.status === optionStatus);
 
   return (
@@ -75,7 +83,7 @@ export default function Orders() {
       <NavBarChef />
       <div className="Background-image-orders">
         <div className="Order-status-nav">
-          <button className="Btn-pending" type="button" onClick={() => setOptionStatus('pending')}>Pendiente</button>
+          <button className="Btn-pending" type="button" onClick={() => onclickStatusPending()}>Pendiente</button>
           <button className="Btn-delivering" type="button" onClick={() => setOptionStatus('delivering')}>Preparado</button>
         </div>
 
@@ -100,7 +108,7 @@ export default function Orders() {
                   ))}
                 </tbody>
               </table>
-              <button type="button" className="Btn-Card-Chef-Ready" onClick={() => putStatusOrder(order)}>Preparado</button>
+              <button type="button" className={styleButton} onClick={() => putStatusOrder(order)}>Preparado</button>
             </div>
           ))}
         </div>
