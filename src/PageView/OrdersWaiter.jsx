@@ -7,6 +7,45 @@ export default function Orders() {
   const [orders, setOrders] = useState([]);
   const [optionStatus, setOptionStatus] = useState('pending');
 
+  const putStatusOrder = (order) => {
+    // setOrderUpdate(
+    const orderBodyUpdate = {
+      userId: order.userId,
+      client: order.client,
+      products: order.products,
+      status: 'delivered',
+      dateEntry: order.dateEntry,
+      id: order.id,
+    };
+    // );
+    // useEffect(() => {
+    const token = sessionStorage.getItem('token');
+    fetch(`http://localhost:3001/orders/${order.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(orderBodyUpdate),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+      });
+
+    fetch('http://localhost:3001/orders', {
+      headers: {
+        'Content-Type': 'application/json',
+        authorization: `Bearer ${token}`,
+      },
+    }).then((res) => res.json())
+      .then((result) => {
+        setOrders(result);
+      });
+
+    // }, []);
+  };
+
   useEffect(() => {
     const token = sessionStorage.getItem('token');
     fetch('http://localhost:3001/orders', {
@@ -54,6 +93,7 @@ export default function Orders() {
                   ))}
                 </tbody>
               </table>
+              <button type="button" className="Btn-Card-Waiter-Deliver" onClick={() => putStatusOrder(order)}>Entregar</button>
             </div>
           ))}
         </div>

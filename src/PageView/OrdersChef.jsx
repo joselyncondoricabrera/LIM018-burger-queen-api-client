@@ -3,6 +3,14 @@ import '../App.scss';
 import '../PageStyle/Orders.scss';
 import NavBarChef from './NavbarChef';
 
+// function ButtonOrdersCard(props) {
+//   const { status, btnFunction } = props;
+//   if (status === 'pending') {
+// eslint-disable-next-line max-len
+//     return (<button type="button" className="Btn-Card-Chef-Ready" onClick={() => btnFunction}>Preparado</button>);
+//   }
+// }
+
 export default function Orders() {
   const [orders, setOrders] = useState([]);
   const [optionStatus, setOptionStatus] = useState('pending');
@@ -92,7 +100,7 @@ export default function Orders() {
                   ))}
                 </tbody>
               </table>
-              <button type="button" onClick={() => putStatusOrder(order)}>Preparado</button>
+              <button type="button" className="Btn-Card-Chef-Ready" onClick={() => putStatusOrder(order)}>Preparado</button>
             </div>
           ))}
         </div>
