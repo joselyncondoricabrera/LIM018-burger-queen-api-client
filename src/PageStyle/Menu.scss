@@ -38,7 +38,7 @@
     width: 250px;
     height: 70px;
     border:none;
-    background: rgba(255, 255, 255, 0.9);
+    background: #FFFFFF;
     border-radius: 20px;
     display: flex;
     align-items: center;
@@ -49,10 +49,6 @@
     font-size: 23px;
     text-transform: uppercase;
     color: black;
-}
-.Menu-options:focus{
-    background: #FFFFFF;
-
 }
 .Menu-options-container{
     transform: rotate(-90deg);
@@ -265,4 +261,23 @@
     color: #FFFFFF;
     margin: 15px 0;
 }
+.Change-style-activated-button{
+    width: 250px;
+    height: 70px;
+    border:none;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    font-family: 'Poppins';
+    font-weight: 600;
+    font-size: 23px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    background-color:#FF9409;
+}
+// .Change-style-activated-button{
+
+// }
 }
