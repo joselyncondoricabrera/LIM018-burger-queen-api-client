@@ -66,8 +66,8 @@ server.post('/auth', (req, res) => {
 
 server.use(router);
 
-// router.render = async (req, res) => {
-server.post('/orders', async (req, res) => {
+router.render = async (req, res) => {
+// server.post('/orders', async (req, res) => {
   if (req.method === 'POST' && req.path === '/orders') {
     const today = new Date();
     const now = today.toLocaleString();
@@ -85,7 +85,7 @@ server.post('/orders', async (req, res) => {
   } else {
     res.jsonp(res.locals.data);
   }
-});
+};
 
 server.listen(3001, () => {
   console.log('JSON Server is running');

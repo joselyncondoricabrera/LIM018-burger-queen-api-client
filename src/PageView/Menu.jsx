@@ -147,7 +147,7 @@ export default function Menu() {
                 {productsOrder.map((product, i) => (
                   // eslint-disable-next-line react/no-array-index-key
                   <tr key={i}>
-                    <td className="Items-products-table">{product.name}</td>
+                    <td className="Name-items-product">{product.name}</td>
                     <td className="Items-products-table">{product.quantity}</td>
                     <td className="Items-products-table">{product.price}</td>
                     <td>
