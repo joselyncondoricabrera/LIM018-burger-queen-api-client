@@ -130,7 +130,7 @@
           "qty": 2
         }
       ],
-      "status": "pending",
+      "status": "delivered",
       "dateEntry": "14/10/2022, 18:41:15",
       "id": 1
     },
@@ -171,6 +171,25 @@
       "status": "delivered",
       "dateEntry": "14/10/2022, 19:54:33",
       "id": 3
+    },
+    {
+      "userId": "1",
+      "client": "PABLITO",
+      "products": [
+        {
+          "name": "Café americano",
+          "productId": "1",
+          "qty": 2
+        },
+        {
+          "name": "Sandwich de jamón y queso",
+          "productId": "3",
+          "qty": 2
+        }
+      ],
+      "status": "delivered",
+      "dateEntry": "15/10/2022 17:13:32",
+      "id": 4
     }
   ]
 }

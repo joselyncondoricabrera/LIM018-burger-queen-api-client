@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import '../App.scss';
 import '../PageStyle/Orders.scss';
+import '../PageStyle/Menu.scss';
 import NavBar from './Navbar';
 
 export default function Orders() {
   const [orders, setOrders] = useState([]);
   const [optionStatus, setOptionStatus] = useState('pending');
   const [styleButton, setStyleButton] = useState('Hidenn-Btn-Order-Deliver');
+  // cambiar estilo a los botones de estados con onclick
+  const [stylePending, setStylePending] = useState('Btn-pending-activated');
+  const [stylePrepared, setStylePrepared] = useState('Btn-delivering');
+  const [styleDelivered, setStyleDelivered] = useState('Btn-delivered');
 
   const putStatusOrder = (order) => {
     // setOrderUpdate(
@@ -39,10 +44,12 @@ export default function Orders() {
         'Content-Type': 'application/json',
         authorization: `Bearer ${token}`,
       },
-    }).then((res) => res.json())
+    }).then((resp) => resp.json())
       .then((result) => {
         setOrders(result);
-      });
+        console.log(result);
+      })
+      .catch((e) => { console.log(e); });
 
     // }, []);
   };
@@ -61,18 +68,31 @@ export default function Orders() {
   }, []);
 
   const ordersByStatus = orders.filter((e) => e.status === optionStatus);
+
+  // al iniciar cargue con el boton pending activo
+  // setStylePending('Btn-pending-activated');
+
   const onclickStatusDelivering = () => {
     setOptionStatus('delivering');
+    setStylePrepared('Btn-delivering-activated');
+    setStylePending('Btn-pending');
+    setStyleDelivered('Btn-delivered');
     return setStyleButton('Btn-Card-Waiter-Deliver');
   };
 
   const onclickStatusPending = () => {
     setOptionStatus('pending');
+    setStylePending('Btn-pending-activated');
+    setStylePrepared('Btn-delivering');
+    setStyleDelivered('Btn-delivered');
     return setStyleButton('Hidenn-Btn-Order-Deliver');
   };
 
   const onclickStatusDelivered = () => {
     setOptionStatus('delivered');
+    setStyleDelivered('Btn-delivered-activated');
+    setStylePending('Btn-pending');
+    setStylePrepared('Btn-delivering');
     return setStyleButton('Hidenn-Btn-Order-Deliver');
   };
 
@@ -81,16 +101,16 @@ export default function Orders() {
       <NavBar />
       <div className="Background-image-orders">
         <div className="Order-status-nav">
-          <button className="Btn-pending" type="button" onClick={() => onclickStatusPending()}>Pendiente</button>
-          <button className="Btn-delivering" type="button" onClick={() => onclickStatusDelivering()}>Preparado</button>
-          <button className="Btn-delivered" type="button" onClick={() => onclickStatusDelivered()}>Entregado</button>
+          <button className={stylePending} type="button" onClick={() => onclickStatusPending()}>Pendiente</button>
+          <button className={stylePrepared} type="button" onClick={() => onclickStatusDelivering()}>Preparado</button>
+          <button className={styleDelivered} type="button" onClick={() => onclickStatusDelivered()}>Entregado</button>
         </div>
 
         <div className="Orders-container">
-          {ordersByStatus.map((order, i) => (
+          {ordersByStatus.map((order) => (
             // <div key={order.id} className="Order-card">
             // eslint-disable-next-line react/no-array-index-key
-            <div key={i} className="Order-card">
+            <div key={order.id} className="Order-card">
               <h1 className="Client-name-order">{order.client}</h1>
               <table className="Table-order">
                 <thead>

@@ -17,22 +17,39 @@
     // padding-top:0px;
 }
 
-.Module-menu, .Module-orders, .Btn-logOut{
+.Module-orders, .Module-menu, .Btn-logOut{
+    border: none;
+    border-bottom: 1px solid #FFFFFF;
     margin-top:25px;
     width: 197px;
     height: 76px;
     background: none;
-    border:none;
     font-family: 'Poppins';
     font-weight: 700;
     font-size: 32px;
     color: white;
 }
-.Module-menu{ border-bottom: 5px solid #FFFFFF;}
-.Module-orders{ border-bottom: 1px solid #FFFFFF;}
-.Btn-logOut{
-    border-bottom: 1px solid #FFFFFF;
+.Module-menu-activated, .Module-orders-activated {
+    border:none; 
+    border-bottom: 5px solid #FFFFFF;
+    margin-top:25px;
+    width: 197px;
+    height: 76px;
+    background: none;
+    font-family: 'Poppins';
+    font-weight: 700;
+    font-size: 32px;
+    color: white;
 }
+// .Module-orders:focus{
+//     border-bottom: 5px solid #FFFFFF;
+// }
+.Module-orders-activated:focus{
+    border-bottom: 5px solid #FFFFFF;
+}
+// .Btn-logOut{
+//     border-bottom: 1px solid #FFFFFF;
+// }
 
 .Menu-options{
     width: 250px;
@@ -277,7 +294,4 @@
     color: #FFFFFF;
     background-color:#FF9409;
 }
-// .Change-style-activated-button{
-
-// }
 }

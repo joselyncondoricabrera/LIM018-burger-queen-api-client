@@ -3,20 +3,10 @@ import '../App.scss';
 import '../PageStyle/Orders.scss';
 import NavBarChef from './NavbarChef';
 
-// function ButtonOrdersCard(props) {
-//   const { status, btnFunction } = props;
-//   if (status === 'pending') {
-// eslint-disable-next-line max-len
-//     return (<button type="button" className="Btn-Card-Chef-Ready" onClick={() => btnFunction}>Preparado</button>);
-//   }
-// }
-
 export default function Orders() {
   const [orders, setOrders] = useState([]);
   const [optionStatus, setOptionStatus] = useState('pending');
   const [styleButton, setStyleButton] = useState('Btn-Card-Chef-Ready');
-  // const [orderByStatus, setOrderByStatus] = useState([]);
-  // Función request put de orders para cambiar status de pendiente a preparado
 
   const putStatusOrder = (order) => {
     // setOrderUpdate(
