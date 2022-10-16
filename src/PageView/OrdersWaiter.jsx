@@ -32,7 +32,7 @@ export default function Orders() {
       .then((res) => res.json())
       .then((res) => {
         console.log(res);
-      });
+      }).catch((error) => console.log(error));
 
     fetch('http://localhost:3001/orders', {
       headers: {
@@ -42,9 +42,7 @@ export default function Orders() {
     }).then((res) => res.json())
       .then((result) => {
         setOrders(result);
-      });
-
-    // }, []);
+      }).catch((error) => console.log(error));
   };
 
   useEffect(() => {
@@ -57,7 +55,7 @@ export default function Orders() {
     }).then((res) => res.json())
       .then((result) => {
         setOrders(result);
-      });
+      }).catch((error) => console.log(error));
   }, []);
 
   const ordersByStatus = orders.filter((e) => e.status === optionStatus);
@@ -87,10 +85,10 @@ export default function Orders() {
         </div>
 
         <div className="Orders-container">
-          {ordersByStatus.map((order, i) => (
+          {ordersByStatus.map((order) => (
             // <div key={order.id} className="Order-card">
             // eslint-disable-next-line react/no-array-index-key
-            <div key={i} className="Order-card">
+            <div key={order.id} className="Order-card">
               <h1 className="Client-name-order">{order.client}</h1>
               <table className="Table-order">
                 <thead>

@@ -130,7 +130,7 @@
           "qty": 2
         }
       ],
-      "status": "pending",
+      "status": "delivering",
       "dateEntry": "14/10/2022, 18:41:15",
       "id": 1
     },
@@ -149,7 +149,7 @@
           "qty": 2
         }
       ],
-      "status": "delivered",
+      "status": "delivering",
       "dateEntry": "14/10/2022, 18:41:15",
       "id": 2
     },
