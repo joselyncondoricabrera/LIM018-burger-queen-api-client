@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import fetch from 'node-fetch';
 import { loginUsers } from '../Requests/requestApi';
 import emailIcon from '../imagen/mail.png';
 import passwordIcon from '../imagen/password.png';

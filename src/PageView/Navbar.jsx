@@ -7,19 +7,19 @@ import '../PageStyle/Menu.scss';
 export default function NavBar() {
   const navigate = useNavigate();
   // activar botones del navbar
-  const [moduleMenu, setModuleMenu] = useState('Module-menu-activated');
-  const [moduleOrders, setModuleOrders] = useState('Module-orders');
+  const [moduleMenu, setModuleMenu] = useState('Module-activated');
+  const [moduleOrders, setModuleOrders] = useState('Module-inactivated');
 
   const changeModuleMenu = () => {
-    setModuleMenu('Module-menu-activated');
-    setModuleOrders('Module-orders');
+    setModuleMenu('Module-activated');
+    setModuleOrders('Module-inactivated');
     navigate('/Menu');
   };
 
   const changeModuleOrders = (e) => {
     e.preventDefault();
-    setModuleOrders('Module-orders-activated');
-    setModuleMenu('Module-menu');
+    setModuleOrders('Module-activated');
+    setModuleMenu('Module-inactivated');
     navigate('/Orders');
   };
 
