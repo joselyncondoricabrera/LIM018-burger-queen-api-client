@@ -9,7 +9,6 @@
     "buffer": "^6.0.3",
     "json-server": "^0.17.0",
     "md5": "^2.3.0",
-    "node-fetch": "^2.6.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.0",
@@ -54,6 +53,7 @@
       "last 1 safari version"
     ]
   },
+  "proxy": "http://localhost:3001",
   "devDependencies": {
     "eslint": "^8.23.1",
     "eslint-config-airbnb": "^19.0.4",

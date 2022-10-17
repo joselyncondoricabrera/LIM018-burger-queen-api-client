@@ -12,7 +12,7 @@ export default function Menu() {
   const [nameClient, setNameClient] = useState('');
   // cambiar estilo a los botones de opcion segun tipo
   const [styleTypeDrinks, setStyleTypeDrinks] = useState('Menu-options');
-  const [styleTypeBreakfast, setStyleTypeBreakfast] = useState('Menu-options');
+  const [styleTypeBreakfast, setStyleTypeBreakfast] = useState('Change-style-activated-button');
   const [styleTypeLunchDinner, setstyleTypeLunchDinner] = useState('Menu-options');
 
   const token = sessionStorage.getItem('token');
@@ -131,8 +131,8 @@ export default function Menu() {
 
           <div className="Menu-options-container">
             <button type="button" className={styleTypeDrinks} onClick={changeOptionDrink}>Bebidas</button>
-            <button type="button" className={styleTypeBreakfast} onClick={changeOptionBreakfast}>Almuerzo y cena</button>
-            <button type="button" className={styleTypeLunchDinner} onClick={changeOptionLunchDinner}>Desayuno</button>
+            <button type="button" className={styleTypeLunchDinner} onClick={changeOptionLunchDinner}>Almuerzo y cena</button>
+            <button type="button" className={styleTypeBreakfast} onClick={changeOptionBreakfast}>Desayuno</button>
           </div>
 
           <div className="Image-products-container">

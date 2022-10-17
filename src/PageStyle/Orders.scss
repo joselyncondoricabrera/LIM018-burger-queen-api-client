@@ -14,7 +14,7 @@
 }
 .Btn-pending{
     width: 268px;
-    height: 95px;
+    height: 68px;
     background: #FF0000;
     border-radius: 0px 0px 15px 15px;
     color: white;
@@ -38,6 +38,37 @@
 .Btn-delivered{
     width: 268px;
     height: 68px;
+    background: #FF9409;
+    border-radius: 0px 0px 15px 15px;
+    color: white;
+    font-family: 'Poppins';
+    font-weight: 600;
+    font-size: 25px;
+}
+.Btn-pending-activated{
+    height: 95px;
+    width: 268px;
+    background: #FF0000;
+    border-radius: 0px 0px 15px 15px;
+    color: white;
+    font-family: 'Poppins';
+    font-weight: 600;
+    font-size: 25px;
+    border: none;
+}
+.Btn-delivering-activated{
+    height: 95px;
+    width: 268px;
+    background: #38E54D;
+    border-radius: 0px 0px 15px 15px;
+    color: white;
+    font-family: 'Poppins';
+    font-weight: 600;
+    font-size: 25px;
+}
+.Btn-delivered-activated{
+    height: 95px;
+    width: 268px;
     background: #FF9409;
     border-radius: 0px 0px 15px 15px;
     color: white;
@@ -107,6 +138,5 @@
 .Hidenn-Btn-Chef-Ready{
     display: none;
 }
-
 
 }
