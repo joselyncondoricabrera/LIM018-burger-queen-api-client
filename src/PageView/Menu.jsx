@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import '../PageStyle/Menu.scss';
+import swal from 'sweetalert';
 import NavBar from './Navbar';
 import trashIcon from '../imagen/deleteItem.png';
+// import ModalConfirmed from './ModalConfirmed';
 
 const { Buffer } = require('buffer/');
 
@@ -14,6 +16,8 @@ export default function Menu() {
   const [styleTypeDrinks, setStyleTypeDrinks] = useState('Menu-options');
   const [styleTypeBreakfast, setStyleTypeBreakfast] = useState('Change-style-activated-button');
   const [styleTypeLunchDinner, setstyleTypeLunchDinner] = useState('Menu-options');
+  // mostrar modal o ocultar
+  // const [showModal, setShowModal] = useState(false);
 
   const token = sessionStorage.getItem('token');
   function parseJwt(jwt) {
@@ -38,7 +42,17 @@ export default function Menu() {
         authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(orderData),
-    }).then((res) => res.json()).then((resp) => console.log(resp));
+    }).then((res) => res.json())
+      .then((resp) => {
+        console.log(resp);
+        // setShowModal(true);
+        swal({
+          title: 'Confirmación de envío',
+          text: 'Se guardó correctamente la orden',
+          icon: 'success',
+          button: 'Aceptar',
+        });
+      });
   };
 
   useEffect(() => {
@@ -114,13 +128,13 @@ export default function Menu() {
     setStyleTypeBreakfast('Change-style-activated-button');
     setStyleTypeDrinks('Menu-options');
     setstyleTypeLunchDinner('Menu-options');
-    setOptionProducts('Almuerzo y cena');
+    setOptionProducts('Desayuno');
   };
   const changeOptionLunchDinner = () => {
     setstyleTypeLunchDinner('Change-style-activated-button');
     setStyleTypeBreakfast('Menu-options');
     setStyleTypeDrinks('Menu-options');
-    setOptionProducts('Desayuno');
+    setOptionProducts('Almuerzo y cena');
   };
 
   return (
@@ -193,7 +207,9 @@ export default function Menu() {
 
             <button type="button" className="Btn-send-order" onClick={postOrder}>Enviar Orden</button>
           </div>
-
+          {/* {
+            showModal ? <ModalConfirmed /> : null
+          } */}
         </div>
       </div>
     </div>

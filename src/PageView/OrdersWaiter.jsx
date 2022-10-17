@@ -3,6 +3,7 @@ import '../App.scss';
 import '../PageStyle/Orders.scss';
 import '../PageStyle/Menu.scss';
 import NavBar from './Navbar';
+import { updateOrders } from '../Requests/requestApi';
 
 export default function Orders() {
   const [orders, setOrders] = useState([]);
@@ -34,23 +35,14 @@ export default function Orders() {
       },
       body: JSON.stringify(orderBodyUpdate),
     })
-      .then((res) => res.json())
-      .then((res) => {
-        console.log(res);
+      .then(() => {
+        updateOrders(token)
+          .then((result) => {
+            console.log(result);
+            setOrders(result);
+          })
+          .catch((e) => { console.log(e); });
       });
-
-    fetch('http://localhost:3001/orders', {
-      headers: {
-        'Content-Type': 'application/json',
-        authorization: `Bearer ${token}`,
-      },
-    }).then((resp) => resp.json())
-      .then((result) => {
-        setOrders(result);
-        console.log(result);
-      })
-      .catch((e) => { console.log(e); });
-
     // }, []);
   };
 
