@@ -17,7 +17,7 @@
     // padding-top:0px;
 }
 
-.Module-orders, .Module-menu, .Btn-logOut{
+.Module-inactivated, .Btn-logOut{
     border: none;
     border-bottom: 1px solid #FFFFFF;
     margin-top:25px;
@@ -29,7 +29,9 @@
     font-size: 32px;
     color: white;
 }
-.Module-menu-activated, .Module-orders-activated {
+
+
+.Module-activated {
     border:none; 
     border-bottom: 5px solid #FFFFFF;
     margin-top:25px;
@@ -44,7 +46,7 @@
 // .Module-orders:focus{
 //     border-bottom: 5px solid #FFFFFF;
 // }
-.Module-orders-activated:focus{
+.Module-activated:focus{
     border-bottom: 5px solid #FFFFFF;
 }
 // .Btn-logOut{

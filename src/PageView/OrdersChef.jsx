@@ -2,14 +2,15 @@ import React, { useState, useEffect } from 'react';
 import '../App.scss';
 import '../PageStyle/Orders.scss';
 import NavBarChef from './NavbarChef';
+import { updateOrders, getOrders } from '../Requests/requestApi';
 
 export default function Orders() {
   const [orders, setOrders] = useState([]);
   const [optionStatus, setOptionStatus] = useState('pending');
   const [styleButton, setStyleButton] = useState('Btn-Card-Chef-Ready');
 
+  // Función request put de orders para cambiar status de pendiente a preparado
   const putStatusOrder = (order) => {
-    // setOrderUpdate(
     const orderBodyUpdate = {
       userId: order.userId,
       client: order.client,
@@ -18,45 +19,22 @@ export default function Orders() {
       dateEntry: order.dateEntry,
       id: order.id,
     };
-    // );
-    // useEffect(() => {
+
     const token = sessionStorage.getItem('token');
-    fetch(`http://localhost:3001/orders/${order.id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(orderBodyUpdate),
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        console.log(res);
-      });
-
-    fetch('http://localhost:3001/orders', {
-      headers: {
-        'Content-Type': 'application/json',
-        authorization: `Bearer ${token}`,
-      },
-    }).then((res) => res.json())
-      .then((result) => {
-        setOrders(result);
-      });
-
-    // }, []);
+    updateOrders(order, token, orderBodyUpdate)
+      .then(() => {
+        getOrders(token)
+          .then((result) => {
+            setOrders(result);
+          }).catch((error) => console.log(error));
+      }).catch((error) => console.log(error));
   };
   useEffect(() => {
     const token = sessionStorage.getItem('token');
-    fetch('http://localhost:3001/orders', {
-      headers: {
-        'Content-Type': 'application/json',
-        authorization: `Bearer ${token}`,
-      },
-    }).then((res) => res.json())
+    getOrders(token)
       .then((result) => {
         setOrders(result);
-      });
+      }).catch((error) => console.log(error));
   }, []);
 
   const onclickStatusPending = () => {
@@ -82,7 +60,6 @@ export default function Orders() {
 
         <div className="Orders-container">
           {ordersByStatus.map((order) => (
-            // <div key={order.id} className="Order-card">
             <div key={order.id} className="Order-card">
               <h1 className="Client-name-order">{order.client}</h1>
               <table className="Table-order">
