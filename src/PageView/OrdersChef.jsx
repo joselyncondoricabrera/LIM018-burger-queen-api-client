@@ -34,6 +34,7 @@ export default function Orders() {
     getOrders(token)
       .then((result) => {
         setOrders(result);
+        console.log(result);
       }).catch((error) => console.log(error));
   }, []);
 
@@ -61,6 +62,7 @@ export default function Orders() {
         <div className="Orders-container">
           {ordersByStatus.map((order) => (
             <div key={order.id} className="Order-card">
+              <h1>f</h1>
               <h1 className="Client-name-order">{order.client}</h1>
               <table className="Table-order">
                 <thead>

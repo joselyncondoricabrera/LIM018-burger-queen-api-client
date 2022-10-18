@@ -25,14 +25,16 @@ export default function Orders() {
     };
 
     const token = sessionStorage.getItem('token');
+
     updateOrders(order, token, orderBodyUpdate)
       .then(() => {
         getOrders(token)
           .then((result) => {
             setOrders(result);
           })
-          .catch((e) => { console.log(e); });
-      }).catch((error) => console.log(error));
+          .catch((error) => console.log(error));
+      })
+      .catch((error) => console.log(error));
   };
 
   useEffect(() => {
@@ -40,7 +42,8 @@ export default function Orders() {
     getOrders(token)
       .then((result) => {
         setOrders(result);
-      }).catch((error) => console.log(error));
+      })
+      .catch((error) => console.log(error));
   }, []);
 
   const ordersByStatus = orders.filter((e) => e.status === optionStatus);
