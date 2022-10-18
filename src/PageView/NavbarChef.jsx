@@ -9,7 +9,7 @@ export default function NavBarChef() {
 
   return (
     <div>
-      <button type="button" className="Module-orders Module">Ordenes</button>
+      <button type="button" className="Module-activated">Ordenes</button>
       <button type="button" className="Btn-logOut" onClick={() => { navigate('/'); }}>Salir</button>
     </div>
   );

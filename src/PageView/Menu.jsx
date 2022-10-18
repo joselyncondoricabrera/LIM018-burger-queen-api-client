@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../PageStyle/Menu.scss';
+// eslint-disable-next-line import/no-unresolved
 import swal from 'sweetalert';
 import NavBar from './Navbar';
 import trashIcon from '../imagen/deleteItem.png';
@@ -46,6 +47,9 @@ export default function Menu() {
       .then((resp) => {
         console.log(resp);
         // setShowModal(true);
+        // limpiar productsOrder
+
+        // show alert
         swal({
           title: 'Confirmación de envío',
           text: 'Se guardó correctamente la orden',

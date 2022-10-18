@@ -76,13 +76,13 @@ server.post('/auth', (req, res) => {
 // router.render = async (req, res) => {
 server.post('/orders', async (req, res) => {
   const today = new Date();
-  const now = today.toLocaleString();
+  // const now = today.toLocaleString();
   const order = {
     userId: req.body.userId,
     client: req.body.client,
     products: req.body.products,
     status: 'pending',
-    dateEntry: now,
+    dateEntry: today,
   };
 
   const orders = router.db.get('orders');
