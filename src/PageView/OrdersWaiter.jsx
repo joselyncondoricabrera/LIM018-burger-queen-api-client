@@ -56,7 +56,7 @@ export default function Orders() {
     setStylePrepared('Btn-delivering-activated');
     setStylePending('Btn-pending');
     setStyleDelivered('Btn-delivered');
-    return setStyleButton('Btn-Card-Waiter-Deliver');
+    setStyleButton('Btn-Card-Waiter-Deliver');
   };
 
   const onclickStatusPending = () => {
@@ -64,7 +64,7 @@ export default function Orders() {
     setStylePending('Btn-pending-activated');
     setStylePrepared('Btn-delivering');
     setStyleDelivered('Btn-delivered');
-    return setStyleButton('Hidenn-Btn-Order-Deliver');
+    setStyleButton('Hidenn-Btn-Order-Deliver');
   };
 
   const onclickStatusDelivered = () => {
@@ -72,7 +72,7 @@ export default function Orders() {
     setStyleDelivered('Btn-delivered-activated');
     setStylePending('Btn-pending');
     setStylePrepared('Btn-delivering');
-    return setStyleButton('Hidenn-Btn-Order-Deliver');
+    setStyleButton('Hidenn-Btn-Order-Deliver');
   };
 
   return (

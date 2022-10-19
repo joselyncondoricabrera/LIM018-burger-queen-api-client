@@ -8,8 +8,12 @@ export default function Orders() {
   const [orders, setOrders] = useState([]);
   const [optionStatus, setOptionStatus] = useState('pending');
   const [styleButton, setStyleButton] = useState('Btn-Card-Chef-Ready');
-
+  const [stylePending, setStylePending] = useState('Btn-pending-activated');
+  const [stylePrepared, setStylePrepared] = useState('Btn-delivering');
+  const [duration, setDuration] = useState(false);
+  const [timeDuration, setTimeDuration] = useState('00:00');
   // Función request put de orders para cambiar status de pendiente a preparado
+
   const putStatusOrder = (order) => {
     const orderBodyUpdate = {
       userId: order.userId,
@@ -19,7 +23,21 @@ export default function Orders() {
       dateEntry: order.dateEntry,
       id: order.id,
     };
+    const initialHours = new Date(order.dateEntry).getHours();
+    console.log(initialHours);
+    const initialMinutes = new Date(order.dateEntry).getMinutes();
+    const actualHours = new Date().getHours();
+    console.log(actualHours);
+    const actualMinutes = new Date().getMinutes();
 
+    const finalHours = actualHours - initialHours;
+    console.log(finalHours);
+    const finalMinutes = Math.abs(actualMinutes - initialMinutes);
+    console.log(finalMinutes);
+    const totalTime = `Duración: ${finalHours} : ${finalMinutes}`;
+    console.log(totalTime);
+    setDuration(true);
+    setTimeDuration(totalTime);
     const token = sessionStorage.getItem('token');
     updateOrders(order, token, orderBodyUpdate)
       .then(() => {
@@ -41,28 +59,45 @@ export default function Orders() {
   const onclickStatusPending = () => {
     setOptionStatus('pending');
     setStyleButton('Btn-Card-Chef-Ready');
+    setStylePending('Btn-pending-activated');
+    setStylePrepared('Btn-delivering');
   };
 
   const onclickStatusDelivering = () => {
     setOptionStatus('delivering');
+    setStylePrepared('Btn-delivering-activated');
+    setStylePending('Btn-pending');
     setStyleButton('Hidenn-Btn-Chef-Ready');
   };
 
   const ordersByStatus = orders.filter((e) => e.status === optionStatus);
+  // console.log(new Date('2022-10-18T02:14:38.397Z').toLocaleString());
+  // const date = orders.map((e) => (e.dateEntry));
+  // const hour = date.map((e) => new Date(e).toLocaleTimeString());
+  // console.log(hour);
+  // const actualDate = new Date().toLocaleTimeString();
+  // console.log(actualDate);
 
   return (
     <div className="Background-menu">
       <NavBarChef />
       <div className="Background-image-orders">
         <div className="Order-status-nav">
-          <button className="Btn-pending" type="button" onClick={() => onclickStatusPending()}>Pendiente</button>
-          <button className="Btn-delivering" type="button" onClick={() => onclickStatusDelivering()}>Preparado</button>
+          <button className={stylePending} type="button" onClick={() => onclickStatusPending()}>Pendiente</button>
+          <button className={stylePrepared} type="button" onClick={() => onclickStatusDelivering()}>Preparado</button>
         </div>
 
         <div className="Orders-container">
           {ordersByStatus.map((order) => (
             <div key={order.id} className="Order-card">
-              <h1>f</h1>
+              <h1>
+                {duration === true ? timeDuration : `Hora: ${new Date(order.dateEntry).getHours()} : ${new Date(order.dateEntry).getMinutes()}`}
+                {/* Hora:
+                {' '}
+                {new Date(order.dateEntry).getHours()}
+                :
+                {new Date(order.dateEntry).getMinutes()} */}
+              </h1>
               <h1 className="Client-name-order">{order.client}</h1>
               <table className="Table-order">
                 <thead>
