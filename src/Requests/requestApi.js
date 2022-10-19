@@ -14,6 +14,24 @@ export const loginUsers = (email, password) => {
 
 // MENU
 
+// Guardar orden
+export const postOrders = (token, orderData) => fetch('http://localhost:3001/orders', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    authorization: `Bearer ${token}`,
+  },
+  body: JSON.stringify(orderData),
+}).then((res) => res.json());
+
+// Obtener productos del db
+export const getProducts = (tokens) => fetch('http://localhost:3001/products', {
+  headers: {
+    'Content-Type': 'application/json',
+    authorization: `Bearer ${tokens}`,
+  },
+}).then((res) => res.json());
+
 // ORDERS
 // Función para obtener ordenes
 export const getOrders = (token) => fetch('http://localhost:3001/orders', {

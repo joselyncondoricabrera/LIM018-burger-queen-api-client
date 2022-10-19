@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import '../PageStyle/Menu.scss';
-// eslint-disable-next-line import/no-unresolved
-import swal from 'sweetalert';
+import Swal from 'sweetalert2';
 import NavBar from './Navbar';
+import { postOrders, getProducts } from '../Requests/requestApi';
 import trashIcon from '../imagen/deleteItem.png';
-// import ModalConfirmed from './ModalConfirmed';
 
 const { Buffer } = require('buffer/');
 
@@ -17,8 +16,7 @@ export default function Menu() {
   const [styleTypeDrinks, setStyleTypeDrinks] = useState('Menu-options');
   const [styleTypeBreakfast, setStyleTypeBreakfast] = useState('Change-style-activated-button');
   const [styleTypeLunchDinner, setstyleTypeLunchDinner] = useState('Menu-options');
-  // mostrar modal o ocultar
-  // const [showModal, setShowModal] = useState(false);
+  const inputClientName = useRef('');
 
   const token = sessionStorage.getItem('token');
   function parseJwt(jwt) {
@@ -26,47 +24,52 @@ export default function Menu() {
   }
 
   const postOrder = () => {
-    const orderData = {
-      userId: parseJwt(token).userId,
-      client: nameClient,
-      products: productsOrder.map((productOrder) => {
-        // eslint-disable-next-line max-len
-        const product = { name: productOrder.name, productId: productOrder.id, qty: productOrder.quantity };
-        return product;
-      }),
-    };
-
-    fetch('http://localhost:3001/orders', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(orderData),
-    }).then((res) => res.json())
-      .then((resp) => {
-        console.log(resp);
-        // setShowModal(true);
-        // limpiar productsOrder
-
-        // show alert
-        swal({
-          title: 'Confirmación de envío',
-          text: 'Se guardó correctamente la orden',
-          icon: 'success',
-          button: 'Aceptar',
-        });
+    if (productsOrder.length === 0) {
+      Swal.fire({
+        title: 'No hay productos en la orden',
+        text: 'Añadir productos a la orden',
+        icon: 'warning',
+        showCancelButton: false,
       });
+    } else if (nameClient === '') {
+      Swal.fire({
+        title: 'Cliente no registrado',
+        text: 'Ingresar nombre del cliente',
+        icon: 'warning',
+        showCancelButton: false,
+      });
+    } else {
+      const orderData = {
+        userId: parseJwt(token).userId,
+        client: nameClient,
+        products: productsOrder.map((productOrder) => {
+        // eslint-disable-next-line max-len
+          const product = { name: productOrder.name, productId: productOrder.id, qty: productOrder.quantity };
+          return product;
+        }),
+      };
+
+      postOrders(token, orderData)
+        .then((resp) => {
+          console.log(resp);
+          // limpiar productsOrder
+          setProductsOrder([]);
+          setNameClient('');
+          inputClientName.current.value = '';
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Orden enviada a cocina',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        });
+    }
   };
 
   useEffect(() => {
     const tokens = sessionStorage.getItem('token');
-    fetch('http://localhost:3001/products', {
-      headers: {
-        'Content-Type': 'application/json',
-        authorization: `Bearer ${tokens}`,
-      },
-    }).then((res) => res.json())
+    getProducts(tokens)
       .then((result) => {
         setProducts(result);
       });
@@ -119,6 +122,10 @@ export default function Menu() {
   // eliminar la fila de una tabla de pedido
   const deleteItemProduct = (pro) => {
     setProductsOrder(productsOrder.filter((product) => product.id !== pro.id));
+  };
+
+  const addClientName = (e) => {
+    setNameClient(e.target.value);
   };
 
   // cambiar css y mostrar imagenes
@@ -175,7 +182,7 @@ export default function Menu() {
           </div>
 
           <div className="Order-table-container">
-            <input className="Client-name" type="text" placeholder="Nombre del cliente" onChange={(e) => setNameClient(e.target.value)} />
+            <input className="Client-name" type="text" ref={inputClientName} placeholder="Nombre del cliente" onChange={(e) => addClientName(e)} />
             <h4 className="Client">{`Cliente:  ${nameClient}`}</h4>
 
             <table className="Table-order">
@@ -208,12 +215,8 @@ export default function Menu() {
                 </tr>
               </tbody>
             </table>
-
             <button type="button" className="Btn-send-order" onClick={postOrder}>Enviar Orden</button>
           </div>
-          {/* {
-            showModal ? <ModalConfirmed /> : null
-          } */}
         </div>
       </div>
     </div>
