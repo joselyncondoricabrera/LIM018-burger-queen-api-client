@@ -79,7 +79,7 @@
 
 .Order-card{
     width: 350px;
-    height: 350px;
+    height: 450px;
     padding: 20px;
     background: white;
     border-radius: 37px;
@@ -136,6 +136,22 @@
 }
 
 .Hidenn-Btn-Chef-Ready{
+    display: none;
+}
+
+.Duration-activated{
+display: flex;
+}
+
+.Duration-inactivated{
+display: none;
+}
+
+.InitialTime-activated{
+    display: flex;
+}
+    
+.InitialTime-inactivated{
     display: none;
 }
 
