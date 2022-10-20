@@ -6,7 +6,6 @@ import passwordIcon from '../imagen/password.png';
 import '../App.scss';
 
 const { Buffer } = require('buffer/');
-// import Modal from './Modal';
 
 export default function Login() {
   const navigate = useNavigate();

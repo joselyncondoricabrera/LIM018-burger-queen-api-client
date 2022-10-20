@@ -10,8 +10,10 @@ export default function Orders() {
   const [styleButton, setStyleButton] = useState('Btn-Card-Chef-Ready');
   const [stylePending, setStylePending] = useState('Btn-pending-activated');
   const [stylePrepared, setStylePrepared] = useState('Btn-delivering');
-  const [duration, setDuration] = useState(false);
-  const [timeDuration, setTimeDuration] = useState('00:00');
+  const [styleDuration, setStyleDuration] = useState('Duration-inactivated');
+  const [styleInitialTime, setStyleInitialTime] = useState('InitialTime-activated');
+  // const [duration, setDuration] = useState(false);
+  // const [timeDuration, setTimeDuration] = useState('00:00');
   // Función request put de orders para cambiar status de pendiente a preparado
 
   const putStatusOrder = (order) => {
@@ -24,20 +26,18 @@ export default function Orders() {
       id: order.id,
     };
     const initialHours = new Date(order.dateEntry).getHours();
-    console.log(initialHours);
     const initialMinutes = new Date(order.dateEntry).getMinutes();
     const actualHours = new Date().getHours();
-    console.log(actualHours);
     const actualMinutes = new Date().getMinutes();
-
     const finalHours = actualHours - initialHours;
-    console.log(finalHours);
     const finalMinutes = Math.abs(actualMinutes - initialMinutes);
-    console.log(finalMinutes);
-    const totalTime = `Duración: ${finalHours} : ${finalMinutes}`;
+    const timeMinutes = finalMinutes > 10 ? finalMinutes : `0${finalMinutes}`;
+    const totalTime = `Duración: 0${finalHours} : ${timeMinutes}`;
     console.log(totalTime);
-    setDuration(true);
-    setTimeDuration(totalTime);
+
+    const orderId = order.id;
+    localStorage.setItem(orderId, totalTime);
+
     const token = sessionStorage.getItem('token');
     updateOrders(order, token, orderBodyUpdate)
       .then(() => {
@@ -61,6 +61,8 @@ export default function Orders() {
     setStyleButton('Btn-Card-Chef-Ready');
     setStylePending('Btn-pending-activated');
     setStylePrepared('Btn-delivering');
+    setStyleDuration('Duration-inactivated');
+    setStyleInitialTime('InitialTime-activated');
   };
 
   const onclickStatusDelivering = () => {
@@ -68,15 +70,11 @@ export default function Orders() {
     setStylePrepared('Btn-delivering-activated');
     setStylePending('Btn-pending');
     setStyleButton('Hidenn-Btn-Chef-Ready');
+    setStyleDuration('Duration-activated');
+    setStyleInitialTime('InitialTime-inactivated');
   };
 
   const ordersByStatus = orders.filter((e) => e.status === optionStatus);
-  // console.log(new Date('2022-10-18T02:14:38.397Z').toLocaleString());
-  // const date = orders.map((e) => (e.dateEntry));
-  // const hour = date.map((e) => new Date(e).toLocaleTimeString());
-  // console.log(hour);
-  // const actualDate = new Date().toLocaleTimeString();
-  // console.log(actualDate);
 
   return (
     <div className="Background-menu">
@@ -90,14 +88,11 @@ export default function Orders() {
         <div className="Orders-container">
           {ordersByStatus.map((order) => (
             <div key={order.id} className="Order-card">
-              <h1>
-                {duration === true ? timeDuration : `Hora: ${new Date(order.dateEntry).getHours()} : ${new Date(order.dateEntry).getMinutes()}`}
-                {/* Hora:
-                {' '}
-                {new Date(order.dateEntry).getHours()}
-                :
-                {new Date(order.dateEntry).getMinutes()} */}
+              <h1 className={styleInitialTime}>
+                {`Hora: ${new Date(order.dateEntry).getHours()} : ${new Date(order.dateEntry).getMinutes()}`}
               </h1>
+              <h1 className={styleDuration}>{localStorage.getItem(order.id)}</h1>
+
               <h1 className="Client-name-order">{order.client}</h1>
               <table className="Table-order">
                 <thead>
