@@ -115,24 +115,6 @@
     }
   ],
   "orders": [
-    {
-      "userId": "1",
-      "client": "Gaby",
-      "products": [
-        {
-          "name": "Café con leche",
-          "productId": "2",
-          "qty": 1
-        },
-        {
-          "name": "Café americano",
-          "productId": "1",
-          "qty": 1
-        }
-      ],
-      "status": "delivering",
-      "dateEntry": "2022-10-19T00:29:24.857Z",
-      "id": 1
-    }
+    
   ]
 }

@@ -87,12 +87,36 @@ server.post('/orders', async (req, res) => {
 
   const orders = router.db.get('orders');
   // eslint-disable-next-line no-underscore-dangle
-  console.log(orders.__wrapped__.orders.length);
+  // console.log(orders.__wrapped__.orders.length);
   // eslint-disable-next-line no-underscore-dangle
   order.id = orders.__wrapped__.orders.length + 1;
   await orders.push(order).write();
   res.status(201).jsonp(order);
 });
+
+// server.put('/orders/:id', async (req, res) => {
+//   if (req.body.status !== 'delivering' && req.body.status !== 'delivered') {
+//     res.status(400).send('Status No Valid');
+//   } else {
+//     const orderUpdate = {
+//       userId: req.body.userId,
+//       client: req.body.client,
+//       products: req.body.products,
+//       status: req.body.status,
+//       dateEntry: req.body.dateEntry,
+//       id: req.body.id,
+//     };
+//     console.log(orderUpdate.id);
+//     const orders = router.db.get('orders');
+//     console.log(orders);
+//     // eslint-disable-next-line no-underscore-dangle
+//     console.log(orders.__wrapped__.orders.length);
+//     // eslint-disable-next-line no-underscore-dangle
+//     orders.__wrapped__.orders.splice(req.body.id - 1, 1, orderUpdate);
+//     await orders.write();
+//     res.status(201).jsonp(orderUpdate);
+//   }
+// });
 
 server.use(router);
 
