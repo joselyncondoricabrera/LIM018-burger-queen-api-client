@@ -9,7 +9,11 @@ export const loginUsers = (email, password) => {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(bodyData),
-  });
+  })
+  // eslint-disable-next-line consistent-return
+    .then((resp) => {
+      if (resp.status === 200) { return resp.json(); }
+    });
 };
 
 // MENU
@@ -29,7 +33,10 @@ export const getProducts = (tokens) => fetch('http://localhost:3001/products', {
     'Content-Type': 'application/json',
     authorization: `Bearer ${tokens}`,
   },
-}).then((res) => res.json());
+})
+  .then((res) => res.json())
+  .catch((e) => console.log(e));
+// return 'true';
 
 // ORDERS
 // Función para obtener ordenes

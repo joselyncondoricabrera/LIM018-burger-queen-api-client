@@ -12,8 +12,6 @@ export default function Orders() {
   const [stylePrepared, setStylePrepared] = useState('Btn-delivering');
   const [styleDuration, setStyleDuration] = useState('Duration-inactivated');
   const [styleInitialTime, setStyleInitialTime] = useState('InitialTime-activated');
-  // const [duration, setDuration] = useState(false);
-  // const [timeDuration, setTimeDuration] = useState('00:00');
   // Función request put de orders para cambiar status de pendiente a preparado
 
   const putStatusOrder = (order) => {
@@ -26,23 +24,18 @@ export default function Orders() {
       id: order.id,
     };
     const initialHours = new Date(order.dateEntry).getHours();
-    console.log(initialHours);
     const initialMinutes = new Date(order.dateEntry).getMinutes();
     const actualHours = new Date().getHours();
-    console.log(actualHours);
     const actualMinutes = new Date().getMinutes();
     const finalHours = actualHours - initialHours;
-    console.log(finalHours);
     const finalMinutes = Math.abs(actualMinutes - initialMinutes);
     const timeMinutes = finalMinutes > 10 ? finalMinutes : `0${finalMinutes}`;
-    console.log(finalMinutes);
     const totalTime = `Duración: 0${finalHours} : ${timeMinutes}`;
     console.log(totalTime);
 
     const orderId = order.id;
     localStorage.setItem(orderId, totalTime);
-    // setDuration(true);
-    // setTimeDuration(totalTime);
+
     const token = sessionStorage.getItem('token');
     updateOrders(order, token, orderBodyUpdate)
       .then(() => {
@@ -57,6 +50,7 @@ export default function Orders() {
     getOrders(token)
       .then((result) => {
         setOrders(result);
+        console.log(result);
       }).catch((error) => console.log(error));
   }, []);
 
@@ -79,12 +73,6 @@ export default function Orders() {
   };
 
   const ordersByStatus = orders.filter((e) => e.status === optionStatus);
-  // console.log(new Date('2022-10-18T02:14:38.397Z').toLocaleString());
-  // const date = orders.map((e) => (e.dateEntry));
-  // const hour = date.map((e) => new Date(e).toLocaleTimeString());
-  // console.log(hour);
-  // const actualDate = new Date().toLocaleTimeString();
-  // console.log(actualDate);
 
   return (
     <div className="Background-menu">

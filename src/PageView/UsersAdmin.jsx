@@ -10,15 +10,18 @@ export default function UsersAdmin() {
       <NavBarAdmin />
       <div className="Background-image">
         <div>
-          <picture>
-            <img />
-          </picture>
-          <input />
-          <button type="button">
-            <p>+</p>
-            <p>Agregar usuario</p>
-          </button>
+          <div>
+            <picture>
+              {/* <img /> */}
+            </picture>
+            <input />
+            <button type="button">
+              <p>+</p>
+              <p>Agregar usuario</p>
+            </button>
+          </div>
         </div>
+
       </div>
 
     </div>

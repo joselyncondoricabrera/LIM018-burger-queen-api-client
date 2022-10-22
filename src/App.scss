@@ -29,13 +29,18 @@ font-family: 'Montserrat';
 .App-link {
   color: #61dafb;
 }
+//----------
+body{
+  margin: 0;
+  padding: 0;
+}
+
 .Background-login{
-    height: 100vh;
-    background-image:  url("./imagen/background-burguer-queen.png");
-    background-size:cover;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
+  background-image:  url("./imagen/background-burguer-queen.png");
+  // background-size:cover;
+  background-size: 100% 100%;
+
+
 }
 
 .Button-login{
@@ -91,6 +96,14 @@ font-family: 'Montserrat';
     //background-image:  url("./imagen/fondo-burguer-queen.png");
    // background-size:cover;
   //}
+//   .Background-login{
+//     height: 100%;
+//     background-image:  url("./imagen/background-burguer-queen.png");
+//     background-size:cover;
+//     display: flex;
+//     align-items: center;
+//     justify-content: flex-end;
+// }
   
   .Form-login {
     display: flex;
