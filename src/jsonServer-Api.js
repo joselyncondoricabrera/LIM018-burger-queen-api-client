@@ -14,32 +14,11 @@ server.use((req, res, next) => {
   if (req.method === 'POST' && req.path === '/auth') {
     next();
   } else if (req.headers.authorization === `Bearer ${secretWaiter}` || req.headers.authorization === `Bearer ${secretChef}`) {
-    // console.log('autorización correcta');
-    // console.log('path put de orders', req.path, req.method);
-
     if (req.path === '/orders' && req.method === 'POST') {
       if (req.body.products.length === 0 || req.body.userId === undefined) {
         res.status(400).send('Bad request');
       }
     }
-    // else if (req.path === `/orders/${req.body.id}` && req.method === 'PUT') {
-    //   if (req.body.length === 0) {
-    //     console.log('aqui no hay propiedad');
-    //     res.status(400);
-    //   } else if (req.body.status !== 'delivering' || req.body.status !== 'delivered') {
-    //     console.log('status incorrecto');
-    //     res.status(400);
-    //   }
-    //   const orders = router.db.get('orders');
-    //   // eslint-disable-next-line no-underscore-dangle
-    //   const arrayOrders = orders.__wrapped__.orders;
-    //   arrayOrders.forEach((order) => {
-    //     if (req.body.id !== order.id) {
-    //       console.log('id no encontrado');
-    //       res.status(404);
-    //     }
-    //   });
-    // }
     next();
   } else {
     res.sendStatus(401);
@@ -77,26 +56,8 @@ server.post('/auth', (req, res) => {
   }
 });
 
-// server.post('/orders', (req, res) => {
-//   // DUDA: porque no igualar a array vacío y si a .length 0
-//   if (req.body.products.length !== 0 && req.body.userId !== undefined) {
-//     // faltaria agregar a la tabla de ordenes
-
-//     res.json({
-//       userId: req.body.userId,
-//       client: req.body.client,
-//       products: req.body.products,
-//       status: 'pending',
-//     });
-//   } else {
-//     res.status(400).send('Bad request');
-//   }
-// });
-
-// router.render = async (req, res) => {
 server.post('/orders', async (req, res) => {
   const today = new Date();
-  // const now = today.toLocaleString();
   const order = {
     userId: req.body.userId,
     client: req.body.client,
@@ -104,10 +65,7 @@ server.post('/orders', async (req, res) => {
     status: 'pending',
     dateEntry: today,
   };
-
   const orders = router.db.get('orders');
-  // eslint-disable-next-line no-underscore-dangle
-  // console.log(orders.__wrapped__.orders.length);
   // eslint-disable-next-line no-underscore-dangle
   order.id = orders.__wrapped__.orders.length + 1;
   await orders.push(order).write();
@@ -115,38 +73,33 @@ server.post('/orders', async (req, res) => {
 });
 
 server.put('/orders/:id', async (req, res) => {
-  const orders = router.db.get();
-  // eslint-disable-next-line no-underscore-dangle
-  const arrayOrders = orders.__wrapped__.orders;
-
-  arrayOrders.forEach(async (order) => {
-    if (req.body.id !== order.id) {
-      res.status(404);
-    }
-  });
-  const ordersModified = arrayOrders.map((e) => {
-    if (req.body.id === e.id) {
-      return req.body;
-    }
-    return e;
-  });
-  // console.log(ordersModified);
-  // eslint-disable-next-line no-underscore-dangle
-  orders.__wrapped__.orders.length = 0;
-  // eslint-disable-next-line no-underscore-dangle
-  console.log(orders.__wrapped__.orders);
-  // eslint-disable-next-line no-underscore-dangle
-  // console.log(orders.__wrapped__.orders);
-  // eslint-disable-next-line no-underscore-dangle
-  orders.__wrapped__.orders.push(ordersModified).write();
-  // await Object.assign(orders, ordersModified).write();
-  res.status(201).jsonp(req.body);
-
-  if (req.body.length === 0) {
-    res.status(400);
-  } else if (req.body.status !== 'delivering' || req.body.status !== 'delivered') {
-    res.status(400);
+  const orderUpdate = {
+    userId: req.body.userId,
+    client: req.body.client,
+    products: req.body.products,
+    status: req.body.status,
+    dateEntry: req.body.dateEntry,
+    id: req.body.id,
+  };
+  if (req.body.status !== 'delivering' && req.body.status !== 'delivered') {
+    res.status(400).send('Status No Valid');
+    return;
   }
+  const orders = router.db.get('orders');
+  // eslint-disable-next-line no-underscore-dangle
+  const objId = orders.__wrapped__.orders.find((e) => parseInt(req.params.id, 10) === e.id);
+  console.log(objId);
+  console.log(req.params.id);
+
+  if (objId === undefined) {
+    res.status(404).send('Not Found');
+    console.log('entro en 404');
+    return;
+  }
+  // eslint-disable-next-line no-underscore-dangle
+  orders.__wrapped__.orders.splice(req.body.id - 1, 1, orderUpdate);
+  await orders.write();
+  res.status(200).jsonp(orderUpdate);
 });
 
 server.use(router);

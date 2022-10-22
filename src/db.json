@@ -115,33 +115,43 @@
     }
   ],
   "orders": [
-      {
-        "userId": "1",
-        "client": "pedro",
-        "products": [
-          {
-            "name": "Café americano",
-            "productId": "1",
-            "qty": 1
-          }
-        ],
-        "status": "pending",
-        "dateEntry": "2022-10-20T02:04:24.456Z",
-        "id": 1
-      },
-      {
-        "userId": "1",
-        "client": "luisa",
-        "products": [
-          {
-            "name": "Hamburguesa doble",
-            "productId": "6",
-            "qty": 1
-          }
-        ],
-        "status": "pending",
-        "dateEntry": "2022-10-20T02:04:45.174Z",
-        "id": 2
-      }
+    {
+      "userId": "1",
+      "client": "gaby",
+      "products": [
+        {
+          "name": "Café con leche",
+          "productId": "1",
+          "qty": 1
+        },
+        {
+          "name": "Jugo de frutas natural",
+          "productId": "4",
+          "qty": 2
+        }
+      ],
+      "status": "delivering",
+      "dateEntry": "14/10/2022, 18:41:15",
+      "id": 1
+    },
+    {
+      "userId": "1",
+      "client": "Pedro",
+      "products": [
+        {
+          "name": "Café con leche",
+          "productId": "1",
+          "qty": 1
+        },
+        {
+          "name": "Jugo de frutas natural",
+          "productId": "4",
+          "qty": 1
+        }
+      ],
+      "status": "pending",
+      "dateEntry": "2022-10-22T01:26:50.800Z",
+      "id": 2
+    }
   ]
 }
