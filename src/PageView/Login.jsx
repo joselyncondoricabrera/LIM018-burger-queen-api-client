@@ -43,11 +43,11 @@ export default function Login() {
         <h1>Iniciar Sesión</h1>
         <div className="Form-input">
           <img src={emailIcon} className="Icon-login" alt="logo" />
-          <input type="email" onChange={(e) => setEmail(e.target.value)} className="Input-login" placeholder="ingrese email" />
+          <input type="email" data-testid="input-email" onChange={(e) => setEmail(e.target.value)} className="Input-login" placeholder="ingrese email" />
         </div>
         <div className="Form-input">
           <img src={passwordIcon} className="Icon-login" alt="logo" />
-          <input type="password" onChange={(e) => setPassword(e.target.value)} className="Input-login" placeholder="ingrese contraseña" />
+          <input type="password" data-testid="input-password" onChange={(e) => setPassword(e.target.value)} className="Input-login" placeholder="ingrese contraseña" />
         </div>
         <button data-testid="btnLogin" className="Button-login" type="button" onClick={() => onClickLogin()}>
           <p className="Text-button">Iniciar Sesión</p>

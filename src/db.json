@@ -115,33 +115,6 @@
     }
   ],
   "orders": [
-      {
-        "userId": "1",
-        "client": "pedro",
-        "products": [
-          {
-            "name": "Café americano",
-            "productId": "1",
-            "qty": 1
-          }
-        ],
-        "status": "pending",
-        "dateEntry": "2022-10-20T02:04:24.456Z",
-        "id": 1
-      },
-      {
-        "userId": "1",
-        "client": "luisa",
-        "products": [
-          {
-            "name": "Hamburguesa doble",
-            "productId": "6",
-            "qty": 1
-          }
-        ],
-        "status": "pending",
-        "dateEntry": "2022-10-20T02:04:45.174Z",
-        "id": 2
-      }
+      
   ]
 }

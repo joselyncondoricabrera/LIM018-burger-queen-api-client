@@ -157,7 +157,7 @@ export default function Menu() {
           <div className="Menu-options-container">
             <button type="button" className={styleTypeDrinks} onClick={changeOptionDrink}>Bebidas</button>
             <button type="button" className={styleTypeLunchDinner} onClick={changeOptionLunchDinner}>Almuerzo y cena</button>
-            <button type="button" className={styleTypeBreakfast} onClick={changeOptionBreakfast}>Desayuno</button>
+            <button type="button" data-testid="option-breakfast" className={styleTypeBreakfast} onClick={changeOptionBreakfast}>Desayuno</button>
           </div>
 
           <div className="Image-products-container">
@@ -172,7 +172,7 @@ export default function Menu() {
                   <img src={product.image} alt="menu-cafe" className="Image-product" />
                 </picture>
                 <div className="Image-menu-name">
-                  <button key={product.name} type="button" className="Btn-cantidad-plus" onClick={() => onAddProduct(product)}>+</button>
+                  <button key={product.name} data-testid="btn-add-product" type="button" className="Btn-cantidad-plus" onClick={() => onAddProduct(product)}>+</button>
                   <p className="Name-product">{product.name}</p>
                   <button type="button" className="Btn-cantidad-minus" onClick={() => onRemoveProduct(product)}> - </button>
                 </div>
