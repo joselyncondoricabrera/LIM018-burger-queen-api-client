@@ -9,11 +9,14 @@ export const loginUsers = (email, password) => {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(bodyData),
-  });
+  })
+  // eslint-disable-next-line consistent-return
+    .then((resp) => {
+      if (resp.status === 200) { return resp.json(); }
+    });
 };
 
 // MENU
-
 // Guardar orden
 export const postOrders = (token, orderData) => fetch('http://localhost:3001/orders', {
   method: 'POST',

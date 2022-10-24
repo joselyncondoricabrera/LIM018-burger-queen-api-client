@@ -12,8 +12,6 @@ export default function Orders() {
   const [stylePrepared, setStylePrepared] = useState('Btn-delivering');
   const [styleDuration, setStyleDuration] = useState('Duration-inactivated');
   const [styleInitialTime, setStyleInitialTime] = useState('InitialTime-activated');
-  // const [duration, setDuration] = useState(false);
-  // const [timeDuration, setTimeDuration] = useState('00:00');
   // Función request put de orders para cambiar status de pendiente a preparado
 
   const putStatusOrder = (order) => {

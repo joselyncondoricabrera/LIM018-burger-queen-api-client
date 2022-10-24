@@ -1,27 +1,56 @@
 /** * @jest-environment jsdom */
 
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 // import { useNavigate } from 'react-router-dom';
-// import fetch from 'node-fetch';
-import { loginUsers } from '../Requests/requestApi';
+// import { loginUsers } from '../Requests/requestApi';
 import App from '../App';
 
 // jest.mock('node-fetch', () => jest.fn());
 
 // test del componente login
 describe('Componente Login', () => {
-  it('Debería existir input email', () => {
+  it('Debería existir el input email', () => {
     render(<App />);
-    expect(screen.getByTestId('input-email')).toBeInTheDocument();
+    const inputEmail = screen.getByTestId('input-email');
+    expect(inputEmail).toBeInTheDocument();
+    expect(inputEmail).toHaveAttribute('type', 'email');
   });
-  it('Debería existir input password', () => {
+
+  it('Debería de cambiar el value al ingresar texto en casilla de email', () => {
     render(<App />);
-    expect(screen.getByTestId('input-password')).toBeInTheDocument();
+    const inputEmail = screen.getByTestId('input-email');
+    fireEvent.change(inputEmail, { target: { value: 'mesero1@gmail.com' } });
+    expect(inputEmail.value).toBe('mesero1@gmail.com');
   });
+
+  it('Debería existir el input password', () => {
+    render(<App />);
+    const inputPassword = screen.getByTestId('input-password');
+    expect(inputPassword).toBeInTheDocument();
+    expect(inputPassword).toHaveAttribute('type', 'password');
+  });
+
+  it('Debería de cambiar el value al ingresar texto en casilla de password', () => {
+    render(<App />);
+    const inputPassword = screen.getByTestId('input-password');
+    fireEvent.change(inputPassword, { target: { value: '123456' } });
+    expect(inputPassword.value).toBe('123456');
+  });
+
   it('Debería existir el botón con className "Button-login"', () => {
     render(<App />);
     expect(screen.getByRole('button', { className: 'Button-login' })).toBeInTheDocument();
+  });
+
+  it('Debería de aparecer un mensaje de error si la casilla de email está vacía', () => {
+    render(<App />);
+    const inputEmail = screen.getByTestId('input-email');
+    fireEvent.change(inputEmail, { target: { value: '' } });
+    const buttonLogin = screen.getByRole('button', { className: 'Button-login' });
+    fireEvent.click(buttonLogin);
+    const spanMessage = screen.getByTestId('spanMessage');
+    expect(spanMessage).toHaveTextContent('casilla vacía');
   });
 });
 
