@@ -32,10 +32,11 @@ export default function Login() {
           }
           if (parseJwt(token).role === 'mesero') {
             navigate('/Menu');
-          } else if (parseJwt(token).role === 'chef') {
-            navigate('/OrdersChef');
-          } else {
+          } else if (parseJwt(token).admin === true) {
+            console.log(parseJwt(token).admin);
             navigate('/UsersAdmin');
+          } else {
+            navigate('/OrdersChef');
           }
         })
         .catch((error) => {

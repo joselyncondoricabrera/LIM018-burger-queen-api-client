@@ -53,6 +53,12 @@ describe('Componente Login', () => {
     expect(spanMessage).toHaveTextContent('casilla vacía');
   });
 });
+
+// testear si el input está lleno con datos
+// testear si el boton realiza click
+// testear si hace el ruteo al modulo menú
+
+//
 // _________________________________________________________
 
 // test de la función requestUsers

@@ -35,13 +35,13 @@ body{
   padding: 0;
 }
 
-.Background-login{
-  background-image:  url("./imagen/background-burguer-queen.png");
-  // background-size:cover;
-  background-size: 100% 100%;
+// .Background-login{
+//   background-image:  url("./imagen/background-burguer-queen.png");
+//   // background-size:cover;
+//   background-size: 100% 100%;
 
 
-}
+// }
 
 .Button-login{
   width: 344px;
@@ -88,6 +88,14 @@ body{
     transform: rotate(360deg);
   }
 }
+.Background-login{
+  height: 100vh;
+  background-image:  url("./imagen/background-burguer-queen.png");
+  background-size:cover;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
 
 // estilos para tablet
 @media (max-width: 1366px){
@@ -96,14 +104,7 @@ body{
     //background-image:  url("./imagen/fondo-burguer-queen.png");
    // background-size:cover;
   //}
-//   .Background-login{
-//     height: 100%;
-//     background-image:  url("./imagen/background-burguer-queen.png");
-//     background-size:cover;
-//     display: flex;
-//     align-items: center;
-//     justify-content: flex-end;
-// }
+
   
   .Form-login {
     display: flex;

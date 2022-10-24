@@ -49,51 +49,56 @@ export default function UsersAdmin() {
       </div> */}
       <NavBarAdmin />
       <div className="Background-image-orders">
-        <div>
-          <div className="Search-Add-Users">
-            <picture>
-              {/* <img /> */}
-            </picture>
-            <input />
-            <button type="button" className="Add-Users" onClick={() => onAddUser()}>
-              <p className="Btn-Add-Plus">+</p>
-              <p className="Btn-Add-Text">Agregar usuario</p>
-            </button>
-          </div>
-          <div>
-            <table className="Table-Users">
-              <thead>
-                <tr className="Row-head">
-                  <th className="Items-users-table">ID</th>
-                  <th className="Items-users-table">Email</th>
-                  <th className="Items-users-table">Rol</th>
-                </tr>
-              </thead>
-              <tbody>
-                {/* <tr>
+        <div className="Container-All-Users">
+          <div className="Container-Table-Search">
+            <div className="Search-Add-Users">
+              <picture>
+                {/* <img /> */}
+              </picture>
+              <input className="Input-Search" placeholder="Busca un usuario" />
+              <button type="button" className="Add-Users" onClick={() => onAddUser()}>
+                <p className="Btn-Add-Plus">+</p>
+                <p className="Btn-Add-Text">Agregar usuario</p>
+              </button>
+            </div>
+            <div>
+              <table className="Table-Users">
+                <thead>
+                  <tr className="Row-head">
+                    <th className="Items-users-table">ID</th>
+                    <th className="Items-users-table">Email</th>
+                    <th className="Items-users-table">Rol</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {/* <tr>
                   <td> </td>
                   <td><input type="text" placeholder="ingresa un correo" /></td>
                   <td><input type="text" placeholder="ingresa una contraseña" /></td>
                 </tr> */}
-                {users.map((user, i) => (
+                  {users.map((user, i) => (
                   // eslint-disable-next-line react/no-array-index-key
-                  <tr key={i}>
-                    <td className="Name-items-product">{user.id}</td>
-                    <td className="Items-products-table">{user.email}</td>
-                    <td className="Items-products-table">{user.roles.admin === false && user.roles.chef === false ? 'mesero' : 'cocinero'}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+                    <tr key={i}>
+                      <td className="Name-items-product">{user.id}</td>
+                      <td className="Items-products-table">{user.email}</td>
+                      <td className="Items-products-table">{user.roles.admin === false && user.roles.chef === false ? 'mesero' : 'cocinero'}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
-          <div>
+
+          <div className="Container-User-Card">
             {/* <img src="" /> */}
-            <tr key={i}>
-                    <td className="Name-items-product">{user.id}</td>
-                    <td className="Items-products-table">{user.email}</td>
-                    <td className="Items-products-table">{user.roles.admin === false && user.roles.chef === false ? 'mesero' : 'cocinero'}</td>
-                  </tr>
-                ))}
+            <div>
+              <p>ID:</p>
+              <p>Email:</p>
+              <p>Password:</p>
+              <p>Rol:</p>
+            </div>
+            <button type="button">Eliminar</button>
+            <button type="button">Actualizar</button>
           </div>
         </div>
 

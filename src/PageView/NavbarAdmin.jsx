@@ -13,14 +13,14 @@ export default function NavBarAdmin() {
   const changeModuleUsers = () => {
     setModuleUsers('Module-activated');
     setModuleProducts('Module-inactivated');
-    navigate('/Users');
+    navigate('/UsersAdmin');
   };
 
   const changeModuleProducts = (e) => {
     e.preventDefault();
     setModuleProducts('Module-activated');
     setModuleUsers('Module-inactivated');
-    navigate('/Products');
+    navigate('/ProductsAdmin');
   };
 
   return (

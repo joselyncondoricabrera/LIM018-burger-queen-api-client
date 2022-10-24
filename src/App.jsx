@@ -11,6 +11,7 @@ import Menu from './PageView/Menu';
 import Orders from './PageView/OrdersWaiter';
 import OrdersChef from './PageView/OrdersChef';
 import UsersAdmin from './PageView/UsersAdmin';
+import ProductsAdmin from './PageView/ProductsAdmin';
 
 export default function App() {
   return (
@@ -21,7 +22,7 @@ export default function App() {
         <Route path="/Orders" element={<Orders />} />
         <Route path="/OrdersChef" element={<OrdersChef />} />
         <Route path="/UsersAdmin" element={<UsersAdmin />} />
-        {/* <Route path="/OrdersChef" element={<ProductsAdmin />} /> */}
+        <Route path="/ProductsAdmin" element={<ProductsAdmin />} />
       </Routes>
     </Router>
   );
