@@ -17,8 +17,6 @@
         border-radius: 15px;
         display: flex;
         justify-content: center;
-    
-
     }
     .Container-input-product{
         border: none;
@@ -72,7 +70,13 @@
     }
     .Content-select{
         width: 287px;
-
+    }
+    .Select-library{
+        width: 391px;
+        margin-top: 31px;
+    }
+    .css-1s2u09g-control{
+        background-color: #38E54D;
     }
     .Select-type-product{
         // appearance: none;
@@ -143,10 +147,10 @@ line-height: 30px;
         flex-direction: column;
         align-items: center;
         font-family: "Poppins";
-    font-style: normal;
-    font-weight: 300;
-    font-size: 20px;
-    line-height: 30px;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 20px;
+        line-height: 30px;
     }
     .Image-product-data{
         width: 201px;
@@ -156,6 +160,7 @@ line-height: 30px;
     }
     .Item-selected{
         background-color: #38E54D;
+        color:#FFFFFF;
     }
     .Info-product{
         width: 300px;

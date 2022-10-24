@@ -1,9 +1,9 @@
 /* eslint-disable max-len */
 import React, { useState, useEffect } from 'react';
+import Select from 'react-select';
 import NavbarAdmin from './NavbarAdmin';
 import '../PageStyle/Products.scss';
 import searchIcon from '../imagen/search.png';
-// import producto from '../imagen/cafe-americano.png';
 import { getProducts } from '../Requests/requestApi';
 
 export default function ProductsAdmin() {
@@ -16,19 +16,33 @@ export default function ProductsAdmin() {
   const [image, setImage] = useState('');
   // const [changeStyle, setChangeStyle] = useState('');
   // // seleccionar el producto
+  const options = [
+    { value: 'chocolate', label: 'Desayuno' },
+    { value: 'strawberry', label: 'Almuerzo y cena' },
+    { value: 'vanilla', label: 'Bebidas' },
+  ];
+  // const colourStyles: StylesConfig<Select> = {
+  //   control: (styles) => ({ ...styles, backgroundColor: 'white' }),
+  // };
+
   const selectedProduct = (prod) => {
-    console.log('seleccionaste');
-    console.log(prod);
     setId(prod.id);
     setName(prod.name);
     setPrice(prod.price);
     setType(prod.type);
     setDateEntry(prod.dateEntry);
     setImage(prod.image);
-    // setChangeStyle('Item-selected');
-    document.querySelector(`.row${prod.id}`).classList.remove('Item-selected');
+
+    // quitar seleccion a las  filas de la tabla
+    const rowTable = document.querySelectorAll('tr');
+    rowTable.forEach((e, i) => {
+      // no cuenta a la cabecera de la tabla, solo a las filas que contiene data
+      if (i > 0) {
+        e.classList.remove('Item-selected');
+      }
+    });
+    // seleccionar la fila que se dio onclick
     document.querySelector(`.row${prod.id}`).classList.add('Item-selected');
-    console.log(document.querySelector(`.row${prod.id}`));
   };
 
   // mostrar data de productos al cargar la pagina
@@ -53,13 +67,14 @@ export default function ProductsAdmin() {
             <button type="button" className="Button-add-product">Agregar Producto</button>
           </div>
           <div className="Container-select-table-products">
-            <div className="Content-select">
+            {/* <div className="Content-select">
               <select name="select" className="Select-type-product">
                 <option className="Option-type-product" value="value1">Desayuno</option>
                 <option className="Option-type-product" value="value2">Almuerzo y cena</option>
                 <option className="Option-type-product" value="value3">Bebidas</option>
               </select>
-            </div>
+            </div> */}
+            <Select className="Select-library" options={options} />
 
             <table className="Table-products">
               <thead>
