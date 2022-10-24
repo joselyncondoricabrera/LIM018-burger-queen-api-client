@@ -1,0 +1,64 @@
+@media (max-width: 1366px){
+
+.Container-All-Users{
+    display: flex;
+}
+.Table-Users{
+font-family: 'Poppins';
+font-weight: 500;
+font-size: 20px;
+text-align: center;
+margin: 0px 30px;
+background-color: white;
+}
+
+.Container-Table-Search{
+    display: flex;
+    flex-direction: column;
+}
+// .Background-Modal-Users{
+
+// }}
+.Search-Add-Users{
+width: 810px;
+height: 71px;
+border-radius: 15px;
+}
+
+.Input-Search{
+    width: 608px;
+}
+
+.Add-Users{
+width: 202px;
+height: 71px;
+background: #38E54D;
+color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.Btn-Add-Plus{
+    font-family: 'Poppins';
+    font-weight: 700;
+    font-size: 40px;
+}
+
+.Btn-Add-Text{
+    font-family: 'Poppins';
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.Container-User-Card{
+    display: flex;
+    background: white;
+    flex-direction: column;
+    width: 396px;
+    height: 752px;
+}
+
+
+}
