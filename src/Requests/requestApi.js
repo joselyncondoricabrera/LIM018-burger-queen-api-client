@@ -56,3 +56,23 @@ export const updateOrders = (order, token, orderBodyUpdate) => fetch(`http://loc
   },
   body: JSON.stringify(orderBodyUpdate),
 });
+
+// ADMIN
+
+// Función para guardar usuarios
+export const postUsers = (token, usersBody) => fetch('http://localhost:3001/users', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    authorization: `Bearer ${token}`,
+  },
+  body: JSON.stringify(usersBody),
+}).then((res) => res.json());
+
+// Función para obtener usuarios
+export const getUsers = (token) => fetch('http://localhost:3001/users', {
+  headers: {
+    'Content-Type': 'application/json',
+    authorization: `Bearer ${token}`,
+  },
+}).then((res) => res.json());
