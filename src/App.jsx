@@ -20,7 +20,7 @@ export default function App() {
         <Route path="/Menu" element={<Menu />} />
         <Route path="/Orders" element={<Orders />} />
         <Route path="/OrdersChef" element={<OrdersChef />} />
-        <Route path="/OrdersChef" element={<UsersAdmin />} />
+        <Route path="/UsersAdmin" element={<UsersAdmin />} />
         {/* <Route path="/OrdersChef" element={<ProductsAdmin />} /> */}
       </Routes>
     </Router>

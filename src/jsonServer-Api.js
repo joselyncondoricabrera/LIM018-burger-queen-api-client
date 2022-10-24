@@ -6,6 +6,7 @@ const middlewares = jsonServer.defaults();
 
 const secretWaiter = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxIiwibmFtZSI6IkdhYnkiLCJyb2xlIjoibWVzZXJvIiwiYWRtaW4iOmZhbHNlfQ.2UVK4iuzQ3MoazqBj27vpf_0uqG1pBXrZH0UAWGA8T0';
 const secretChef = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyIiwibmFtZSI6IlJ1YmlzIiwicm9sZSI6ImNoZWYiLCJhZG1pbiI6ZmFsc2V9.G2w6LnhoQu3dhwUBCswCJhUl2cKNFtNxMyUrYK8A4vg';
+const secretAdmin = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzIiwibmFtZSI6Ikxpc2V0aCIsInJvbGUiOiJhZG1pbiIsImFkbWluIjp0cnVlfQ.BHTDaFfg0n4e_99-BdPfudnwlVXI4hIgtLLPq_jfH4c';
 server.use(jsonServer.bodyParser);
 
 server.use(middlewares);
@@ -13,7 +14,7 @@ server.use(middlewares);
 server.use((req, res, next) => {
   if (req.method === 'POST' && req.path === '/auth') {
     next();
-  } else if (req.headers.authorization === `Bearer ${secretWaiter}` || req.headers.authorization === `Bearer ${secretChef}`) {
+  } else if (req.headers.authorization === `Bearer ${secretWaiter}` || req.headers.authorization === `Bearer ${secretChef}` || req.headers.authorization === `Bearer ${secretAdmin}`) {
     if (req.path === '/orders' && req.method === 'POST') {
       if (req.body.products.length === 0 || req.body.userId === undefined) {
         res.status(400).send('Bad request');
@@ -34,6 +35,10 @@ server.post('/auth', (req, res) => {
     email: 'chef1@gmail.com',
     password: '123456',
   },
+  {
+    email: 'liseth.lira.123@gmail.com',
+    password: '123456',
+  },
   ];
   const usersEmail = users.map((user) => user.email);
   const usersPassword = users.map((user) => user.password);
@@ -45,11 +50,16 @@ server.post('/auth', (req, res) => {
         token: secretWaiter,
       });
       console.log('mesero');
-    } else {
+    } else if (req.body.email === 'chef1@gmail.com') {
       res.jsonp({
         token: secretChef,
       });
       console.log('cocinero');
+    } else {
+      res.jsonp({
+        token: secretAdmin,
+      });
+      console.log('admin');
     }
   } else {
     res.status(400).send('Bad Request');

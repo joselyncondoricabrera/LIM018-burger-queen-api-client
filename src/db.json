@@ -99,19 +99,13 @@
   ],
   "users": [
     {
-      "id": 1,
-      "email": "liseth.lira.123@gmail.com",
-      "password": "123456"
-    },
-    {
-      "id": 2,
-      "email": "joselyn.condori@gmail.com",
-      "password": "123456"
-    },
-    {
-      "id": 3,
       "email": "mesero1@gmail.com",
-      "password": "123456"
+      "password": "123456",
+      "roles": {
+        "admin": false,
+        "chef": false
+      },
+    "id": 1
     }
   ],
   "orders": [
