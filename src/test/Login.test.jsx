@@ -52,6 +52,26 @@ describe('Componente Login', () => {
     const spanMessage = screen.getByTestId('spanMessage');
     expect(spanMessage).toHaveTextContent('casilla vacía');
   });
+
+  it('Debería de aparecer un mensaje de error si la casilla de password está vacía', () => {
+    render(<App />);
+    const inputPassword = screen.getByTestId('input-password');
+    fireEvent.change(inputPassword, { target: { value: '' } });
+    const buttonLogin = screen.getByRole('button', { className: 'Button-login' });
+    fireEvent.click(buttonLogin);
+    const spanError = screen.getByTestId('span-Error');
+    expect(spanError).toHaveTextContent('casilla vacía');
+  });
+
+  it('Debería de aparecer un mensaje de error si el texto ingreado no tiene el formato de email', () => {
+    render(<App />);
+    const inputEmail = screen.getByTestId('input-email');
+    fireEvent.change(inputEmail, { target: { value: 'chef1@gm' } });
+    const buttonLogin = screen.getByRole('button', { className: 'Button-login' });
+    fireEvent.click(buttonLogin);
+    const spanMessage = screen.getByTestId('spanMessage');
+    expect(spanMessage).toHaveTextContent('correo inválido');
+  });
 });
 
 // testear si el input está lleno con datos

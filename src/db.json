@@ -106,6 +106,24 @@
         "chef": false
       },
     "id": 1
+    },
+    {
+      "email": "chef1@gmail.com",
+      "password": "123456",
+      "roles": {
+        "admin": false,
+        "chef": true
+      },
+    "id": 2
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "123456",
+      "roles": {
+        "admin": true,
+        "chef": false
+      },
+    "id": 3
     }
   ],
   "orders": [

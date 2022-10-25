@@ -73,7 +73,7 @@ export default function Login() {
             <img src={passwordIcon} className="Icon-login" alt="logo" />
             <input type="password" data-testid="input-password" onChange={(e) => onAddPassword(e)} className="Input-login" placeholder="ingrese contraseña" />
           </div>
-          <span>{passwordMessage}</span>
+          <span data-testid="span-Error">{passwordMessage}</span>
         </div>
 
         <button data-testid="btnLogin" className="Button-login" type="button" onClick={() => onClickLogin()}>
