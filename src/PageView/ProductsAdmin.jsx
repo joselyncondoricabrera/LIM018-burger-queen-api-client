@@ -14,16 +14,24 @@ export default function ProductsAdmin() {
   const [type, setType] = useState('');
   const [dateEntry, setDateEntry] = useState('');
   const [image, setImage] = useState('');
-  // const [changeStyle, setChangeStyle] = useState('');
+
   // // seleccionar el producto
   const options = [
-    { value: 'chocolate', label: 'Desayuno' },
-    { value: 'strawberry', label: 'Almuerzo y cena' },
-    { value: 'vanilla', label: 'Bebidas' },
+    { value: 'Desayuno', label: 'Desayuno' },
+    { value: 'Almuerzo y cena', label: 'Almuerzo y cena' },
+    { value: 'Bebidas', label: 'Bebidas' },
   ];
-  // const colourStyles: StylesConfig<Select> = {
-  //   control: (styles) => ({ ...styles, backgroundColor: 'white' }),
-  // };
+
+  // mostrar en la tabla por tipo de producto
+  const selectionTypeProduct = (e) => {
+    const tokens = sessionStorage.getItem('token');
+    getProducts(tokens)
+      .then((result) => {
+        const productsSelect = result.filter((pro) => pro.type === e.value);
+        console.log(productsSelect);
+        setProduct(productsSelect);
+      });
+  };
 
   const selectedProduct = (prod) => {
     setId(prod.id);
@@ -51,6 +59,7 @@ export default function ProductsAdmin() {
     getProducts(tokens)
       .then((result) => {
         setProduct(result);
+        console.log(product);
       });
   }, []);
 
@@ -74,7 +83,7 @@ export default function ProductsAdmin() {
                 <option className="Option-type-product" value="value3">Bebidas</option>
               </select>
             </div> */}
-            <Select className="Select-library" options={options} />
+            <Select className="Select-library" options={options} onChange={selectionTypeProduct} defaultValue={{ label: 'Seleccione tipo de producto....', value: 'empty' }} />
 
             <table className="Table-products">
               <thead>
@@ -101,11 +110,21 @@ export default function ProductsAdmin() {
 
         <div className="Background-info-product">
           <img src={image} alt="images-product" className="Image-product-data" />
-          <p className="Info-product">{`Id: ${id}`}</p>
+          <p className="Info-product">
+            {' '}
+            <b>Id:</b>
+            {' '}
+            {`${id}`}
+          </p>
           <p className="Info-product">{`Nombre : ${name}`}</p>
           <p className="Info-product">{`Precio: ${price}`}</p>
           <p className="Info-product">{`Tipo: ${type}`}</p>
           <p className="Info-product">{`Fecha de entrada: ${dateEntry}`}</p>
+
+          <div className="Background-buttons">
+            <button className="Btn-delete-product" type="button">Eliminar</button>
+            <button className="Btn-update-product" type="button">Actualizar</button>
+          </div>
         </div>
       </div>
     </div>

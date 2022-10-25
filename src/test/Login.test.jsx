@@ -5,6 +5,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 // import { useNavigate } from 'react-router-dom';
 // import { loginUsers } from '../Requests/requestApi';
 import App from '../App';
+import regexEmail from '../PageView/Login';
 
 // jest.mock('node-fetch', () => jest.fn());
 
@@ -51,6 +52,33 @@ describe('Componente Login', () => {
     fireEvent.click(buttonLogin);
     const spanMessage = screen.getByTestId('spanMessage');
     expect(spanMessage).toHaveTextContent('casilla vacía');
+  });
+
+  it('Debería de aparecer un mensaje de error si la casilla de password está vacía', () => {
+    render(<App />);
+    const inputPassword = screen.getByTestId('input-password');
+    fireEvent.change(inputPassword, { target: { value: '' } });
+    const buttonLogin = screen.getByRole('button', { className: 'Button-login' });
+    fireEvent.click(buttonLogin);
+    const spanError = screen.getByTestId('span-error');
+    expect(spanError).toHaveTextContent('casilla vacía');
+  });
+
+  it('Debería de aparecer un mensaje de error si el texto ingresado no tiene formato email', () => {
+    render(<App />);
+    const inputEmail = screen.getByTestId('input-email');
+    fireEvent.change(inputEmail, { target: { value: 'chef1@gm' } });
+    // console.log(inputEmail.value);
+    // screen.debug(inputEmail);
+    const buttonLogin = screen.getByRole('button', { className: 'Button-login' });
+    fireEvent.click(buttonLogin);
+    // const spanEmailMessage = screen.getByTestId('spanMessage');
+    // console.log(spanEmailMessage.value);
+    console.log(regexEmail);
+    // expect(inputEmail.value).toMatch(regexEmail);
+    // expect(regexEmail.test(inputEmail.value)).toBe(false);
+    // // screen.debug();
+    // expect(spanEmailMessage.value).toBe('correo inválido');
   });
 });
 

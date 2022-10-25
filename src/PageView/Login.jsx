@@ -8,6 +8,8 @@ import '../App.scss';
 
 const { Buffer } = require('buffer/');
 
+export const regexEmail = /\S+@\S+\.\S+/g;
+
 export default function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
@@ -20,7 +22,7 @@ export default function Login() {
       setEmailMessage('casilla vacía');
     } if (password.length === 0) {
       setPasswordMessage('casilla vacía');
-    } else if ((/\S+@\S+\.\S+/g).test(email) === false && email.length !== 0) {
+    } else if (regexEmail.test(email) === false && email.length !== 0) {
       setEmailMessage('correo inválido');
     } else {
       loginUsers(email, password)
@@ -73,7 +75,7 @@ export default function Login() {
             <img src={passwordIcon} className="Icon-login" alt="logo" />
             <input type="password" data-testid="input-password" onChange={(e) => onAddPassword(e)} className="Input-login" placeholder="ingrese contraseña" />
           </div>
-          <span>{passwordMessage}</span>
+          <span data-testid="span-error">{passwordMessage}</span>
         </div>
 
         <button data-testid="btnLogin" className="Button-login" type="button" onClick={() => onClickLogin()}>
