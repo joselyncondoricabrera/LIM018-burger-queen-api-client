@@ -79,7 +79,8 @@ export default function Login() {
         </div>
 
         <button data-testid="btnLogin" className="Button-login" type="button" onClick={() => onClickLogin()}>
-          <p className="Text-button">Iniciar Sesión</p>
+          {/* <p className="Text-button">Iniciar Sesión</p> */}
+          Iniciar Sesión
         </button>
       </div>
     </div>

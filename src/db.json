@@ -105,7 +105,7 @@
         "admin": false,
         "chef": false
       },
-    "id": 1
+      "id": 1
     }
   ],
   "orders": [
@@ -124,7 +124,7 @@
           "qty": 2
         }
       ],
-      "status": "delivering",
+      "status": "delivered",
       "dateEntry": "14/10/2022, 18:41:15",
       "id": 1
     },
@@ -146,6 +146,44 @@
       "status": "pending",
       "dateEntry": "2022-10-22T01:26:50.800Z",
       "id": 2
+    },
+    {
+      "userId": "1",
+      "client": "deysi",
+      "products": [
+        {
+          "name": "Café con leche",
+          "productId": "2",
+          "qty": 1
+        },
+        {
+          "name": "Jugo de frutas natural",
+          "productId": "4",
+          "qty": 1
+        }
+      ],
+      "status": "delivering",
+      "dateEntry": "2022-10-26T14:36:41.066Z",
+      "id": 3
+    },
+    {
+      "userId": "1",
+      "client": "deysi",
+      "products": [
+        {
+          "name": "Café americano",
+          "productId": "1",
+          "qty": 1
+        },
+        {
+          "name": "Café con leche",
+          "productId": "2",
+          "qty": 1
+        }
+      ],
+      "status": "delivering",
+      "dateEntry": "2022-10-26T14:37:18.447Z",
+      "id": 4
     }
   ]
 }

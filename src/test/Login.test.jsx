@@ -1,11 +1,16 @@
 /** * @jest-environment jsdom */
 
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import {
+  render, screen, fireEvent,
+} from '@testing-library/react';
+import { withRouter, useNavigate } from 'react-router';
+// import userEvent from '@testing-library/user-event';
 // import { useNavigate } from 'react-router-dom';
 // import { loginUsers } from '../Requests/requestApi';
 import App from '../App';
-import regexEmail from '../PageView/Login';
+import Login from '../PageView/Login';
+// import { regexEmail } from '../PageView/Login';
 
 // jest.mock('node-fetch', () => jest.fn());
 
@@ -67,18 +72,35 @@ describe('Componente Login', () => {
   it('Debería de aparecer un mensaje de error si el texto ingresado no tiene formato email', () => {
     render(<App />);
     const inputEmail = screen.getByTestId('input-email');
-    fireEvent.change(inputEmail, { target: { value: 'chef1@gm' } });
-    // console.log(inputEmail.value);
-    // screen.debug(inputEmail);
+    fireEvent.change(inputEmail, { target: { value: 'chef1@gmailcom' } });
     const buttonLogin = screen.getByRole('button', { className: 'Button-login' });
     fireEvent.click(buttonLogin);
+    render(<App />);
+    // console.log(regexEmail);
     // const spanEmailMessage = screen.getByTestId('spanMessage');
+    // expect(spanEmailMessage).toHaveTextContent('correo inválido');
     // console.log(spanEmailMessage.value);
-    console.log(regexEmail);
     // expect(inputEmail.value).toMatch(regexEmail);
+
     // expect(regexEmail.test(inputEmail.value)).toBe(false);
+    // const spanEmailMessage = screen.getByTestId('spanMessage');
     // // screen.debug();
     // expect(spanEmailMessage.value).toBe('correo inválido');
+  });
+});
+
+describe('Redireccionamiento de módulos', () => {
+  // const ui = userEvent.setup();
+  const navigate = jest.fn();
+
+  beforeEach(() => {
+    jest.spyOn(useNavigate, 'useNavigate').mockImplementation(() => navigate);
+  });
+
+  it('Debería direccionar hacia la vista Menu cuando se loguea correctamente el mesero', async () => {
+    render(withRouter(<Login />));
+    await fireEvent.click(screen.queryByText('Iniciar Sesión'));
+    expect(navigate).toHaveBeenCalledWith('/Menu');
   });
 });
 
