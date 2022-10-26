@@ -5,7 +5,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 // import { useNavigate } from 'react-router-dom';
 // import { loginUsers } from '../Requests/requestApi';
 import App from '../App';
-import regexEmail from '../PageView/Login';
+import { regexEmail } from '../PageView/Login';
 
 // jest.mock('node-fetch', () => jest.fn());
 
