@@ -1,5 +1,6 @@
 // LOGIN
 // Función para autenticación de usuario
+
 export const loginUsers = (email, password) => {
   const bodyData = {
     email,
@@ -76,3 +77,5 @@ export const getUsers = (token) => fetch('http://localhost:3001/users', {
     authorization: `Bearer ${token}`,
   },
 }).then((res) => res.json());
+
+// https://bqapi.fakel.lol/users
