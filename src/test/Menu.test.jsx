@@ -1,6 +1,6 @@
 import fecth from 'node-fetch';
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import Menu from '../PageView/Menu';
 import { getProducts } from '../Requests/requestApi';
 
