@@ -1,6 +1,7 @@
 /* eslint-disable max-len */
 import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
+import Swal from 'sweetalert2';
 import NavbarAdmin from './NavbarAdmin';
 import '../PageStyle/Products.scss';
 import searchIcon from '../imagen/search.png';
@@ -15,7 +16,7 @@ export default function ProductsAdmin() {
   const [dateEntry, setDateEntry] = useState('');
   const [image, setImage] = useState('');
 
-  // // seleccionar el producto
+  // opciones del select
   const options = [
     { value: 'Desayuno', label: 'Desayuno' },
     { value: 'Almuerzo y cena', label: 'Almuerzo y cena' },
@@ -31,6 +32,42 @@ export default function ProductsAdmin() {
         console.log(productsSelect);
         setProduct(productsSelect);
       });
+  };
+
+  // función para agregar nuevos productos al db.json
+  const addNewproduct = () => {
+    // eslint-disable-next-line consistent-return
+    (async () => {
+      // eslint-disable-next-line no-unused-vars
+      const { value: formValues } = await Swal.fire({
+        title: 'Ingreso de nuevo producto',
+        input: 'text',
+        // eslint-disable-next-line no-dupe-keys
+        input: 'text',
+        // html:
+        //   '<input  type = "text" id="swal-input1" class="swal2-input" placeholder="Nombre del producto">'
+        //   + '<input type = "text" id="swal-input2" class="swal2-input" placeholder="Precio del producto">'
+        //   + '<input type = "text" id="swal-input3" class="swal2-input" placeholder="Tipo del producto">',
+        focusConfirm: false,
+        // eslint-disable-next-line consistent-return
+        inputValidator: (value) => {
+          if (!value) {
+            return 'llena los campos!';
+          }
+        },
+        // preConfirm: () => [
+        //   document.getElementById('swal-input1').value,
+        //   console.log(document.getElementById('swal-input1').value),
+        //   document.getElementById('swal-input2').value,
+        //   console.log(document.getElementById('swal-input2').value),
+        // ],
+      });
+
+      // if (!formValues) {
+      //   // return 'You need to write something!';
+      //   Swal.fire('ingresa los campos');
+      // }
+    })();
   };
 
   const selectedProduct = (prod) => {
@@ -73,7 +110,7 @@ export default function ProductsAdmin() {
               <img src={searchIcon} className="Icon-product" alt="icon-search" />
               <input type="text" className="Input-search-product" placeholder="Buscar producto" />
             </div>
-            <button type="button" className="Button-add-product">Agregar Producto</button>
+            <button type="button" className="Button-add-product" onClick={addNewproduct}>Agregar Producto</button>
           </div>
           <div className="Container-select-table-products">
             {/* <div className="Content-select">

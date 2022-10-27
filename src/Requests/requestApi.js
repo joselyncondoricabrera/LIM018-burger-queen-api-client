@@ -81,3 +81,5 @@ export const getUsers = (token) => fetch('http://localhost:3001/users', {
     authorization: `Bearer ${token}`,
   },
 }).then((res) => res.json());
+
+// https://bqapi.fakel.lol/users

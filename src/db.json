@@ -106,84 +106,168 @@
         "chef": false
       },
       "id": 1
+    },
+    {
+      "email": "chef1@gmail.com",
+      "password": "123456",
+      "roles": {
+        "admin": false,
+        "chef": true
+      },
+      "id": 2
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "123456",
+      "roles": {
+        "admin": true,
+        "chef": false
+      },
+      "id": 3
+    },
+    {
+      "email": "nesero2@gmail.com",
+      "password": "123456",
+      "roles": {
+        "admin": false,
+        "chef": false
+      },
+      "id": 4
+    },
+    {
+      "email": "chef2@gmail.com",
+      "password": "123456",
+      "roles": {
+        "admin": false,
+        "chef": true
+      },
+      "id": 5
+    },
+    {
+      "email": "liseth.lira.123@gmail.com",
+      "password": "123456",
+      "roles": {
+        "admin": true,
+        "chef": false
+      },
+      "id": 6
+    },
+    {
+      "email": "mesero3@gmail.com",
+      "password": "123456",
+      "roles": {
+        "admin": false,
+        "chef": false
+      },
+      "id": 7
+    },
+    {
+      "email": "admin3@gmail.com",
+      "password": "123456",
+      "roles": {
+        "admin": true,
+        "chef": false
+      },
+      "id": 8
+    },
+    {
+      "email": "mesero4@gmail.com",
+      "password": "123456",
+      "roles": {
+        "admin": false,
+        "chef": true
+      },
+      "id": 9
+    },
+    {
+      "email": "holamundo",
+      "password": "123456",
+      "roles": {
+        "admin": true,
+        "chef": false
+      },
+      "id": 10
+    },
+    {
+      "email": "holamundito",
+      "password": "123456",
+      "roles": {
+        "admin": false,
+        "chef": false
+      },
+      "id": 11
+    },
+    {
+      "email": "holacocinero",
+      "password": "123456",
+      "roles": {
+        "admin": false,
+        "chef": true
+      },
+      "id": 12
+    },
+    {
+      "email": "cheff500@gmail.com",
+      "password": "123456",
+      "roles": {
+        "admin": false,
+        "chef": true
+      },
+      "id": 13
     }
   ],
   "orders": [
     {
       "userId": "1",
-      "client": "gaby",
+      "client": "Sandra",
       "products": [
         {
           "name": "Café con leche",
-          "productId": "1",
+          "productId": "2",
           "qty": 1
-        },
-        {
-          "name": "Jugo de frutas natural",
-          "productId": "4",
-          "qty": 2
         }
       ],
       "status": "delivered",
-      "dateEntry": "14/10/2022, 18:41:15",
+      "dateEntry": "2022-10-25T13:21:36.035Z",
       "id": 1
     },
     {
       "userId": "1",
-      "client": "Pedro",
+      "client": "Katy",
       "products": [
         {
           "name": "Café con leche",
-          "productId": "1",
+          "productId": "2",
           "qty": 1
         },
         {
-          "name": "Jugo de frutas natural",
-          "productId": "4",
-          "qty": 1
+          "name": "Café americano",
+          "productId": "1",
+          "qty": 2
         }
       ],
-      "status": "pending",
-      "dateEntry": "2022-10-22T01:26:50.800Z",
+      "status": "delivering",
+      "dateEntry": "2022-10-25T13:23:08.303Z",
       "id": 2
     },
     {
       "userId": "1",
-      "client": "deysi",
+      "client": "Gaby",
       "products": [
         {
           "name": "Café con leche",
           "productId": "2",
           "qty": 1
         },
-        {
-          "name": "Jugo de frutas natural",
-          "productId": "4",
-          "qty": 1
-        }
-      ],
-      "status": "delivering",
-      "dateEntry": "2022-10-26T14:36:41.066Z",
-      "id": 3
-    },
-    {
-      "userId": "1",
-      "client": "deysi",
-      "products": [
         {
           "name": "Café americano",
           "productId": "1",
-          "qty": 1
-        },
-        {
-          "name": "Café con leche",
-          "productId": "2",
-          "qty": 1
+          "qty": 2
         }
       ],
-      "status": "delivering",
-      "dateEntry": "2022-10-26T14:37:18.447Z",
-      "id": 4
+      "status": "pending",
+      "dateEntry": "2022-10-25T13:34:12.060Z",
+      "id": 3
     }
   ]
 }
