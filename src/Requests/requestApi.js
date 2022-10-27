@@ -1,5 +1,9 @@
 // LOGIN
 // Función para autenticación de usuario
+// https://bqapi.fakel.lol/
+// admin1@gmail.com
+// contraseña
+// apasswordtochange
 
 export const loginUsers = (email, password) => {
   const bodyData = {

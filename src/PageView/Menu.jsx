@@ -43,7 +43,7 @@ export default function Menu() {
         userId: parseJwt(token).userId,
         client: nameClient,
         products: productsOrder.map((productOrder) => {
-        // eslint-disable-next-line max-len
+          // eslint-disable-next-line max-len
           const product = { name: productOrder.name, productId: productOrder.id, qty: productOrder.quantity };
           return product;
         }),
@@ -136,6 +136,7 @@ export default function Menu() {
     setOptionProducts('Bebidas');
   };
   const changeOptionBreakfast = () => {
+    console.log('mis productos', products);
     setStyleTypeBreakfast('Change-style-activated-button');
     setStyleTypeDrinks('Menu-options');
     setstyleTypeLunchDinner('Menu-options');
@@ -155,9 +156,9 @@ export default function Menu() {
         <div className="Container-all-menu">
 
           <div className="Menu-options-container">
-            <button type="button" className={styleTypeDrinks} onClick={changeOptionDrink}>Bebidas</button>
-            <button type="button" className={styleTypeLunchDinner} onClick={changeOptionLunchDinner}>Almuerzo y cena</button>
-            <button type="button" data-testid="option-breakfast" className={styleTypeBreakfast} onClick={changeOptionBreakfast}>Desayuno</button>
+            <button data-testid="btn-drink" type="button" className={styleTypeDrinks} onClick={changeOptionDrink}>Bebidas</button>
+            <button data-testid="btn-lunch-dinner" type="button" className={styleTypeLunchDinner} onClick={changeOptionLunchDinner}>Almuerzo y cena</button>
+            <button data-testid="btn-breakfast" type="button" className={styleTypeBreakfast} onClick={changeOptionBreakfast}>Desayuno</button>
           </div>
 
           <div className="Image-products-container">
@@ -169,7 +170,7 @@ export default function Menu() {
                   {product.price}
                 </h1>
                 <picture className="Image">
-                  <img src={product.image} alt="menu-cafe" className="Image-product" />
+                  <img data-testid="image-products" src={product.image} alt="menu-cafe" className="Image-product" />
                 </picture>
                 <div className="Image-menu-name">
                   <button key={product.name} data-testid="btn-add-product" type="button" className="Btn-cantidad-plus" onClick={() => onAddProduct(product)}>+</button>
@@ -182,7 +183,7 @@ export default function Menu() {
           </div>
 
           <div className="Order-table-container">
-            <input className="Client-name" type="text" ref={inputClientName} placeholder="Nombre del cliente" onChange={(e) => addClientName(e)} />
+            <input data-testid="input-name-client" className="Client-name" type="text" ref={inputClientName} placeholder="Nombre del cliente" onChange={(e) => addClientName(e)} />
             <h4 className="Client">{`Cliente:  ${nameClient}`}</h4>
 
             <table className="Table-order">
