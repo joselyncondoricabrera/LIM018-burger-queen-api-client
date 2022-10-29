@@ -15,7 +15,7 @@ export const loginUsers = (email, password) => {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(bodyData),
   })
-  // eslint-disable-next-line consistent-return
+    // eslint-disable-next-line consistent-return
     .then((resp) => {
       if (resp.status === 200) { return resp.json(); }
     });
@@ -80,6 +80,16 @@ export const getUsers = (token) => fetch('http://localhost:3001/users', {
     'Content-Type': 'application/json',
     authorization: `Bearer ${token}`,
   },
+}).then((res) => res.json());
+
+// función para guardar productos
+export const postProducts = (token, productBody) => fetch('http://localhost:3001/products', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    authorization: `Bearer ${token}`,
+  },
+  body: JSON.stringify(productBody),
 }).then((res) => res.json());
 
 // https://bqapi.fakel.lol/users

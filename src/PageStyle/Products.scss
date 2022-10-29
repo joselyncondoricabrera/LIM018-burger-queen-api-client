@@ -72,6 +72,8 @@
         width: 287px;
     }
     .Select-library{
+        display: flex;
+        // position: relative;
         width: 391px;
         margin-top: 31px;
         font-family: 'Poppins';
@@ -205,5 +207,79 @@ line-height: 30px;
         line-height: 30px;
         color: #FFFFFF;
         border:none;
+    }
+    .Hidden-modal, .Hidden-select{
+        display: none;
+    }
+    .Container-modal-add-product{
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+        height: 100vh;
+        // position:fixed;
+        top:0;
+        left: 0;
+        background: rgb(0, 0, 0,.5);
+    }
+    .modal-add-product{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: #FFFFFF;
+        width:750px;
+        height:500px;
+        gap:20px;
+        border-radius:15px;
+    }
+    .Input-name-product, .Input-price-product{
+        width: 600px;
+        height: 50px;
+        // border:none;
+        border-radius: 10px;
+    }
+    .Input-name-product::placeholder, .Input-price-product::placeholder{
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 300;
+        font-size: 20px;
+        line-height: 30px;
+
+    }
+    .Input-file-images{
+        width:600px;
+    }
+    .Container-buttons-modal{
+        display: flex;
+        gap:20px;
+    }
+    .Button-save-product{
+        width: 148px;
+    height: 49px;
+    background: #FF9000;
+    border-radius: 15px;
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 30px;
+    color: #FFFFFF;
+    border: none;
+
+    }
+    .Button-cancel{
+        width: 148px;
+    height: 49px;
+    background: #FF0000;
+    border-radius: 15px;
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 30px;
+    color: #FFFFFF;
+    border: none;
     }
 }

@@ -95,6 +95,55 @@
       "image": "https://asphericnews.com/wp-content/uploads/2021/10/5-negative-effects-of-drinking-soda..jpg",
       "type": "Bebidas",
       "dateEntry": "15/09/22"
+    },
+    {
+      "id": "13",
+      "name": "nuevo",
+      "price": "5",
+      "imagen": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAJuSURBVHgBtZbfbdswEMaPjIMgaYG6G7gTxJmg7gRNJog3aPsgG8qLpQdDkB1A2SDtBu4EUTdQNlA30EuRBDHEfpQth1QkUbLj78Xkmacf/xzvyKhGnucNDhm7FIwN0O1JG2MsEULEaIbLNP1t23ZILcTKjDPPGzLOJznEoAjgC4DjBmN1oOM43fcnJ7dYwTm1FeeOZVmuaRhTYe+Oj+/Q7GsD5BamaYRJ3AuiBA5d2E5ptc2toRvg9WwmVzbU/k1T99/T0w0mkxQdcb69DuYJyKXmQvRjPB7fUB1wfWa3ij1GoFyMRqOIDJp7noROFFOCMz2rOlOeUXUHagqTsmzbkTuhmLoHnAdV4/m178sA6eUGbInbFKZBhQjzPrbtPEBMlAJx+F9VQ5qmP2kbCaEFy/PRUWmkcwTKS1QyFja9T0VZMgEgopVvfS4FknINEP73tItWGSjXR6oAKuNFQrsBN/4IxA9UClS2ARe6S7uogT9XtwGzOqUtFQSBhBmPRwbNn01PiMF0Ou3TFnp+fNSiEnc5LBvHmRAL1XDY6UyopWQeLiSPGOltUQrMwrlwaX3f/04thKSvlTIkj19VY1dRWri0MAbz+dy4UrkymfTRVCcY1yWPTbUoScIy6qJ0uXTHV1eLIgirGqL5jV4X6RjJ+0tVAtEKcCmU1jURlT3rCNEj80ugEvrqiVEFNQHWvz0TlBc9ZebHwE/I4pUHn0uuPCvSDw9n8uMKOIN3OL+ThVrzqfugHHxANECznz0r1hAExV84LvAaiNTXQPYKAKRupbXAbWSCvjnQBN0LsBKKdLc3YBV0r0AVKksfCoX7HyAhMMQO+ruGAAAAAElFTkSuQmCC",
+      "type": "Desayuno"
+    },
+    {
+      "name": "gh",
+      "price": "gf",
+      "imagen": "",
+      "type": "dz",
+      "id": "Ly3BgIJ"
+    },
+    {
+      "name": "d",
+      "price": "dfb",
+      "imagen": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABAEAYAAAD6+a2dAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QAAAAAAAD5Q7t/AAAACXBIWXMAAABgAAAAYADwa0LPAAAAB3RJTUUH5goWDhQmxTY9fwAAAlRJREFUeNrt2j8vNFEUx/F7UdhQKCREo5GNUi8kXoLEegmr0SgpFCqJRCNkDQo1L0GiRa2wgtoLsHO6e55i9o/kZh87a9ad3f1+mkk2k9lzfufszBZjDAAAAAAAAAAAAAAAAAD0LXXq1I2NqZM7uVtdVSeRRCsrjc9D14ceUa1t1DZmZ1VlXuafnlTjOI5VW8fG58l5oetFRtR9vX+9z8yoypEcPT/7g/eOx/FxtaoaF+Pi3Fzo+tGlLgbPIgyCDAbPIvSjHgyeRegHfzD4gV4EG7qAbjX/ratdsAv398aafbO/uJii9Rt7E0XfrljSUrnceQHmwBy8vBirb/q2tmbtxO3E7edn6FwGXga/+GJcvLxUVVUdGUmO1qrKlmydng77HSG3sh68d30WIZ96PXjv+1iEfPjrwXvfzyKEEXrwXj0swt/I2+C9+liE3sj74L16WYSMguyzwXv1swhdBtfng/f6YRE6DGrABu/1xyK0CWbAB+/1yyLUgxiywXv9D+siNN+5a/vq1U9HuZbr8/NGgKH7+XUerUWo95U6jyTHfnlnsfmy5ZD94n/M5dd3BFmX9eXlrOvqRdAf5kM1xflLZunqyphCtVAtl6211lrnelBXUElfqsaMV8Yr29vG2B27c3aW4hKv5jVVrmF8ewRMy/Tj4382+kROKpVBudWnzql1R6jn0CYnJwUpPDwk54+Ohq678wadOnWTk6oSSbS3lzwaLi7UxbW4ViqFri9vVGVKpjY3W49COZTD3d1GjqHrAwAAAAAAAAAAAAAAAAAAQI79A6TDT9SqEOWJAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIyLTEwLTIyVDE0OjIwOjM4KzAwOjAwrI1aNQAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMi0xMC0yMlQxNDoyMDozOCswMDowMN3Q4okAAAAodEVYdGRhdGU6dGltZXN0YW1wADIwMjItMTAtMjJUMTQ6MjA6MzgrMDA6MDCKxcNWAAAAAElFTkSuQmCC",
+      "type": "dz",
+      "id": "nOgDrLF"
+    },
+    {
+      "id": "14",
+      "name": "nuevo",
+      "price": "0",
+      "imagen": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAJuSURBVHgBtZbfbdswEMaPjIMgaYG6G7gTxJmg7gRNJog3aPsgG8qLpQdDkB1A2SDtBu4EUTdQNlA30EuRBDHEfpQth1QkUbLj78Xkmacf/xzvyKhGnucNDhm7FIwN0O1JG2MsEULEaIbLNP1t23ZILcTKjDPPGzLOJznEoAjgC4DjBmN1oOM43fcnJ7dYwTm1FeeOZVmuaRhTYe+Oj+/Q7GsD5BamaYRJ3AuiBA5d2E5ptc2toRvg9WwmVzbU/k1T99/T0w0mkxQdcb69DuYJyKXmQvRjPB7fUB1wfWa3ij1GoFyMRqOIDJp7noROFFOCMz2rOlOeUXUHagqTsmzbkTuhmLoHnAdV4/m178sA6eUGbInbFKZBhQjzPrbtPEBMlAJx+F9VQ5qmP2kbCaEFy/PRUWmkcwTKS1QyFja9T0VZMgEgopVvfS4FknINEP73tItWGSjXR6oAKuNFQrsBN/4IxA9UClS2ARe6S7uogT9XtwGzOqUtFQSBhBmPRwbNn01PiMF0Ou3TFnp+fNSiEnc5LBvHmRAL1XDY6UyopWQeLiSPGOltUQrMwrlwaX3f/04thKSvlTIkj19VY1dRWri0MAbz+dy4UrkymfTRVCcY1yWPTbUoScIy6qJ0uXTHV1eLIgirGqL5jV4X6RjJ+0tVAtEKcCmU1jURlT3rCNEj80ugEvrqiVEFNQHWvz0TlBc9ZebHwE/I4pUHn0uuPCvSDw9n8uMKOIN3OL+ThVrzqfugHHxANECznz0r1hAExV84LvAaiNTXQPYKAKRupbXAbWSCvjnQBN0LsBKKdLc3YBV0r0AVKksfCoX7HyAhMMQO+ruGAAAAAElFTkSuQmCC",
+      "type": "dz"
+    },
+    {
+      "name": "fdbgfnrt",
+      "price": "10",
+      "imagen": "",
+      "type": "dz",
+      "id": "pAmSGDS"
+    },
+    {
+      "name": "probandfo",
+      "price": "154",
+      "imagen": "",
+      "type": "dz",
+      "id": "OoGPtwP"
+    },
+    {
+      "name": "otro",
+      "price": "15",
+      "imagen": "",
+      "type": "dz",
+      "id": "Bw8kdAs"
     }
   ],
   "users": [

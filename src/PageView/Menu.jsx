@@ -71,6 +71,7 @@ export default function Menu() {
     const tokens = sessionStorage.getItem('token');
     getProducts(tokens)
       .then((result) => {
+        console.log('getProducts', result);
         setProducts(result);
       });
   }, []);
@@ -143,6 +144,7 @@ export default function Menu() {
     setOptionProducts('Desayuno');
   };
   const changeOptionLunchDinner = () => {
+    console.log('mis productos dinner', products);
     setstyleTypeLunchDinner('Change-style-activated-button');
     setStyleTypeBreakfast('Menu-options');
     setStyleTypeDrinks('Menu-options');
@@ -170,12 +172,12 @@ export default function Menu() {
                   {product.price}
                 </h1>
                 <picture className="Image">
-                  <img data-testid="image-products" src={product.image} alt="menu-cafe" className="Image-product" />
+                  <img data-testid={`image-products-${product.id}`} src={product.image} alt="menu-cafe" className="Image-product" />
                 </picture>
                 <div className="Image-menu-name">
-                  <button key={product.name} data-testid="btn-add-product" type="button" className="Btn-cantidad-plus" onClick={() => onAddProduct(product)}>+</button>
+                  <button key={product.name} data-testid={`btn-add-product-${product.id}`} type="button" className="Btn-cantidad-plus" onClick={() => onAddProduct(product)}>+</button>
                   <p className="Name-product">{product.name}</p>
-                  <button type="button" className="Btn-cantidad-minus" onClick={() => onRemoveProduct(product)}> - </button>
+                  <button type="button" data-testid={`btn-remove-product-${product.id}`} className="Btn-cantidad-minus" onClick={() => onRemoveProduct(product)}> - </button>
                 </div>
               </div>
             ))}
@@ -184,7 +186,7 @@ export default function Menu() {
 
           <div className="Order-table-container">
             <input data-testid="input-name-client" className="Client-name" type="text" ref={inputClientName} placeholder="Nombre del cliente" onChange={(e) => addClientName(e)} />
-            <h4 className="Client">{`Cliente:  ${nameClient}`}</h4>
+            <h4 data-testid="subtitle-Client" className="Client">{`Cliente: ${nameClient}`}</h4>
 
             <table className="Table-order">
               <thead>
