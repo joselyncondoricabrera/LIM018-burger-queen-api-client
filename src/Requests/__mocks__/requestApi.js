@@ -31,5 +31,19 @@ export const getProducts = () => Promise.resolve([{
   dateEntry: '15/09/22',
 }]);
 
-export const postProducts = () => {
-};
+export const postOrders = () => Promise.resolve([
+  {
+    userId: '1',
+    client: 'Nino',
+    products: [
+      {
+        name: 'Jugo de frutas natural',
+        productId: '4',
+        qty: 1,
+      },
+    ],
+    status: 'pending',
+    dateEntry: '2022-10-31T13:21:36.035Z',
+    id: 1,
+  },
+]);

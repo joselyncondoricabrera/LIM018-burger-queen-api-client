@@ -1,7 +1,9 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
 import Menu from '../PageView/Menu';
+import postOrders from '../Requests/__mocks__/requestApi';
 // import getProducts from '../Requests/requestApi';
 
 const mockNavigate = jest.fn();
@@ -45,7 +47,6 @@ describe('Componente Menu', () => {
     });
     const imageProducts = await screen.findByTestId('image-products-4');
     expect(imageProducts).toBeInTheDocument();
-    // screen.debug();
   });
   it('Debería existir las imagenes de los productos de tipo Almuerzo y cena al hacer click', async () => {
     act(() => {
@@ -79,13 +80,28 @@ describe('Componente Menu', () => {
     const buttonAddProduct = await screen.findByTestId('btn-add-product-4');
     expect(buttonAddProduct).toBeInTheDocument();
   });
+  // agregar un producto en la orden
+  it('Debería de agregar un producto en la orden haciendo click en el boton +', async () => {
+    render(<Menu />);
+    const buttonBreakfast = screen.getByTestId('btn-breakfast');
+    fireEvent.click(buttonBreakfast);
+    const buttonAddProduct = await screen.findByTestId('btn-add-product-4');
+    fireEvent.click(buttonAddProduct);
+    const tdTableNameProduct = screen.getByTestId('name-product-4');
+    const tdTableQtyProduct = screen.getByTestId('quantity-product-4');
+    const tdTablePriceProduct = screen.getByTestId('price-product-4');
+    screen.debug();
+    expect(tdTableNameProduct).toHaveTextContent('Jugo de frutas natural');
+    expect(tdTableQtyProduct).toHaveTextContent('1');
+    expect(tdTablePriceProduct).toHaveTextContent('7');
+  });
+
   it('Debería de renderizar el boton de disminuir cantidad del producto a la orden', async () => {
     render(<Menu />);
     const buttonBreakfast = screen.getByTestId('btn-breakfast');
     fireEvent.click(buttonBreakfast);
     const buttonRemoveProduct = await screen.findByTestId('btn-remove-product-4');
     expect(buttonRemoveProduct).toBeInTheDocument();
-    screen.debug();
   });
 
   it('Debería de existir un input para registrar el nombre del cliente', () => {
@@ -102,12 +118,17 @@ describe('Componente Menu', () => {
     subtitleClient.value = 'Client: Nino';
     console.log(subtitleClient.value);
     expect(subtitleClient.value).toBe('Client: Nino');
-    screen.debug();
   });
-  // it('Debería cambiar de color cuando se realiza click al boton almuerzo y cena', () => {
-  //   render(<Menu />);
-  //   const buttonLunchDinner = screen.getByTestId('btn-lunch-dinner');
-  //   fireEvent.click(buttonLunchDinner);
-  //   expect(buttonLunchDinner).toHaveStyle(' background-color: rgb(255, 148, 9) ');
-  // });
+
+  // generar nueva orden
+  it('Debería generar una nueva orden correctamente', async () => {
+    render(<Menu />);
+    const buttonBreakfast = screen.getByTestId('btn-breakfast');
+    fireEvent.click(buttonBreakfast);
+    // eslint-disable-next-line no-unused-vars
+    const buttonAddProduct = await screen.findByTestId('btn-add-product-4');
+    const btnNewOrder = screen.getByTestId('btn-send-order');
+    screen.debug();
+    expect(postOrders).toHaveBeenCalled();
+  });
 });

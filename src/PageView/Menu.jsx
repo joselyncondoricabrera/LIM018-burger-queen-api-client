@@ -198,12 +198,12 @@ export default function Menu() {
                 </tr>
               </thead>
               <tbody>
-                {productsOrder.map((product, i) => (
+                {productsOrder.map((product) => (
                   // eslint-disable-next-line react/no-array-index-key
-                  <tr key={i}>
-                    <td className="Name-items-product">{product.name}</td>
-                    <td className="Items-products-table">{product.quantity}</td>
-                    <td className="Items-products-table">{product.price}</td>
+                  <tr key={product.id}>
+                    <td data-testid={`name-product-${product.id}`} className="Name-items-product">{product.name}</td>
+                    <td data-testid={`quantity-product-${product.id}`} className="Items-products-table">{product.quantity}</td>
+                    <td data-testid={`price-product-${product.id}`} className="Items-products-table">{product.price}</td>
                     <td>
                       <button className="Btn-delete-item-product" type="button" onClick={() => deleteItemProduct(product)}>
                         <img src={trashIcon} alt="button-delete" className="Image-button-delete" />
@@ -218,7 +218,7 @@ export default function Menu() {
                 </tr>
               </tbody>
             </table>
-            <button type="button" className="Btn-send-order" onClick={postOrder}>Enviar Orden</button>
+            <button data-testid="btn-send-order" type="button" className="Btn-send-order" onClick={postOrder}>Enviar Orden</button>
           </div>
         </div>
       </div>
