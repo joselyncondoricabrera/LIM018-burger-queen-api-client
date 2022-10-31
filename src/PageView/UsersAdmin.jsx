@@ -86,19 +86,19 @@ export default function UsersAdmin() {
     setStyleModal('Background-Modal-Users-inactivated');
   };
 
-  // const onUpdateUser = () => {
-  //   const token = sessionStorage.getItem('token');
-  //   const updateUserBody = {
-  //     email: newEmail,
-  //     password: newPassword,
-  //     roles: {
-  //       // eslint-disable-next-line no-unneeded-ternary
-  //       admin: valueRol === 'admin' ? true : false,
-  //       // eslint-disable-next-line no-unneeded-ternary
-  //       chef: valueRol === 'cocinero' ? true : false,
-  //     },
-  //   };
-  // };
+  const onUpdateUser = (users) => {
+    const token = sessionStorage.getItem('token');
+    const userBodyUpdate = {
+      email: newEmail,
+      password: newPassword,
+      roles: {
+        // eslint-disable-next-line no-unneeded-ternary
+        admin:us,
+        chef: user.chef,
+      },
+    };
+  };
+
   const selectChange = (e) => {
     setValueRol(e.value);
     console.log(valueRol);
@@ -117,12 +117,6 @@ export default function UsersAdmin() {
           <h1>Nuevo usuario</h1>
           <input type="text" ref={inputEmailModal} className="Input-Modal" onChange={(e) => setNewEmail(e.target.value)} placeholder="ingresa un correo" />
           <input type="text" ref={inputPasswordModal} className="Input-Modal" onChange={(e) => setNewPassword(e.target.value)} placeholder="ingresa una contraseña" />
-          {/* <select className="Input-Modal" ref={inputRolModal} onChange={(e) => selectChange(e)} value={valueRol}>
-            <option name="rol">escoge un rol</option>
-            <option name="rol" value="mesero">mesero</option>
-            <option name="rol" value="cocinero">cocinero</option>
-            <option name="rol" value="admin">admin</option>
-          </select> */}
           <Select className="Input-Modal" options={options} ref={inputRolModal} onChange={(e) => selectChange(e)} value={valueRol} />
           <div className="Background-buttons">
             <button className="Btn-delete-product" onClick={() => onCancelAdd()} type="button">Cancelar</button>
@@ -172,7 +166,7 @@ export default function UsersAdmin() {
           <p className="Info-users">{`Rol:  ${rol}`}</p>
           <div className="Background-buttons">
             <button className="Btn-delete-product" type="button">Eliminar</button>
-            <button className="Btn-update-product" type="button">Actualizar</button>
+            <button className="Btn-update-product" onClick={() => onUpdateUser()} type="button">Actualizar</button>
           </div>
         </div>
       </div>

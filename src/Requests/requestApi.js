@@ -83,3 +83,13 @@ export const getUsers = (token) => fetch('http://localhost:3001/users', {
 }).then((res) => res.json());
 
 // https://bqapi.fakel.lol/users
+
+// Función para actualizar ususarios
+export const updateUsers = (users, token, usersBodyUpdate) => fetch(`http://localhost:3001/users/${users.id}`, {
+  method: 'PUT',
+  headers: {
+    'Content-Type': 'application/json',
+    authorization: `Bearer ${token}`,
+  },
+  body: JSON.stringify(usersBodyUpdate),
+});

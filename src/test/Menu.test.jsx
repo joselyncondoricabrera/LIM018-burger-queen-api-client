@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import Menu from '../PageView/Menu';
 // import getProducts from '../Requests/requestApi';
 
@@ -34,7 +34,7 @@ describe('Componente Menu', () => {
   });
 
   // falta ******************
-  it.only('Debería existir las imagenes de los productos al escoger una opción', () => {
+  it('Debería existir las imagenes de los productos al escoger una opción', () => {
     render(<Menu />);
     const buttonBreakfast = screen.getByTestId('btn-breakfast');
     const imageProducts = screen.findByTestId('image-products');
