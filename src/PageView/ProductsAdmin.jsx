@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Select from 'react-select';
 import NavbarAdmin from './NavbarAdmin';
 import '../PageStyle/Products.scss';
@@ -7,15 +7,18 @@ import searchIcon from '../imagen/search.png';
 import { getProducts, postProducts } from '../Requests/requestApi';
 
 export default function ProductsAdmin() {
-  const [product, setProduct] = useState([]);
-  const [id, setId] = useState('');
-  const [name, setName] = useState('');
-  const [price, setPrice] = useState('');
-  const [type, setType] = useState('');
-  const [dateEntry, setDateEntry] = useState('');
-  const [image, setImage] = useState('');
+  const [products, setProducts] = useState([]);
+  // const [id, setId] = useState('');
+  // const [name, setName] = useState('');
+  // const [price, setPrice] = useState('');
+  // const [type, setType] = useState('');
+  // const [dateEntry, setDateEntry] = useState('');
+  // const [image, setImage] = useState('');
   const [nameNewProduct, setNameNewProduct] = useState('');
   const [priceNewProduct, setPriceNewProduct] = useState('');
+  const inputNameProduct = useRef('');
+  const inputPriceProduct = useRef('');
+  const inputImageProduct = useRef('');
   // cambiar estilos para modal de agregar nuevo producto
   const [changeStyleModal, setChangeStyleModal] = useState('Hidden-modal');
   // ocultar select
@@ -24,6 +27,13 @@ export default function ProductsAdmin() {
   // capturar url de la imagen
   // eslint-disable-next-line no-unused-vars
   const [imageSelection, setImageSelection] = useState('');
+
+  // producto seleccionado
+  const [productSelection, setProductSelection] = useState(
+    {
+      id: '', name: '', price: '', type: '', dateEntry: '', image: '',
+    },
+  );
 
   // opciones del select
   const options = [
@@ -39,7 +49,7 @@ export default function ProductsAdmin() {
       .then((result) => {
         const productsSelect = result.filter((pro) => pro.type === e.value);
         console.log(productsSelect);
-        setProduct(productsSelect);
+        setProducts(productsSelect);
       });
   };
 
@@ -50,12 +60,18 @@ export default function ProductsAdmin() {
   };
 
   const selectedProduct = (prod) => {
-    setId(prod.id);
-    setName(prod.name);
-    setPrice(prod.price);
-    setType(prod.type);
-    setDateEntry(prod.dateEntry);
-    setImage(prod.image);
+    // setId(prod.id);
+    // setName(prod.name);
+    // setPrice(prod.price);
+    // setType(prod.type);
+    // setDateEntry(prod.dateEntry);
+    // setImage(prod.image);
+
+    setProductSelection(
+      {
+        id: prod.id, name: prod.name, price: prod.price, type: prod.type, dateEntry: prod.dateEntry, image: prod.image,
+      },
+    );
 
     // quitar seleccion a las  filas de la tabla
     const rowTable = document.querySelectorAll('tr');
@@ -80,7 +96,7 @@ export default function ProductsAdmin() {
       // id: '14',
       name: nameNewProduct,
       price: priceNewProduct,
-      imagen: '',
+      image: imageSelection,
       type: 'dz',
     };
     console.log('product', nameNewProduct);
@@ -88,7 +104,15 @@ export default function ProductsAdmin() {
     console.log(productData);
     const tokens = sessionStorage.getItem('token');
     postProducts(tokens, productData)
-      .then((res) => { console.log(res); });
+      .then((res) => {
+        console.log(res);
+        setChangeStyleModal('Hidden-modal');
+        setNameNewProduct('');
+        setPriceNewProduct('');
+        inputNameProduct.current.value = '';
+        inputPriceProduct.current.value = '';
+        inputImageProduct.current.value = '';
+      });
   };
 
   // promesa que leer el archivo seleccionado
@@ -96,6 +120,7 @@ export default function ProductsAdmin() {
     const fileReader = new FileReader();
 
     fileReader.onload = (ev) => {
+      console.log('cargo la imagen', ev.target.result);
       resolve(ev.target.result);
     };
 
@@ -106,10 +131,10 @@ export default function ProductsAdmin() {
     fileReader.readAsDataURL(fileBlob);
   });
 
-  const onChangeInputFile = (element) => {
-    console.log(element.target.files[0]);
+  const onChangeInputFile = (event) => {
+    console.log(event.target.files[0]);
     // Devuelve un objeto llamado FileList no instanciable
-    const { files } = element.currentTarget;
+    const { files } = event.currentTarget;
     // Leamos por ejemplo solo el primer archivo:
     readAsBase64(files[0]).then((fileInBase64) => {
       console.log(fileInBase64);
@@ -124,10 +149,10 @@ export default function ProductsAdmin() {
     const tokens = sessionStorage.getItem('token');
     getProducts(tokens)
       .then((result) => {
-        setProduct(result);
-        console.log(product);
+        setProducts(result);
+        console.log(result);
       });
-  }, []);
+  }, [nameNewProduct, priceNewProduct, imageSelection]);
 
   return (
     <div className="Background-menu">
@@ -136,9 +161,9 @@ export default function ProductsAdmin() {
       <div className={changeStyleModal}>
         <div className="modal-add-product">
           <h2>Nuevo Producto</h2>
-          <input className="Input-name-product" type="text" placeholder=" Ingrese nombre del producto" onChange={(e) => setNameNewProduct(e.target.value)} />
-          <input className="Input-price-product" type="text" placeholder=" Ingrese precio" onChange={(e) => setPriceNewProduct(e.target.value)} />
-          <input className="Input-file-images" type="file" accept="image/png, image/jpeg" onChange={(e) => onChangeInputFile(e)} />
+          <input className="Input-name-product" type="text" ref={inputNameProduct} placeholder=" Ingrese nombre del producto" onChange={(e) => setNameNewProduct(e.target.value)} />
+          <input className="Input-price-product" type="text" ref={inputPriceProduct} placeholder=" Ingrese precio" onChange={(e) => setPriceNewProduct(e.target.value)} />
+          <input className="Input-file-images" type="file" ref={inputImageProduct} accept="image/png, image/jpeg" onChange={(e) => onChangeInputFile(e)} />
           <div className="Container-buttons-modal">
             <button className="Button-save-product" type="button" onClick={saveProduct}>Guardar</button>
             <button className="Button-cancel" type="button" onClick={cancelModal}>Cancelar</button>
@@ -174,7 +199,7 @@ export default function ProductsAdmin() {
                 </tr>
               </thead>
               <tbody>
-                { product.map((prod, i) => (
+                { products.map((prod, i) => (
                   // eslint-disable-next-line react/no-array-index-key
                   <tr key={i} className={`row${prod.id}`} onClick={() => { selectedProduct(prod); }}>
                     <td className="Item-table id-table">{prod.id}</td>
@@ -189,17 +214,17 @@ export default function ProductsAdmin() {
         </div>
 
         <div className="Background-info-product">
-          <img src={image} alt="images-product" className="Image-product-data" />
+          <img src={productSelection.image} alt="images-product" className="Image-product-data" />
           <p className="Info-product">
             {' '}
             <b>Id:</b>
             {' '}
-            {`${id}`}
+            {`${productSelection.id}`}
           </p>
-          <p className="Info-product">{`Nombre : ${name}`}</p>
-          <p className="Info-product">{`Precio: ${price}`}</p>
-          <p className="Info-product">{`Tipo: ${type}`}</p>
-          <p className="Info-product">{`Fecha de entrada: ${dateEntry}`}</p>
+          <p className="Info-product">{`Nombre : ${productSelection.name}`}</p>
+          <p className="Info-product">{`Precio: ${productSelection.price}`}</p>
+          <p className="Info-product">{`Tipo: ${productSelection.type}`}</p>
+          <p className="Info-product">{`Fecha de entrada: ${productSelection.dateEntry}`}</p>
 
           <div className="Background-buttons">
             <button className="Btn-delete-product" type="button">Eliminar</button>
