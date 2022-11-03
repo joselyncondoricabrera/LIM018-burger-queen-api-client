@@ -1,29 +1,29 @@
 /* eslint-disable max-len */
 import React, { useState, useEffect, useRef } from 'react';
 import Select from 'react-select';
+import Swal from 'sweetalert2';
 import NavbarAdmin from './NavbarAdmin';
 import '../PageStyle/Products.scss';
 import searchIcon from '../imagen/search.png';
-import { getProducts, postProducts } from '../Requests/requestApi';
+import { getProducts, postProducts, putProducts } from '../Requests/requestApi';
 
 export default function ProductsAdmin() {
   const [products, setProducts] = useState([]);
-  // const [id, setId] = useState('');
-  // const [name, setName] = useState('');
-  // const [price, setPrice] = useState('');
-  // const [type, setType] = useState('');
-  // const [dateEntry, setDateEntry] = useState('');
-  // const [image, setImage] = useState('');
   const [nameNewProduct, setNameNewProduct] = useState('');
   const [priceNewProduct, setPriceNewProduct] = useState('');
+  const [typeNewProduct, setTypeNewProduct] = useState('');
   const inputNameProduct = useRef('');
   const inputPriceProduct = useRef('');
-  const inputImageProduct = useRef('');
+  const selectTypeProduct = useRef('');
+
   // cambiar estilos para modal de agregar nuevo producto
   const [changeStyleModal, setChangeStyleModal] = useState('Hidden-modal');
   // ocultar select
   const [hiddenSelect, setHiddenSelect] = useState('Select-library');
-
+  // mensaje de span
+  const [spanMessage, setSpanMessage] = useState('Ningún archivo selec.');
+  // titulo del modal
+  const [titleModal, setTitleModal] = useState('');
   // capturar url de la imagen
   // eslint-disable-next-line no-unused-vars
   const [imageSelection, setImageSelection] = useState('');
@@ -55,18 +55,13 @@ export default function ProductsAdmin() {
 
   // función para agregar nuevos productos al db.json
   const addNewproduct = () => {
+    setTitleModal('Nuevo Producto');
     setChangeStyleModal('Container-modal-add-product');
+    // ocultar el select de tipo de producto
     setHiddenSelect('Hidden-select');
   };
 
   const selectedProduct = (prod) => {
-    // setId(prod.id);
-    // setName(prod.name);
-    // setPrice(prod.price);
-    // setType(prod.type);
-    // setDateEntry(prod.dateEntry);
-    // setImage(prod.image);
-
     setProductSelection(
       {
         id: prod.id, name: prod.name, price: prod.price, type: prod.type, dateEntry: prod.dateEntry, image: prod.image,
@@ -88,31 +83,65 @@ export default function ProductsAdmin() {
   // cancelar el modal de agregar producto
   const cancelModal = () => {
     setChangeStyleModal('Hidden-modal');
+    inputNameProduct.current.value = '';
+    inputPriceProduct.current.value = '';
   };
+
+  // guardar nuevo producto
   const saveProduct = () => {
-    // const input = document.querySelector('input[type=file]');
-    // console.log(input.value);
-    const productData = {
-      // id: '14',
-      name: nameNewProduct,
-      price: priceNewProduct,
-      image: imageSelection,
-      type: 'dz',
-    };
-    console.log('product', nameNewProduct);
-    console.log('price', priceNewProduct);
-    console.log(productData);
-    const tokens = sessionStorage.getItem('token');
-    postProducts(tokens, productData)
-      .then((res) => {
-        console.log(res);
-        setChangeStyleModal('Hidden-modal');
-        setNameNewProduct('');
-        setPriceNewProduct('');
-        inputNameProduct.current.value = '';
-        inputPriceProduct.current.value = '';
-        inputImageProduct.current.value = '';
+    if (nameNewProduct === '' || priceNewProduct === '' || imageSelection === '') {
+      Swal.fire({
+        title: 'Formulario incompleto',
+        text: 'LLenar todo los campos',
+        icon: 'warning',
+        showCancelButton: false,
       });
+    } else {
+      // capturar fecha del sistema
+      const today = new Date();
+      const productData = {
+        name: nameNewProduct,
+        price: Number(priceNewProduct),
+        image: imageSelection,
+        type: typeNewProduct,
+        dateEntry: `${today.getDate()}/${today.getMonth() + 1}/${today.getFullYear()}`,
+      };
+
+      const tokens = sessionStorage.getItem('token');
+      postProducts(tokens, productData)
+        .then(() => {
+          setChangeStyleModal('Hidden-modal');
+          setNameNewProduct('');
+          setPriceNewProduct('');
+          inputNameProduct.current.value = '';
+          inputPriceProduct.current.value = '';
+        });
+    }
+  };
+
+  const updateProduct = () => {
+    console.log(productSelection);
+    // mostrar datos en los input
+    inputNameProduct.current.value = productSelection.name;
+    inputPriceProduct.current.value = productSelection.price;
+    selectTypeProduct.current.value = productSelection.type;
+
+    setTitleModal('Modificar Producto');
+    setHiddenSelect('Hidden-select');
+    setChangeStyleModal('Container-modal-add-product');
+
+    // peticion modificar
+    const modifiedProduct = {
+      id: productSelection.id,
+      name: productSelection.name,
+      price: productSelection.price,
+      image: productSelection.image,
+      type: productSelection.type,
+      dateEntry: productSelection.dateEntry,
+    };
+    const tokens = sessionStorage.getItem('token');
+    putProducts(productSelection.id, tokens, modifiedProduct)
+      .then((res) => { console.log(res); });
   };
 
   // promesa que leer el archivo seleccionado
@@ -132,12 +161,12 @@ export default function ProductsAdmin() {
   });
 
   const onChangeInputFile = (event) => {
-    console.log(event.target.files[0]);
+    setSpanMessage(event.target.files[0].name);
     // Devuelve un objeto llamado FileList no instanciable
     const { files } = event.currentTarget;
     // Leamos por ejemplo solo el primer archivo:
     readAsBase64(files[0]).then((fileInBase64) => {
-      console.log(fileInBase64);
+      // console.log(fileInBase64);
       setImageSelection(fileInBase64);
     }).catch((e) => {
       console.error(e);
@@ -150,7 +179,6 @@ export default function ProductsAdmin() {
     getProducts(tokens)
       .then((result) => {
         setProducts(result);
-        console.log(result);
       });
   }, [nameNewProduct, priceNewProduct, imageSelection]);
 
@@ -160,10 +188,18 @@ export default function ProductsAdmin() {
       {/* container del modal para agregar nuevo producto */}
       <div className={changeStyleModal}>
         <div className="modal-add-product">
-          <h2>Nuevo Producto</h2>
+          <h2>{titleModal}</h2>
           <input className="Input-name-product" type="text" ref={inputNameProduct} placeholder=" Ingrese nombre del producto" onChange={(e) => setNameNewProduct(e.target.value)} />
           <input className="Input-price-product" type="text" ref={inputPriceProduct} placeholder=" Ingrese precio" onChange={(e) => setPriceNewProduct(e.target.value)} />
-          <input className="Input-file-images" type="file" ref={inputImageProduct} accept="image/png, image/jpeg" onChange={(e) => onChangeInputFile(e)} />
+          <Select className="Select-library" options={options} ref={selectTypeProduct} onChange={(e) => setTypeNewProduct(e.value)} defaultValue={{ label: 'Seleccione tipo de producto....', value: 'empty' }} />
+          <div className="Container-input-span">
+            <label className="Container-input-file" htmlFor="inputFileImagen">
+              Seleccionar archivo
+              <input id="inputFileImagen" className="Input-file-images" type="file" accept="image/png, image/jpeg" onChange={(e) => onChangeInputFile(e)} />
+            </label>
+            <span className="Span-message-file">{spanMessage}</span>
+          </div>
+
           <div className="Container-buttons-modal">
             <button className="Button-save-product" type="button" onClick={saveProduct}>Guardar</button>
             <button className="Button-cancel" type="button" onClick={cancelModal}>Cancelar</button>
@@ -181,14 +217,7 @@ export default function ProductsAdmin() {
             <button type="button" className="Button-add-product" onClick={addNewproduct}>Agregar Producto</button>
           </div>
           <div className="Container-select-table-products">
-            {/* <div className="Content-select">
-              <select name="select" className="Select-type-product">
-                <option className="Option-type-product" value="value1">Desayuno</option>
-                <option className="Option-type-product" value="value2">Almuerzo y cena</option>
-                <option className="Option-type-product" value="value3">Bebidas</option>
-              </select>
-            </div> */}
-            <Select className={hiddenSelect} options={options} onChange={selectionTypeProduct} defaultValue={{ label: 'Seleccione tipo de producto....', value: 'empty' }} />
+            <Select className={hiddenSelect} options={options} onChange={selectionTypeProduct} defaultValue={{ label: 'Tipo de producto....', value: 'empty' }} />
 
             <table className="Table-products">
               <thead>
@@ -228,7 +257,7 @@ export default function ProductsAdmin() {
 
           <div className="Background-buttons">
             <button className="Btn-delete-product" type="button">Eliminar</button>
-            <button className="Btn-update-product" type="button">Actualizar</button>
+            <button className="Btn-update-product" onClick={updateProduct} type="button">Actualizar</button>
           </div>
         </div>
       </div>

@@ -2,9 +2,13 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
+import Swal from 'sweetalert2';
 import Menu from '../PageView/Menu';
-import postOrders from '../Requests/__mocks__/requestApi';
-// import getProducts from '../Requests/requestApi';
+import { postOrders } from '../Requests/requestApi';
+
+// jest.mock('sweetalert2', () => ({
+//   fire: jest.fn().mockResolvedValue({ timer: 1500 }),
+// }));
 
 const mockNavigate = jest.fn();
 
@@ -15,7 +19,7 @@ jest.mock('react-router-dom', () => ({
   useNavigate: () => mockNavigate,
 }));
 
-// jest.mock('node-fetch', () => jest.fn());
+jest.mock('sweetalert2', () => jest.fn());
 
 describe('Componente Menu', () => {
   it('Debería existir el boton de opción de bebidas', () => {
@@ -121,14 +125,20 @@ describe('Componente Menu', () => {
   });
 
   // generar nueva orden
-  it('Debería generar una nueva orden correctamente', async () => {
+  it.only('Debería generar una nueva orden correctamente', async () => {
     render(<Menu />);
+
     const buttonBreakfast = screen.getByTestId('btn-breakfast');
     fireEvent.click(buttonBreakfast);
     // eslint-disable-next-line no-unused-vars
     const buttonAddProduct = await screen.findByTestId('btn-add-product-4');
+    fireEvent.click(buttonAddProduct);
     const btnNewOrder = screen.getByTestId('btn-send-order');
     screen.debug();
-    expect(postOrders).toHaveBeenCalled();
+    Swal.mockResolvedValue({ timer: 1500 });
+    postOrders()
+      .then(() => {
+        expect(Swal.fire).toHaveBeenCalled();
+      });
   });
 });

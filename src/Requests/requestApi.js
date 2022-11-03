@@ -92,4 +92,14 @@ export const postProducts = (token, productBody) => fetch('http://localhost:3001
   body: JSON.stringify(productBody),
 }).then((res) => res.json());
 
+// función para modificar producto
+export const putProducts = (productId, token, productBody) => fetch(`http://localhost:3001/products/${productId}`, {
+  method: 'PUT',
+  headers: {
+    'Content-Type': 'application/json',
+    authorization: `Bearer ${token}`,
+  },
+  body: JSON.stringify(productBody),
+}).then((res) => res.json());
+
 // https://bqapi.fakel.lol/users

@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 const jsonServer = require('json-server');
 
 const server = jsonServer.create();
@@ -90,6 +91,27 @@ server.post('/orders', async (req, res) => {
   order.id = orders.__wrapped__.orders.length + 1;
   await orders.push(order).write();
   res.status(201).jsonp(order);
+});
+
+server.post('/products', (req, res) => {
+  if (req.body.name === '' || req.body.price === 0) {
+    res.status(400).send('Name or price is null');
+    return;
+  }
+
+  const products = router.db.get('products');
+  // eslint-disable-next-line no-underscore-dangle
+  const productId = products.__wrapped__.products.length + 1;
+  const product = {
+    id: productId.toString(),
+    name: req.body.name,
+    price: req.body.price,
+    image: req.body.image,
+    type: req.body.type,
+    dateEntry: req.body.dateEntry,
+  };
+  products.push(product).write();
+  res.status(201).jsonp(product);
 });
 
 server.put('/orders/:id', async (req, res) => {

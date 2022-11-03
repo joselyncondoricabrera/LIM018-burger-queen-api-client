@@ -74,7 +74,7 @@
     .Select-library{
         display: flex;
         // position: relative;
-        width: 391px;
+        // width: 391px;
         margin-top: 31px;
         font-family: 'Poppins';
         font-style: normal;
@@ -230,15 +230,20 @@ line-height: 30px;
         justify-content: center;
         background-color: #FFFFFF;
         width:750px;
-        height:500px;
-        gap:20px;
+        height: 700px;
+        gap: 40px;
         border-radius:15px;
     }
     .Input-name-product, .Input-price-product{
         width: 600px;
         height: 50px;
-        // border:none;
         border-radius: 10px;
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 300;
+        font-size: 20px;
+        line-height: 30px;
+        padding-left: 20px;
     }
     .Input-name-product::placeholder, .Input-price-product::placeholder{
         font-family: "Poppins";
@@ -248,8 +253,38 @@ line-height: 30px;
         line-height: 30px;
 
     }
+    .Container-input-span{
+        display: flex;
+        align-items: center;
+        gap:20px;
+    }
+    .Container-input-file{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 250px;
+        height: 65px;
+        background-color: #38E54D;
+        border-radius: 10px;
+        text-align: center;
+
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 30px;
+        color: #FFFFFF;
+    }
     .Input-file-images{
-        width:600px;
+        display: none;
+        width: 200px;
+        height: 50px;
+        border: none;
+        // color: #FF9000;
+        // background-color: #FF9000;
+        opacity: 0;
+
     }
     .Container-buttons-modal{
         display: flex;
