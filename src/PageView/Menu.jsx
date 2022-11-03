@@ -110,7 +110,7 @@ export default function Menu() {
         }
         return prod;
       }));
-    } else setProductsOrder([...productsOrder, { ...product, quantity: 1 }]);
+    }
   };
 
   // eslint-disable-next-line no-unused-vars
@@ -205,7 +205,7 @@ export default function Menu() {
                     <td data-testid={`quantity-product-${product.id}`} className="Items-products-table">{product.quantity}</td>
                     <td data-testid={`price-product-${product.id}`} className="Items-products-table">{product.price}</td>
                     <td>
-                      <button className="Btn-delete-item-product" type="button" onClick={() => deleteItemProduct(product)}>
+                      <button data-testid={`delete-product-${product.id}`} className="Btn-delete-item-product" type="button" onClick={() => deleteItemProduct(product)}>
                         <img src={trashIcon} alt="button-delete" className="Image-button-delete" />
                       </button>
                     </td>
