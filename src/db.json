@@ -99,7 +99,7 @@
   ],
   "users": [
     {
-      "email": "mesero1@gmail.com",
+      "email": "mesero2@gmail.com",
       "password": "123456",
       "roles": {
         "admin": false,
@@ -115,33 +115,6 @@
         "chef": true
       },
       "id": 2
-    },
-    {
-      "email": "admin@gmail.com",
-      "password": "123456",
-      "roles": {
-        "admin": true,
-        "chef": false
-      },
-      "id": 3
-    },
-    {
-      "email": "nesero2@gmail.com",
-      "password": "123456",
-      "roles": {
-        "admin": false,
-        "chef": false
-      },
-      "id": 4
-    },
-    {
-      "email": "chef2@gmail.com",
-      "password": "123456",
-      "roles": {
-        "admin": false,
-        "chef": true
-      },
-      "id": 5
     }
   ],
   "orders": [

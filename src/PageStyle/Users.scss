@@ -167,16 +167,30 @@
         display:none;
     }
 
+    .Background-Modal-Users{
+        position: fixed;
+        display:flex;
+        flex-direction: column;
+        background-color: #c3c3c3cc;
+        height: 100vh;
+        width: 100vw;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .Background-Modal-Users-inactivated{
+        display:none;
+    }
+
     .Brackground-Form{
         display: flex;
         flex-direction: column;
-        width: 350px;
         align-items: center;
         justify-content: center;
         background: white;
         border-radius: 15px;
         padding: 30px;
-        width: 500px;
+        width: 550px;
         height: 550px;
         gap: 25px;
     }
@@ -186,5 +200,23 @@
         width: 300px;
         font-size: 23px;
     }
+
     
+
+    .Brackground-Modal-Delete {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: white;
+        border-radius: 15px;
+        width: 550px;
+        padding: 20px;
+        height: 370px;
+    }
+
+    .Modal-Delete-Text{
+        font-size: 23px;
+    }
+
 }

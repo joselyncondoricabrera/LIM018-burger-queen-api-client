@@ -15,7 +15,7 @@ export const loginUsers = (email, password) => {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(bodyData),
   })
-  // eslint-disable-next-line consistent-return
+    // eslint-disable-next-line consistent-return
     .then((resp) => {
       if (resp.status === 200) { return resp.json(); }
     });
@@ -82,14 +82,33 @@ export const getUsers = (token) => fetch('http://localhost:3001/users', {
   },
 }).then((res) => res.json());
 
+// función para guardar productos
+export const postProducts = (token, productBody) => fetch('http://localhost:3001/products', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    authorization: `Bearer ${token}`,
+  },
+  body: JSON.stringify(productBody),
+}).then((res) => res.json());
+
 // https://bqapi.fakel.lol/users
 
 // Función para actualizar ususarios
-export const updateUsers = (users, token, usersBodyUpdate) => fetch(`http://localhost:3001/users/${users.id}`, {
+export const updateUsers = (userSelection, token, usersBodyUpdate) => fetch(`http://localhost:3001/users/${userSelection}`, {
   method: 'PUT',
   headers: {
     'Content-Type': 'application/json',
     authorization: `Bearer ${token}`,
   },
   body: JSON.stringify(usersBodyUpdate),
+}).then((resp) => resp.json());
+
+// Función para eliminar un usuario
+export const deleteUser = (userSelection, token) => fetch(`http://localhost:3001/users/${userSelection}`, {
+  method: 'DELETE',
+  headers: {
+    'Content-Type': 'application/json',
+    authorization: `Bearer ${token}`,
+  },
 });
