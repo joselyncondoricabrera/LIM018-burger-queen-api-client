@@ -181,13 +181,6 @@ export default function ProductsAdmin() {
             <button type="button" className="Button-add-product" onClick={addNewproduct}>Agregar Producto</button>
           </div>
           <div className="Container-select-table-products">
-            {/* <div className="Content-select">
-              <select name="select" className="Select-type-product">
-                <option className="Option-type-product" value="value1">Desayuno</option>
-                <option className="Option-type-product" value="value2">Almuerzo y cena</option>
-                <option className="Option-type-product" value="value3">Bebidas</option>
-              </select>
-            </div> */}
             <Select className={hiddenSelect} options={options} onChange={selectionTypeProduct} defaultValue={{ label: 'Seleccione tipo de producto....', value: 'empty' }} />
 
             <table className="Table-products">

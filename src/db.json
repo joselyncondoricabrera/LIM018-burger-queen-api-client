@@ -99,7 +99,7 @@
   ],
   "users": [
     {
-      "email": "mesero1@gmail.com",
+      "email": "mesero2@gmail.com",
       "password": "123456",
       "roles": {
         "admin": false,
@@ -115,105 +115,6 @@
         "chef": true
       },
       "id": 2
-    },
-    {
-      "email": "admin@gmail.com",
-      "password": "123456",
-      "roles": {
-        "admin": true,
-        "chef": false
-      },
-      "id": 3
-    },
-    {
-      "email": "nesero2@gmail.com",
-      "password": "123456",
-      "roles": {
-        "admin": false,
-        "chef": false
-      },
-      "id": 4
-    },
-    {
-      "email": "chef2@gmail.com",
-      "password": "123456",
-      "roles": {
-        "admin": false,
-        "chef": true
-      },
-      "id": 5
-    },
-    {
-      "email": "liseth.lira.123@gmail.com",
-      "password": "123456",
-      "roles": {
-        "admin": true,
-        "chef": false
-      },
-      "id": 6
-    },
-    {
-      "email": "mesero3@gmail.com",
-      "password": "123456",
-      "roles": {
-        "admin": false,
-        "chef": false
-      },
-      "id": 7
-    },
-    {
-      "email": "admin3@gmail.com",
-      "password": "123456",
-      "roles": {
-        "admin": true,
-        "chef": false
-      },
-      "id": 8
-    },
-    {
-      "email": "mesero4@gmail.com",
-      "password": "123456",
-      "roles": {
-        "admin": false,
-        "chef": true
-      },
-      "id": 9
-    },
-    {
-      "email": "holamundo",
-      "password": "123456",
-      "roles": {
-        "admin": true,
-        "chef": false
-      },
-      "id": 10
-    },
-    {
-      "email": "holamundito",
-      "password": "123456",
-      "roles": {
-        "admin": false,
-        "chef": false
-      },
-      "id": 11
-    },
-    {
-      "email": "holacocinero",
-      "password": "123456",
-      "roles": {
-        "admin": false,
-        "chef": true
-      },
-      "id": 12
-    },
-    {
-      "email": "cheff500@gmail.com",
-      "password": "123456",
-      "roles": {
-        "admin": false,
-        "chef": true
-      },
-      "id": 13
     }
   ],
   "orders": [

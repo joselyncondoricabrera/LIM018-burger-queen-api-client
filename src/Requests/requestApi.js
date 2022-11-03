@@ -93,3 +93,22 @@ export const postProducts = (token, productBody) => fetch('http://localhost:3001
 }).then((res) => res.json());
 
 // https://bqapi.fakel.lol/users
+
+// Función para actualizar ususarios
+export const updateUsers = (userSelection, token, usersBodyUpdate) => fetch(`http://localhost:3001/users/${userSelection}`, {
+  method: 'PUT',
+  headers: {
+    'Content-Type': 'application/json',
+    authorization: `Bearer ${token}`,
+  },
+  body: JSON.stringify(usersBodyUpdate),
+}).then((resp) => resp.json());
+
+// Función para eliminar un usuario
+export const deleteUser = (userSelection, token) => fetch(`http://localhost:3001/users/${userSelection}`, {
+  method: 'DELETE',
+  headers: {
+    'Content-Type': 'application/json',
+    authorization: `Bearer ${token}`,
+  },
+});
