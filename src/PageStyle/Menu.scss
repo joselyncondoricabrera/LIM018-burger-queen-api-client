@@ -1,20 +1,15 @@
-@media (max-width: 1366px){
 .Background-menu{
     background-color: black;
-    background-attachment: scroll;
     height: 100vh;
     width: 100vw;
 }
 
 .Background-image{
     background-image: url("../imagen/background-menu.png");
-    background-attachment: scroll;
-    height: calc(100% - 163px);
-    box-shadow: 0px -8px 43px 4px rgba(255, 255, 255, 0.2);
-    padding: 30px;
-    display: flex;
-    justify-content: center;
-    // padding-top:0px;
+    height: calc(100% - 61px);
+    box-shadow: -1px 0px 20px 4px rgb(255 255 255 / 20%);
+    margin-top: 25px;
+    background-size: cover;
 }
 
 .Module-inactivated, .Btn-logOut{
@@ -22,66 +17,66 @@
     border-bottom: 1px solid #FFFFFF;
     margin-top:25px;
     width: 197px;
-    height: 76px;
+    height: 36px;
     background: none;
     font-family: 'Poppins';
     font-weight: 700;
-    font-size: 32px;
+    font-size: 20px;
     color: white;
+    // display: flex;
+    // align-items: center;
+}
+.Container-navbar{
+    height:36px;
 }
 
 
 .Module-activated {
     border:none; 
     border-bottom: 5px solid #FFFFFF;
-    margin-top:25px;
+    // margin-top:15px;
     width: 197px;
-    height: 76px;
+    height: 36px;
     background: none;
     font-family: 'Poppins';
     font-weight: 700;
-    font-size: 32px;
+    font-size: 20px;
     color: white;
+//     display: flex;
+//     align-items: center;
 }
-// .Module-orders:focus{
-//     border-bottom: 5px solid #FFFFFF;
-// }
+
 .Module-activated:focus{
     border-bottom: 5px solid #FFFFFF;
 }
-// .Btn-logOut{
-//     border-bottom: 1px solid #FFFFFF;
-// }
 
 .Menu-options{
-    width: 250px;
-    height: 70px;
+    width: 150px;
+    height: 50px;
     border:none;
     background: #FFFFFF;
-    border-radius: 20px;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     text-align: center;
     justify-content: center;
     font-family: 'Poppins';
-    font-weight: 600;
-    font-size: 23px;
+    font-weight: 500;
+    font-size: 14px;
     text-transform: uppercase;
     color: black;
 }
 .Menu-options-container{
     transform: rotate(-90deg);
     position: fixed;
-    left: -270px;
+    left: -130px;
     gap: 20px;
-    // top: 550px;
     font-family: 'Poppins';
     font-weight: 600;
-    font-size: 26px;
+    font-size: 20px;
     display: flex;
     text-transform: uppercase;
     color: rgb(31, 31, 31);
-    // margin-top: -40px;
     margin-left: -50px;
 }
 .Container-all-menu{
@@ -103,11 +98,9 @@
 }
 .Order-table-container{
     width: 500px;
-    height: 759px;
-
+    height: 459px;
     background: #FFFFFF;
     border-radius: 20px;
-
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -175,7 +168,7 @@
     flex-wrap: wrap;
     column-gap: 30px;
     justify-content: center;
-    width: 620px;
+    width: 520px;
     margin-left: 100px;
     row-gap: 20px;
     align-items: center;
@@ -185,13 +178,13 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    height: 350px;
-    width: 250px;
+    height: 200px;
+    width: 150px;
 }
 .Price-product{
     position: absolute;
-    height: 33px;
-    width: 70px;
+    height: 20px;
+    width: 40px;
     margin: 0;
     text-align: center;
     color: #FFFFFF;
@@ -199,60 +192,66 @@
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 520;
-    font-size: 20px;
-    border-radius: 0px 0px 10px 10px;
+    font-size: 12px;
+    border-radius: 0px 0px 8px 8px;
 }
 .Image-product{
-    width: 250px;
-    height: 240px;
+    width: 150px;
+    height:160px;
     background-color: #FFFFFF;
     border-radius: 20px 20px 0px 0px;
     display: block;
+    object-fit: cover;
+
 }
 .Image-menu-name{
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    height: 70px;
+    height: 30px;
     background: white;
 }
 .Btn-cantidad-plus{
-    width: 52px;
-    height: 70px;
+    width: 50px;
+    height: 35px;
     background: #FF9409;
     border-radius: 0px 0px 0px 20px;
     color: #FFFFFF;
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 600;
-    font-size: 40px;
-    line-height: 25px;
+    font-size: 28px;
+    line-height: 20px;
     border:none;
 
 }
 .Name-product{
     width: 150px;
+    height: 35px;
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 600;
-    font-size: 17px;
-    line-height: 25px;
+    font-size: 10px;
+    line-height: 18px;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border: none;
     background: white;
 }
 .Btn-cantidad-minus{
-    width: 52px;
-    height: 70px;
+    width: 50px;
+    height: 35px;
     background: #FF9409;
     border-radius: 0px 0px 20px 0px;
     color: #FFFFFF;
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 600;
-    font-size: 40px;
-    line-height: 25px;
+    font-size: 28px;
+    line-height: 20px;
     border:none;
 }
 .Btn-delete-item-product{
@@ -281,19 +280,317 @@
     margin: 15px 0;
 }
 .Change-style-activated-button{
-    width: 250px;
-    height: 70px;
+    width: 150px;
+    height: 50px;
     border:none;
-    border-radius: 20px;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     text-align: center;
     justify-content: center;
     font-family: 'Poppins';
     font-weight: 600;
-    font-size: 23px;
+    font-size: 14px;
     text-transform: uppercase;
     color: #FFFFFF;
     background-color:#FF9409;
 }
-}
+
+
+
+
+// modo tablet
+// @media (max-width: 1194px){
+// .Background-menu{
+//     background-color: black;
+//     background-attachment: scroll;
+//     height: 100vh;
+//     width: 100vw;
+// }
+
+// .Background-image{
+//     background-image: url("../imagen/background-menu.png");
+//     background-attachment: scroll;
+//     height: calc(100% - 163px);
+//     box-shadow: 0px -8px 43px 4px rgba(255, 255, 255, 0.2);
+//     padding: 30px;
+//     display: flex;
+//     justify-content: center;
+//     // padding-top:0px;
+// }
+
+// .Module-inactivated, .Btn-logOut{
+//     border: none;
+//     border-bottom: 1px solid #FFFFFF;
+//     margin-top:25px;
+//     width: 197px;
+//     height: 76px;
+//     background: none;
+//     font-family: 'Poppins';
+//     font-weight: 700;
+//     font-size: 32px;
+//     color: white;
+// }
+
+
+// .Module-activated {
+//     border:none; 
+//     border-bottom: 5px solid #FFFFFF;
+//     margin-top:25px;
+//     width: 197px;
+//     height: 26px;
+//     background: none;
+//     font-family: 'Poppins';
+//     font-weight: 700;
+//     font-size: 32px;
+//     color: white;
+// }
+
+// .Module-activated:focus{
+//     border-bottom: 5px solid #FFFFFF;
+// }
+
+// .Menu-options{
+//     width: 250px;
+//     height: 70px;
+//     border:none;
+//     background: #FFFFFF;
+//     border-radius: 20px;
+//     display: flex;
+//     align-items: center;
+//     text-align: center;
+//     justify-content: center;
+//     font-family: 'Poppins';
+//     font-weight: 600;
+//     font-size: 23px;
+//     text-transform: uppercase;
+//     color: black;
+// }
+// .Menu-options-container{
+//     transform: rotate(-90deg);
+//     position: fixed;
+//     left: -270px;
+//     gap: 20px;
+//     // top: 550px;
+//     font-family: 'Poppins';
+//     font-weight: 600;
+//     font-size: 26px;
+//     display: flex;
+//     text-transform: uppercase;
+//     color: rgb(31, 31, 31);
+//     // margin-top: -40px;
+//     margin-left: -50px;
+// }
+// .Container-all-menu{
+//     display: flex;
+//     align-items: center;
+// }
+// .Each-image{
+//     display: flex;
+//     flex-wrap: wrap;
+//     width: 80%;
+//     gap: 30px;
+//     margin-left: 140px;
+// }
+// .Image-menu-name{
+//     width: 332px;
+//     height: 95px;
+//     background: rgba(255, 255, 255, 0.9);
+//     border-radius: 0px 0px 20px 20px;
+// }
+// .Order-table-container{
+//     width: 500px;
+//     height: 759px;
+
+//     background: #FFFFFF;
+//     border-radius: 20px;
+
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+// }
+
+// .Client-name{
+//     margin-top: 60px;
+//     height: 25px;
+//     width: 250px;
+//     font-size: 20px;
+//     border-top: none;
+//     border-left: none;
+//     border-right: none;
+//     text-align: center;
+//     outline: none;
+// }
+
+// .Client-name::placeholder{
+//     font-size: 20px;
+// }
+
+// .Client{
+//     font-family: 'Poppins';
+//     font-weight: 600;
+//     font-size: 25px;
+//     height: 20px;
+//     margin: 30px;
+// }
+
+// .Table-order{
+//     // border: solid 1px black;
+//     font-family: 'Poppins';
+//     font-weight: 500;
+//     font-size: 20px;
+//     text-align: center;
+//     margin: 0px 30px;
+// }
+// .Row-head th{
+//     width: 120px;
+
+// }
+// .Row-body{
+//     display: flex;
+//     height: 30px;
+//     justify-content: center;
+//     align-items: center;
+//     text-align: center;
+
+// }
+// .Items-products-table{
+//     width: 140px;
+//     height: 50px;
+//     text-align: center;
+// }
+// .Name-items-product{
+//     width: 300px;
+//     height: 50px;
+//     text-align: left;
+// }
+
+
+// // css para menu catalogo de productos
+// .Image-products-container{
+//     display: flex;
+//     flex-wrap: wrap;
+//     column-gap: 30px;
+//     justify-content: center;
+//     width: 620px;
+//     margin-left: 100px;
+//     row-gap: 20px;
+//     align-items: center;
+//     padding: 50px;
+// }
+// .product-card{
+//     display: flex;
+//     align-items: center;
+//     flex-direction: column;
+//     height: 350px;
+//     width: 250px;
+// }
+// .Price-product{
+//     position: absolute;
+//     height: 33px;
+//     width: 70px;
+//     margin: 0;
+//     text-align: center;
+//     color: #FFFFFF;
+//     background-color: red;
+//     font-family: 'Poppins';
+//     font-style: normal;
+//     font-weight: 520;
+//     font-size: 20px;
+//     border-radius: 0px 0px 10px 10px;
+// }
+// .Image-product{
+//     width: 250px;
+//     height: 240px;
+//     background-color: #FFFFFF;
+//     border-radius: 20px 20px 0px 0px;
+//     display: block;
+// }
+// .Image-menu-name{
+//     display: flex;
+//     justify-content: space-between;
+//     align-items: center;
+//     width: 100%;
+//     height: 70px;
+//     background: white;
+// }
+// .Btn-cantidad-plus{
+//     width: 52px;
+//     height: 70px;
+//     background: #FF9409;
+//     border-radius: 0px 0px 0px 20px;
+//     color: #FFFFFF;
+//     font-family: 'Poppins';
+//     font-style: normal;
+//     font-weight: 600;
+//     font-size: 40px;
+//     line-height: 25px;
+//     border:none;
+
+// }
+// .Name-product{
+//     width: 150px;
+//     font-family: 'Poppins';
+//     font-style: normal;
+//     font-weight: 600;
+//     font-size: 17px;
+//     line-height: 25px;
+//     text-align: center;
+//     border: none;
+//     background: white;
+// }
+// .Btn-cantidad-minus{
+//     width: 52px;
+//     height: 70px;
+//     background: #FF9409;
+//     border-radius: 0px 0px 20px 0px;
+//     color: #FFFFFF;
+//     font-family: 'Poppins';
+//     font-style: normal;
+//     font-weight: 600;
+//     font-size: 40px;
+//     line-height: 25px;
+//     border:none;
+// }
+// .Btn-delete-item-product{
+//     border:none;
+//     background-color: #FFFFFF;
+// }
+// .Image-button-delete{
+//     height: 25px;
+//     width: 25px;
+// }
+// .Btn-send-order{
+//     width: 230px;
+//     height: 56px;
+//     left: 124px;
+//     top: 665px;
+//     background: #FF9000;
+//     box-shadow: 2px 4px 9px rgba(173, 173, 173, 0.54);
+//     border-radius: 15px;
+//     border: none;
+//     font-family: 'Poppins';
+//     font-style: normal;
+//     font-weight: 600;
+//     font-size: 22px;
+//     line-height: 33px;
+//     color: #FFFFFF;
+//     margin: 15px 0;
+// }
+// .Change-style-activated-button{
+//     width: 250px;
+//     height: 70px;
+//     border:none;
+//     border-radius: 20px;
+//     display: flex;
+//     align-items: center;
+//     text-align: center;
+//     justify-content: center;
+//     font-family: 'Poppins';
+//     font-weight: 600;
+//     font-size: 23px;
+//     text-transform: uppercase;
+//     color: #FFFFFF;
+//     background-color:#FF9409;
+// }
+// }

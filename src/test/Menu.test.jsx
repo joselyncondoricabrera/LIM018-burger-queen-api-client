@@ -1,24 +1,26 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import {
+  render, screen, fireEvent, waitFor,
+} from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
 import Swal from 'sweetalert2';
 import Menu from '../PageView/Menu';
 import { postOrders } from '../Requests/requestApi';
 
 // import getProducts from '../Requests/requestApi';
-// const { Buffer } = require('buffer/');
+const { Buffer } = require('buffer/');
 
 const mockNavigate = jest.fn();
 
-jest.mock('../Requests/requestApi.js');
+// jest.mock('../Requests/requestApi.js');
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
   useNavigate: () => mockNavigate,
 }));
 
-jest.mock('sweetalert2', () => jest.fn());
+// jest.mock('sweetalert2', () => jest.fn());
 
 describe('Componente Menu', () => {
   it('Debería existir el boton de opción de bebidas', () => {
@@ -198,42 +200,30 @@ describe('Componente Menu', () => {
 
   // FALTAAA
 
-  // it('Debería generar un mensaje de notificación cuando la orden fue enviada', async () => {
-  //   render(<Menu />);
-  //   const buttonBreakfast = screen.getByTestId('btn-breakfast');
-  //   fireEvent.click(buttonBreakfast);
-  //   const inputNameClient = screen.getByTestId('input-name-client');
-  //   fireEvent.change(inputNameClient, { target: { value: 'Nino' } });
-  //   const buttonAddProduct = await screen.findByTestId('btn-add-product-4');
-  //   fireEvent.click(buttonAddProduct);
-  //   const tdTableNameProduct = screen.getByTestId('name-product-4');
-  //   // console.log(tdTableNameProduct.textContent);
-  //   const tdTableQtyProduct = screen.getByTestId('quantity-product-4');
-  //   // console.log(tdTableQtyProduct.textContent);
-  //   const tdTablePriceProduct = screen.getByTestId('price-product-4');
-  //   // console.log(tdTablePriceProduct.textContent);
-  //   // eslint-disable-next-line no-unused-vars
-  //   const btnNewOrder = screen.getByTestId('btn-send-order');
-  //   fireEvent.click(btnNewOrder);
-  //   const orderData = {
-  //     userId: '1',
-  //     client: inputNameClient.textContent,
-  //     products: [
-  //       {
-  //         name: tdTableNameProduct.textContent,
-  //         productId: 4,
-  //         qty: tdTableQtyProduct.textContent,
-  //       },
-  //     ],
-  //   };
-  //   // expect(postOrders).toHaveBeenCalled();
-  //   // expect(Swal.getIcon()).toEqual('succes');
-  //   // eslint-disable-next-line max-len
-  //   postOrders(orderData)
-  //     .then(() => {
-  //       expect(Swal.getTitle().textContent).toEqual('Orden enviada a cocina');
-  //     })
-  //     .catch((error) => console.log('AQUI ESTA EL ERROR', error));
-  //   // console.log(Swal.getTitle().textContent);
-  // });
+  it.only('Debería generar un mensaje de notificación cuando la orden fue enviada', async () => {
+    render(<Menu />);
+    const buttonBreakfast = screen.getByTestId('btn-breakfast');
+    fireEvent.click(buttonBreakfast);
+    const inputNameClient = screen.getByTestId('input-name-client');
+    fireEvent.change(inputNameClient, { target: { value: 'Nino' } });
+    const buttonAddProduct = await screen.findByTestId('btn-add-product-4');
+    fireEvent.click(buttonAddProduct);
+    const tdTableNameProduct = screen.getByTestId('name-product-4');
+    // console.log(tdTableNameProduct.textContent);
+    const tdTableQtyProduct = screen.getByTestId('quantity-product-4');
+    // console.log(tdTableQtyProduct.textContent);
+    const tdTablePriceProduct = screen.getByTestId('price-product-4');
+    // console.log(tdTablePriceProduct.textContent);
+    // eslint-disable-next-line no-unused-vars
+    const btnNewOrder = screen.getByTestId('btn-send-order');
+    fireEvent.click(btnNewOrder);
+    await waitFor(() => {
+      expect(screen.getByText('Orden enviada a cocina')).toBeInTheDocument();
+    });
+
+    // expect(postOrders).toHaveBeenCalled();
+    // expect(Swal.getIcon()).toEqual('succes');
+    // eslint-disable-next-line max-len
+    // console.log(Swal.getTitle().textContent);
+  });
 });

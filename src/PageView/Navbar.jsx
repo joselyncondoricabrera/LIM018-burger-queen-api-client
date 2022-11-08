@@ -24,7 +24,7 @@ export default function NavBar() {
   };
 
   return (
-    <div>
+    <div className="Container-navbar">
       <button type="button" className={moduleMenu} onClick={() => changeModuleMenu()}>Menú</button>
       <button type="button" className={moduleOrders} onClick={(e) => changeModuleOrders(e)}>Ordenes</button>
       <button type="button" className="Btn-logOut" onClick={() => { navigate('/'); }}>Salir</button>
