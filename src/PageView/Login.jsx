@@ -19,11 +19,11 @@ export default function Login() {
 
   const onClickLogin = () => {
     if (email.length === 0) {
-      setEmailMessage('casilla vacía');
+      setEmailMessage('Ingrese un correo electrónico');
     } if (password.length === 0) {
-      setPasswordMessage('casilla vacía');
+      setPasswordMessage('Ingrese una contraseña');
     } else if (regexEmail.test(email) === false && email.length !== 0) {
-      setEmailMessage('correo inválido');
+      setEmailMessage('Correo inválido');
     } else {
       loginUsers(email, password)
         .then((response) => {
@@ -64,23 +64,23 @@ export default function Login() {
         <div>
           <div className="Form-input">
             <img src={emailIcon} className="Icon-login" alt="logo" />
-            <input type="email" data-testid="input-email" onChange={(e) => onAddEmail(e)} className="Input-login" placeholder="ingrese email" />
+            <input type="email" data-testid="input-email" onChange={(e) => onAddEmail(e)} className="Input-login" placeholder="Correo electrónico" />
             {/* {(/\S+@\S+\.\S+/g).test(email) === false ? <span>correo invalido</span> : <span> </span> } */}
           </div>
-          <span data-testid="spanMessage">{emailMessage}</span>
+          <span data-testid="spanMessage" className="Span-notification">{emailMessage}</span>
         </div>
 
         <div>
           <div className="Form-input">
             <img src={passwordIcon} className="Icon-login" alt="logo" />
-            <input type="password" data-testid="input-password" onChange={(e) => onAddPassword(e)} className="Input-login" placeholder="ingrese contraseña" />
+            <input type="password" data-testid="input-password" onChange={(e) => onAddPassword(e)} className="Input-login" placeholder="Contraseña" />
           </div>
-          <span data-testid="span-error">{passwordMessage}</span>
+          <span data-testid="span-error" className="Span-notification">{passwordMessage}</span>
         </div>
 
         <button data-testid="btnLogin" className="Button-login" type="button" onClick={() => onClickLogin()}>
           {/* <p className="Text-button">Iniciar Sesión</p> */}
-          Iniciar Sesión
+          Ingresar
         </button>
       </div>
     </div>

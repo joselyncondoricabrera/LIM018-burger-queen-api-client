@@ -115,59 +115,68 @@
         "chef": true
       },
       "id": 2
+    },
+    {
+      "email": "gaby@gmail.com",
+      "password": "356548569",
+      "roles": {
+        "admin": false,
+        "chef": true
+      },
+      "id": 3
     }
   ],
   "orders": [
     {
       "userId": "1",
-      "client": "Sandra",
+      "client": "luz",
       "products": [
         {
-          "name": "Café con leche",
-          "productId": "2",
+          "name": "Café americano",
+          "productId": "1",
+          "qty": 1
+        },
+        {
+          "name": "Sandwich de jamón y queso",
+          "productId": "3",
           "qty": 1
         }
       ],
       "status": "delivered",
-      "dateEntry": "2022-10-25T13:21:36.035Z",
+      "dateEntry": "2022-11-07T19:52:06.396Z",
       "id": 1
     },
     {
       "userId": "1",
-      "client": "Katy",
+      "client": "juan",
       "products": [
+        {
+          "name": "Café americano",
+          "productId": "1",
+          "qty": 3
+        },
         {
           "name": "Café con leche",
           "productId": "2",
           "qty": 1
-        },
-        {
-          "name": "Café americano",
-          "productId": "1",
-          "qty": 2
         }
       ],
-      "status": "delivering",
-      "dateEntry": "2022-10-25T13:23:08.303Z",
+      "status": "pending",
+      "dateEntry": "2022-11-07T20:00:13.211Z",
       "id": 2
     },
     {
       "userId": "1",
-      "client": "Gaby",
+      "client": "miguel",
       "products": [
-        {
-          "name": "Café con leche",
-          "productId": "2",
-          "qty": 1
-        },
         {
           "name": "Café americano",
           "productId": "1",
-          "qty": 2
+          "qty": 1
         }
       ],
       "status": "pending",
-      "dateEntry": "2022-10-25T13:34:12.060Z",
+      "dateEntry": "2022-11-07T22:38:26.559Z",
       "id": 3
     }
   ]
