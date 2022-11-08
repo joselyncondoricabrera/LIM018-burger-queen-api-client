@@ -90,11 +90,26 @@ body{
 }
 .Background-login{
   height: 100vh;
-  background-image:  url("./imagen/background-burguer-queen.png");
+  background-image:  url("./imagen/burguer-background.png");
   background-size:cover;
   display: flex;
   align-items: center;
   justify-content: flex-end;
+}
+
+.Form-login {
+  display: flex;
+  justify-content: center;
+  font-family: 'Poppins';
+  align-items: center;
+  flex-direction: column;
+  font-size: 23px;
+  gap: 50px;
+  color: white;
+  background: linear-gradient(180.16deg, rgba(0, 0, 0, 0.9) 0.14%, rgba(0, 0, 0, 0.676343) 77.66%, rgba(0, 0, 0, 0.177372) 132.18%, rgba(0, 0, 0, 0) 180.12%);
+  background-blend-mode: luminosity;
+  height: 100vh;
+  width: 483px;
 }
 
 // estilos para tablet
