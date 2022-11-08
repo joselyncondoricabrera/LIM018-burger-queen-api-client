@@ -200,7 +200,7 @@ export default function Menu() {
               <tbody>
                 {productsOrder.map((product) => (
                   // eslint-disable-next-line react/no-array-index-key
-                  <tr key={product.id}>
+                  <tr key={product.id} className="Row-body">
                     <td data-testid={`name-product-${product.id}`} className="Name-items-product">{product.name}</td>
                     <td data-testid={`quantity-product-${product.id}`} className="Items-products-table">{product.quantity}</td>
                     <td data-testid={`price-product-${product.id}`} className="Items-products-table">{product.price}</td>
@@ -214,7 +214,7 @@ export default function Menu() {
                 <tr>
                   <td> </td>
                   <th className="Items-products-table">total</th>
-                  <td className="Items-products-table">{totalAmount}</td>
+                  <td className="Items-products-table">{`S/${totalAmount}.0`}</td>
                 </tr>
               </tbody>
             </table>
