@@ -91,7 +91,7 @@ export default function Orders() {
           {ordersByStatus.map((order) => (
             <div key={order.id} className="Order-card">
               <h1 className="Client-name-order">{order.client}</h1>
-              <table className="Table-order">
+              <table className="Table-order-card">
                 <thead>
                   <tr className="Row-head">
                     <th className="Items-products-table">Producto</th>
