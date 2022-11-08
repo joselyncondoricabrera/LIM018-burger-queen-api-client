@@ -13,6 +13,8 @@ export default function Orders() {
   const [stylePending, setStylePending] = useState('Btn-pending-activated');
   const [stylePrepared, setStylePrepared] = useState('Btn-delivering');
   const [styleDelivered, setStyleDelivered] = useState('Btn-delivered');
+  // const [propStyleMenu, setPropStyleMenu] = useState('Module-inactived');
+  // const [propStyleOrden, setPropStyleOrden] = useState('');
 
   const putStatusOrder = (order) => {
     const orderBodyUpdate = {
@@ -77,7 +79,7 @@ export default function Orders() {
 
   return (
     <div className="Background-menu">
-      <NavBar />
+      <NavBar estilosMenu="Module-inactivated" estilosOrden="Module-activated" />
       <div className="Background-image-orders">
         <div className="Order-status-nav">
           <button className={stylePending} type="button" onClick={() => onclickStatusPending()}>Pendiente</button>
