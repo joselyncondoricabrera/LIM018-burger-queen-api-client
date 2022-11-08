@@ -161,7 +161,7 @@
           "qty": 1
         }
       ],
-      "status": "pending",
+      "status": "delivering",
       "dateEntry": "2022-11-07T20:00:13.211Z",
       "id": 2
     },
@@ -175,7 +175,7 @@
           "qty": 1
         }
       ],
-      "status": "pending",
+      "status": "delivering",
       "dateEntry": "2022-11-07T22:38:26.559Z",
       "id": 3
     },
@@ -189,7 +189,7 @@
           "qty": 1
         }
       ],
-      "status": "pending",
+      "status": "delivering",
       "dateEntry": "2022-11-08T15:17:24.144Z",
       "id": 4
     },
@@ -203,7 +203,7 @@
           "qty": 1
         }
       ],
-      "status": "pending",
+      "status": "delivering",
       "dateEntry": "2022-11-08T16:23:00.125Z",
       "id": 5
     },
