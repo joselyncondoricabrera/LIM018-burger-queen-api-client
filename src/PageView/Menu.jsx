@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../PageStyle/Menu.scss';
 import Swal from 'sweetalert2';
 import NavBar from './Navbar';
@@ -12,11 +13,12 @@ export default function Menu() {
   const [productsOrder, setProductsOrder] = useState([]);
   const [optionProducts, setOptionProducts] = useState('Desayuno');
   const [nameClient, setNameClient] = useState('');
-  // cambiar estilo a los botones de opcion segun tipo
   const [styleTypeDrinks, setStyleTypeDrinks] = useState('Menu-options');
   const [styleTypeBreakfast, setStyleTypeBreakfast] = useState('Change-style-activated-button');
   const [styleTypeLunchDinner, setstyleTypeLunchDinner] = useState('Menu-options');
   const inputClientName = useRef('');
+
+  const navigate = useNavigate();
 
   const token = sessionStorage.getItem('token');
   function parseJwt(jwt) {
@@ -63,6 +65,9 @@ export default function Menu() {
             showConfirmButton: false,
             timer: 1500,
           });
+          navigate('/Orders');
+          // setPropStyleOrden('Module-activated');
+          // setPropStyleMenu('Module-inactivated');
         });
     }
   };
@@ -153,7 +158,7 @@ export default function Menu() {
 
   return (
     <div className="Background-menu">
-      <NavBar />
+      <NavBar estilosMenu="Module-activated" estilosOrden="Module-inactivated" />
       <div className="Background-image">
         <div className="Container-all-menu">
 
