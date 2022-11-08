@@ -1,9 +1,8 @@
-@media (max-width: 1366px){
+// @media (max-width: 1366px){
 .Background-image-orders{
     background-image: url("../imagen/background-menu.png");
-    background-attachment: scroll;
     height: calc(100% - 110px);
-    box-shadow: 0px -8px 43px 4px rgba(255, 255, 255, 0.2);
+    box-shadow: -1px -0px 43px 4px rgba(255, 255, 255, 0.2);
     padding: 0px;
 }
 
@@ -12,92 +11,48 @@
     justify-content: flex-end;
     margin-bottom: 70px;
 }
-.Btn-pending{
-    width: 268px;
-    height: 68px;
-    background: #FF0000;
-    border-radius: 0px 0px 15px 15px;
+.Btn-pending, .Btn-delivering, .Btn-delivered{
+    width: 180px;
+    height: 48px;
+    border-radius: 0px 0px 10px 10px;
     color: white;
     font-family: 'Poppins';
     font-weight: 600;
-    font-size: 25px;
+    font-size: 15px;
     border: none;
+}
+
+.Btn-pending{
+    background: #FF0000;
 }
 
 .Btn-delivering{
-    width: 268px;
-    height: 68px;
     background: #38E54D;
-    border-radius: 0px 0px 15px 15px;
-    color: white;
-    font-family: 'Poppins';
-    font-weight: 600;
-    font-size: 25px;
 }
 
 .Btn-delivered{
-    width: 268px;
-    height: 68px;
     background: #FF9409;
-    border-radius: 0px 0px 15px 15px;
-    color: white;
-    font-family: 'Poppins';
-    font-weight: 600;
-    font-size: 25px;
 }
-.Btn-pending-activated{
-    height: 95px;
-    width: 268px;
-    background: #FF0000;
-    border-radius: 0px 0px 15px 15px;
+.Btn-pending-activated, .Btn-delivering-activated, .Btn-delivered-activated{
+    height: 60px;
+    width: 180px;
+    border-radius: 0px 0px 10px 10px;
     color: white;
     font-family: 'Poppins';
     font-weight: 600;
-    font-size: 25px;
+    font-size: 15px;
     border: none;
 }
+
+.Btn-pending-activated{
+    background: #FF0000;
+}
+
 .Btn-delivering-activated{
-    height: 95px;
-    width: 268px;
     background: #38E54D;
-    border-radius: 0px 0px 15px 15px;
-    color: white;
-    font-family: 'Poppins';
-    font-weight: 600;
-    font-size: 25px;
 }
 .Btn-delivered-activated{
-    height: 95px;
-    width: 268px;
     background: #FF9409;
-    border-radius: 0px 0px 15px 15px;
-    color: white;
-    font-family: 'Poppins';
-    font-weight: 600;
-    font-size: 25px;
-}
-
-.Order-card{
-    width: 350px;
-    height: 450px;
-    padding: 20px;
-    background: white;
-    border-radius: 37px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.Client-name-order{
-    display: flex;
-    font-family: "Poppins";
-    font-weight: 700;
-    font-size: 24px;
-    text-align: center;
-    justify-content: center;
-    width: 100%;
-    margin: 20px;
-    text-transform: capitalize;
 }
 
 .Orders-container{
@@ -107,18 +62,50 @@
     justify-content: center;
 }
 
+.Order-card{
+    width: 180px;
+    height: 230px;
+    padding: 20px;
+    background: white;
+    border-radius: 18px;
+    font-family: "Poppins";
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Client-name-order{
+    display: flex;
+    //font-family: "Poppins";
+    font-weight: 700;
+    font-size: 15px;
+    text-align: center;
+    justify-content: center;
+    width: 100%;
+    margin: 10px;
+    text-transform: capitalize;
+}
+
+.Table-order{
+    font-family: 'Poppins';
+    font-weight: 500;
+    font-size: 10px;
+    text-align: center;
+    margin: 0px 30px;
+}
+
 .Btn-Card-Waiter-Deliver, .Btn-Card-Chef-Ready{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 195px;
-    height: 59px;
+    width: 125px;
+    height: 35px;
     box-shadow: 2px 4px 9px rgb(173 173 173 / 54%);
     border-radius: 15px;
     border: none;
     font-family: 'Poppins';
     font-weight: 600;
-    font-size: 25px;
+    font-size: 15px;
     color: #ffffff;
     margin-top: 25px;
 }
@@ -155,4 +142,4 @@ display: none;
     display: none;
 }
 
-}
+// }
