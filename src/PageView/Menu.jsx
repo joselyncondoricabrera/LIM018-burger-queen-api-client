@@ -173,7 +173,7 @@ export default function Menu() {
               // eslint-disable-next-line react/no-array-index-key
               <div key={product.id} className="product-card">
                 <h1 className="Price-product">
-                  $
+                  s/
                   {product.price}
                 </h1>
                 <picture className="Image">

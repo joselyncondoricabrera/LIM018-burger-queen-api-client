@@ -290,6 +290,25 @@
       "status": "pending",
       "dateEntry": "2022-11-08T16:43:30.744Z",
       "id": 11
+    },
+    {
+      "userId": "1",
+      "client": "jossy",
+      "products": [
+        {
+          "name": "Café americano",
+          "productId": "1",
+          "qty": 1
+        },
+        {
+          "name": "Sandwich de jamón y queso",
+          "productId": "3",
+          "qty": 1
+        }
+      ],
+      "status": "pending",
+      "dateEntry": "2022-11-09T03:38:34.635Z",
+      "id": 12
     }
   ]
 }
