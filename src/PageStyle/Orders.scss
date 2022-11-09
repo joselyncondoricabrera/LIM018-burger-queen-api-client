@@ -84,11 +84,11 @@
 }
 
 .Order-card{
-    width: 210px;
+    width: 220px;
     height: 260px;
-    padding: 20px;
+    // padding: 20px;
     background: white;
-    border-radius: 15px;
+    border-radius: 10px;
     font-family: "Poppins";
     display: flex;
     flex-direction: column;
@@ -102,18 +102,18 @@
     display: flex;
     //font-family: "Poppins";
     font-weight: 700;
-    font-size: 15px;
+    font-size: 12px;
     text-align: center;
     justify-content: center;
     width: 100%;
-    margin: 10px;
+    margin: 15px;
     text-transform: capitalize;
 }
 
 .Table-order-card{
     font-family: 'Poppins';
     font-weight: 500;
-    font-size: 10px;
+    font-size: 11px;
     text-align: center;
     margin: 0px 30px;
 }
@@ -152,6 +152,11 @@
 
 .Duration-activated{
 display: flex;
+font-family: 'Poppins';
+    font-weight: 600;
+    font-size: 15px;
+    color:#4f5250;
+
 }
 
 .Duration-inactivated{
@@ -160,6 +165,10 @@ display: none;
 
 .InitialTime-activated{
     display: flex;
+    font-family: 'Poppins';
+    font-weight: 600;
+    font-size: 15px;
+    color:#4f5250;;
 }
     
 .InitialTime-inactivated{

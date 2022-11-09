@@ -108,13 +108,13 @@
 .Order-table-container{
     width: 370px;
     height: 500px;
-
     background: #FFFFFF;
     border-radius: 15px;
-
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 .Client-name{
@@ -147,16 +147,22 @@
     font-weight: 500;
     font-size: 12px;
     text-align: center;
-    margin: 0px 30px;
+    margin: 0px 10px;
 }
-.Row-head th{
-    width: 120px;
+// .Row-head th{
+//     width: 120px;
 
-}
+// }
 .Items-products-table{
-    width: 140px;
+    width: 110px;
+    height: 20px;
+    text-align: left;
+}
+.Items-qty-table{
+    width: 30px;
     height: 20px;
     text-align: center;
+
 }
 .Name-items-product{
     width: 300px;

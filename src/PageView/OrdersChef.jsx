@@ -27,10 +27,10 @@ export default function Orders() {
     const initialMinutes = new Date(order.dateEntry).getMinutes();
     const actualHours = new Date().getHours();
     const actualMinutes = new Date().getMinutes();
-    const finalHours = actualHours - initialHours;
+    const finalHours = Math.abs(actualHours - initialHours);
     const finalMinutes = Math.abs(actualMinutes - initialMinutes);
     const timeMinutes = finalMinutes > 10 ? finalMinutes : `0${finalMinutes}`;
-    const totalTime = `Duración: 0${finalHours} : ${timeMinutes}`;
+    const totalTime = `Duración: 0${finalHours}hr : ${timeMinutes}min`;
     console.log(totalTime);
 
     const orderId = order.id;
@@ -87,23 +87,23 @@ export default function Orders() {
           {ordersByStatus.map((order) => (
             <div key={order.id} className="Order-card">
               <h1 className={styleInitialTime}>
-                {`Hora: ${new Date(order.dateEntry).getHours()} : ${new Date(order.dateEntry).getMinutes()}`}
+                {`Hora: ${new Date(order.dateEntry).getHours()}: ${new Date(order.dateEntry).getMinutes()}`}
               </h1>
               <h1 className={styleDuration}>{localStorage.getItem(order.id)}</h1>
 
-              <h1 className="Client-name-order">{order.client}</h1>
+              <h1 className="Client-name-order">{`Cliente:  ${order.client}`}</h1>
               <table className="Table-order">
                 <thead>
                   <tr className="Row-head">
                     <th className="Items-products-table">Producto</th>
-                    <th className="Items-products-table">Cant.</th>
+                    <th className="Items-qty-table">Cant.</th>
                   </tr>
                 </thead>
                 <tbody>
                   {order.products.map((productOrder) => (
                     <tr key={productOrder.productId}>
                       <td className="Items-products-table">{productOrder.name}</td>
-                      <td className="Items-products-table">{productOrder.qty}</td>
+                      <td className="Items-qty-table">{productOrder.qty}</td>
                     </tr>
                   ))}
                 </tbody>
