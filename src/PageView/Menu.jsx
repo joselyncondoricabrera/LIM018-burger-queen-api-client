@@ -173,7 +173,7 @@ export default function Menu() {
               // eslint-disable-next-line react/no-array-index-key
               <div key={product.id} className="product-card">
                 <h1 className="Price-product">
-                  $
+                  s/
                   {product.price}
                 </h1>
                 <picture className="Image">
@@ -197,8 +197,8 @@ export default function Menu() {
               <thead>
                 <tr className="Row-head">
                   <th className="Items-products-table">Producto</th>
-                  <th className="Items-products-table">Cant.</th>
-                  <th className="Items-products-table">Import.</th>
+                  <th className="Items-qty-table">Cant.</th>
+                  <th className="Items-qty-table">Import.</th>
                   <th className="Items-delete-product-table"> </th>
                 </tr>
               </thead>
@@ -207,8 +207,8 @@ export default function Menu() {
                   // eslint-disable-next-line react/no-array-index-key
                   <tr key={product.id} className="Row-body">
                     <td data-testid={`name-product-${product.id}`} className="Name-items-product">{product.name}</td>
-                    <td data-testid={`quantity-product-${product.id}`} className="Items-products-table">{product.quantity}</td>
-                    <td data-testid={`price-product-${product.id}`} className="Items-products-table">{product.price}</td>
+                    <td data-testid={`quantity-product-${product.id}`} className="Items-qty-table">{product.quantity}</td>
+                    <td data-testid={`price-product-${product.id}`} className="Items-qty-table">{product.price}</td>
                     <td>
                       <button data-testid={`delete-product-${product.id}`} className="Btn-delete-item-product" type="button" onClick={() => deleteItemProduct(product)}>
                         <img src={trashIcon} alt="button-delete" className="Image-button-delete" />

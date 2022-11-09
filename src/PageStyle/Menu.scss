@@ -108,13 +108,13 @@
 .Order-table-container{
     width: 370px;
     height: 500px;
-
     background: #FFFFFF;
     border-radius: 15px;
-
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 .Client-name{
@@ -154,7 +154,7 @@
 
 // }
 .Items-products-table{
-    width: 170px;
+    width: 110px;
     height: 20px;
     text-align: left;
 }
