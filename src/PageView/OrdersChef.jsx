@@ -91,19 +91,19 @@ export default function Orders() {
               </h1>
               <h1 className={styleDuration}>{localStorage.getItem(order.id)}</h1>
 
-              <h1 className="Client-name-order">{order.client}</h1>
+              <h1 className="Client-name-order">{`Cliente:  ${order.client}`}</h1>
               <table className="Table-order">
                 <thead>
                   <tr className="Row-head">
                     <th className="Items-products-table">Producto</th>
-                    <th className="Items-products-table">Cant.</th>
+                    <th className="Items-qty-table">Cant.</th>
                   </tr>
                 </thead>
                 <tbody>
                   {order.products.map((productOrder) => (
                     <tr key={productOrder.productId}>
                       <td className="Items-products-table">{productOrder.name}</td>
-                      <td className="Items-products-table">{productOrder.qty}</td>
+                      <td className="Items-qty-table">{productOrder.qty}</td>
                     </tr>
                   ))}
                 </tbody>
